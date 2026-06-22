@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--
+=============================================================================
+AUTHOR PAGE (author.html)
+- Photo: drop your image into assets/img/ then swap the placeholder below for:
+-   <img src="assets/img/author.jpg" alt="Photo of Dr. Ross Avilla" class="author-photo">
+- Name: update .author-name text
+- Title/institution: update .author-title text
+- Bio: update the <p> blocks inside .author-bio
+- Credentials: add/remove <li> entries in .author-credentials
+- Contact: update the mailto: href in .author-contact-link
+=============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About the Author · Introduction to Psychology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+  <style>
+    body { background: #F5F3FF; }
+
+    /* ── HERO ── */
+    .author-hero {
+      background: var(--primary);
+      padding: 56px 40px 88px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+    }
+    .author-accent-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 7px;
+      background: var(--accent);
+    }
+    .author-hero::before {
+      content: '';
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,0.06);
+      pointer-events: none;
+    }
+    .author-hero::after {
+      content: '';
+      position: absolute;
+      left: -60px; bottom: -40px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 50px solid rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+    .author-eyebrow {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+
+    /* Photo */
+    .author-photo-wrap {
+      position: relative; z-index: 1;
+      margin: 0 auto 24px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      overflow: hidden;
+      background: rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .author-photo {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .author-photo-placeholder {
+      font-size: 48px;
+      line-height: 1;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .author-name {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+      position: relative; z-index: 1;
+      text-shadow: 2px 4px 16px rgba(0,0,0,0.2);
+    }
+    .author-title {
+      font-size: 15px; font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 28px;
+      position: relative; z-index: 1;
+    }
+    .author-divider {
+      width: 56px; height: 4px;
+      background: #f3f126;
+      margin: 0 auto 28px;
+      position: relative; z-index: 1;
+    }
+    .author-home-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px; font-weight: 600;
+      position: relative; z-index: 1;
+      transition: color 0.2s;
+    }
+    .author-home-link:hover { color: #f3f126; }
+
+    /* ── CONTENT CARD ── */
+    .author-content {
+      max-width: 720px;
+      margin: -24px auto 64px;
+      padding: 0 24px;
+      position: relative; z-index: 10;
+    }
+    .author-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(109,40,217,0.12);
+      border: 1px solid rgba(109,40,217,0.1);
+      overflow: hidden;
+    }
+
+    /* Bio section */
+    .author-bio {
+      padding: 40px 40px 32px;
+      border-bottom: 1px solid rgba(109,40,217,0.08);
+    }
+    .author-section-label {
+      font-size: 10px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .author-bio p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #374151;
+      margin-bottom: 16px;
+    }
+    .author-bio p:last-child { margin-bottom: 0; }
+
+    /* Credentials section */
+    .author-credentials-section {
+      padding: 32px 40px;
+      border-bottom: 1px solid rgba(109,40,217,0.08);
+    }
+    .author-credentials {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .author-credentials li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .author-credentials li::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Contact section */
+    .author-contact-section {
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .author-contact-text {
+      font-size: 14px;
+      color: #6B7280;
+    }
+    .author-contact-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 10px 22px;
+      border-radius: 4px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .author-contact-link:hover { background: var(--primary-dark); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .author-hero { padding: 44px 20px 72px; }
+      .author-content { padding: 0 12px; margin-top: -16px; }
+      .author-bio,
+      .author-credentials-section { padding: 28px 24px; }
+      .author-contact-section { padding: 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="author-hero">
+  <div class="author-accent-bar"></div>
+
+  <span class="author-eyebrow">Introduction to Psychology</span>
+
+  <div class="author-photo-wrap">
+    <img src="assets/img/Ross.jpg" alt="Photo of Dr. Ross Avilla" class="author-photo">
+  </div>
+
+  <div class="author-name">Dr. Ross Avilla</div>
+  <div class="author-title">Continuing Lecturer · UC Merced, Psychological Sciences</div>
+
+  <div class="author-divider"></div>
+  <a href="index.html" class="author-home-link">← Back to Home</a>
+</header>
+
+<section class="author-content">
+  <div class="author-card">
+
+    <div class="author-bio">
+      <div class="author-section-label">About the Author</div>
+      <p>Dr. Ross Avilla received a Ph.D. in Psychology from the University of California, Davis in 2013. He has been teaching at UC Merced ever since, where he is a Continuing Lecturer in the Psychological Sciences department.</p>
+      <p>Dr. Avilla teaches a range of courses including Human Sexuality, Intimate Relationships, Industrial/Organizational Psychology, Research Methods, and Introduction to Psychology. He also conducts research on interpersonal relationships and the experience of first-generation college students.</p>
+    </div>
+
+    <div class="author-credentials-section">
+      <div class="author-section-label">Education &amp; Expertise</div>
+      <ul class="author-credentials">
+        <li>Ph.D. in Psychology, University of California, Davis (2013)</li>
+        <li>Continuing Lecturer, UC Merced — Psychological Sciences</li>
+        <li>Courses: Human Sexuality · Intimate Relationships · Industrial/Organizational Psychology · Research Methods · Introduction to Psychology</li>
+        <li>Research: Interpersonal relationships; first-generation college student experience</li>
+      </ul>
+    </div>
+
+    <div class="author-contact-section" style="justify-content:center;">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+        <a href="https://calendly.com/rossdavilla/officehour" target="_blank" rel="noopener" class="author-contact-link">Schedule Office Hours</a>
+        <a href="mailto:rossdavilla@gmail.com" class="author-contact-link">Email Dr. Avilla</a>
+        <a href="http://ravilla.org/" target="_blank" rel="noopener" class="author-contact-link">Dr. Avilla's Website</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons BY-NC-SA 4.0" class="cc-badge">
+    </a>
+    <p class="cc-text"><strong>Introduction to Psychology</strong> by Dr. Ross Avilla is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Free to share and adapt for non-commercial purposes with attribution.</p>
+  </div>
+</footer>
+
+</body>
+</html>

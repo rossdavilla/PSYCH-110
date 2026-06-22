@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<!--
+=============================================================================
+CLAUDE AUTHORING INSTRUCTIONS — READ BEFORE EDITING
+=============================================================================
+This is the textbook shell. When importing a Word document chapter:
+
+KEY TERMS (bold + dark blue in Word):
+  Wrap in: <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">
+             TERM<span class="key-term-icon">i</span>
+             <span class="popup-box" role="tooltip">
+               <button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button>
+               <strong>TERM</strong>DEFINITION HERE
+             </span>
+           </span>
+
+INLINE CITATIONS (Author, Year):
+  Wrap in: <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">
+             (Author, Year)
+             <span class="popup-box" role="tooltip">
+               <button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button>
+               <strong>Full Reference</strong>FULL APA REFERENCE HERE
+             </span>
+           </span>
+
+IMAGES: Use <figure class="textbook-figure"> with a descriptive alt="" you generate from context.
+  Files go in the chapter's Img/ subfolder. Reference as: src="Img/filename.jpg"
+
+MCQ QUESTIONS: Use the .question-block structure. See existing question for template.
+  submitAnswer(qId, 'correct-letter', 'Explanation text here')
+  Each question needs a unique ID (q1, q2, q3...).
+
+TRUE/FALSE: Use question-block with only two answer options (A: True, B: False).
+
+MATCHING: Use .match-block structure (see matching template comment below main content).
+
+SORTING: Use .sort-block structure (see sorting template comment below main content).
+
+FILL-IN-THE-BLANK: Use .fitb-block structure.
+
+CLICK-ON-TARGET: Use .cot-block structure. Upload two images: display image + answer key image
+  with the correct region clearly marked. The JS calculates hit/miss based on the answer region.
+
+NAV PANEL: Update chapter title, section links (id="tocList"), and prev/next href values.
+CHAPTER HERO: Update data-chapter-num, chapter label, title, and subtitle.
+TEXTBOOK META LINE: Update textbook title and author.
+REFERENCES: Add <li> entries to .references-list at end of file (hanging-indent format).
+=============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 1 — Blueprint Blue · The Science of Mind</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ── COLOR SCHEME: Blueprint Blue ── */
+    :root {
+      --primary:       #1A56DB;
+      --primary-dark:  #1339A8;
+      --h1-bg:         #1A56DB;
+      --h2-bg:         #1D4ED8;
+      --h3-bg:         #1E40AF;
+      --keyterm-color: #1A56DB;
+      --cite-color:    #B91C1C;
+      --accent:        #DC2626;
+      --text:          #1F2937;
+      --bg:            #FFFFFF;
+      --surface:       #F3F4F6;
+      --border:        #D1D5DB;
+      --img-border:    #9CA3AF;
+      --nav-bg:        #111827;
+    }
+
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ── NAV OVERLAY ── */
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 900;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* ── SLIDE-IN NAV PANEL ── */
+    .nav-panel {
+      position: fixed;
+      top: 0; left: -320px;
+      width: 300px; height: 100%;
+      background: var(--nav-bg);
+      color: white;
+      z-index: 1000;
+      transition: left 0.3s ease;
+      overflow-y: auto;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav-panel.open { left: 0; }
+
+    .nav-book-title {
+      font-size: 14px; font-weight: 700; color: white;
+      line-height: 1.3; margin-bottom: 4px;
+    }
+    .nav-chapter-label {
+      font-size: 12px; color: #9CA3AF; margin-bottom: 16px;
+    }
+
+    .nav-btn-row { display: flex; gap: 8px; margin-bottom: 4px; }
+    .nav-btn {
+      flex: 1; padding: 8px 10px;
+      background: #374151; color: white;
+      border: none; border-radius: 5px;
+      font-size: 13px; font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer; text-align: center;
+      text-decoration: none; display: block;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: #4B5563; }
+    .nav-btn.home { width: 100%; margin-bottom: 8px; }
+    .nav-btn.primary { background: var(--primary); }
+    .nav-btn.primary:hover { background: var(--primary-dark); }
+
+    .nav-divider { border: none; border-top: 1px solid #374151; margin: 16px 0; }
+
+    .nav-section-label {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: #6B7280; margin-bottom: 8px;
+    }
+
+    .nav-toc { list-style: none; }
+    .nav-toc a {
+      display: block; padding: 6px 0 6px 12px;
+      color: #D1D5DB; text-decoration: none;
+      font-size: 13px; line-height: 1.4;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .nav-toc a:hover, .nav-toc a.active {
+      color: white; border-left-color: var(--primary);
+    }
+    .nav-toc .sub { padding-left: 24px; font-size: 12px; color: #9CA3AF; }
+    .nav-toc .sub.active, .nav-toc .sub:hover { color: #D1D5DB; }
+
+    .nav-utility-row { display: flex; gap: 8px; margin-top: auto; padding-top: 16px; }
+
+    /* ── FLOATING MENU BUTTON ── */
+    .menu-btn {
+      position: fixed; top: 16px; left: 16px; z-index: 800;
+      background: var(--primary); color: white;
+      border: none; width: 44px; height: 44px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .menu-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
+
+    /* ── CONTENT WRAPPER ── */
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 30px 80px;
+    }
+
+    /* ── TEXTBOOK META BAR ── */
+    .textbook-meta {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: #9CA3AF;
+      padding: 14px 0 0;
+    }
+
+    /* ── CHAPTER HERO ── */
+    .chapter-hero {
+      background: var(--primary);
+      color: white;
+      padding: 52px 40px 64px;
+      margin: 12px -30px 52px;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 87%, 0 100%);
+    }
+    /* Large watermark chapter number */
+    .chapter-hero::before {
+      content: attr(data-chapter-num);
+      position: absolute;
+      right: 32px; top: -8px;
+      font-size: 180px; font-weight: 900;
+      color: rgba(255,255,255,0.08);
+      line-height: 1; letter-spacing: -6px;
+      pointer-events: none; user-select: none;
+    }
+    .chapter-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3.5px;
+      opacity: 0.7; margin-bottom: 12px;
+    }
+    .chapter-title {
+      font-size: 38px; font-weight: 800;
+      line-height: 1.15;
+      text-shadow: 2px 3px 10px rgba(0,0,0,0.25);
+      margin-bottom: 14px;
+      /* Override header box styles below */
+      background: none !important; padding: 0 !important;
+      color: white !important; margin-top: 0 !important;
+    }
+    .chapter-subtitle {
+      font-size: 15px; opacity: 0.82;
+      max-width: 580px; line-height: 1.6;
+    }
+
+    /* ── BODY TEXT ── */
+    p {
+      text-align: justify;
+      hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto;
+      margin-bottom: 20px;
+    }
+
+    /* ── HEADERS (boxed) ── */
+    h1 {
+      background: var(--h1-bg);
+      color: white;
+      padding: 13px 20px;
+      font-size: 20px; font-weight: 700;
+      text-shadow: 1px 2px 5px rgba(0,0,0,0.6);
+      margin: 44px 0 20px;
+    }
+    h2 {
+      background: var(--h2-bg);
+      color: white;
+      padding: 11px 20px;
+      font-size: 17px; font-weight: 600;
+      text-shadow: 1px 2px 4px rgba(0,0,0,0.5);
+      margin: 32px 0 16px;
+    }
+    h3 {
+      background: var(--h3-bg);
+      color: white;
+      padding: 9px 20px;
+      font-size: 14px; font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      margin: 24px 0 14px;
+    }
+
+    /* ── LISTS ── */
+    ul, ol {
+      padding-left: 28px;
+      margin-bottom: 20px;
+    }
+    li { margin-bottom: 6px; line-height: 1.5; }
+
+    /* ── TABLES ── */
+    table {
+      width: 100%; border-collapse: collapse;
+      margin: 24px 0; font-size: 14px;
+    }
+    th {
+      background: var(--primary); color: white;
+      padding: 10px 14px; text-align: left;
+      font-weight: 600; font-size: 13px;
+    }
+    td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    tr:nth-child(even) td { background: var(--surface); }
+    caption {
+      font-size: 13px; color: #6B7280;
+      font-style: italic; margin-bottom: 8px;
+      text-align: left;
+    }
+
+    /* ── KEY TERMS ── */
+    .key-term {
+      font-weight: 700;
+      color: var(--keyterm-color);
+      cursor: pointer;
+      position: relative;
+      display: inline;
+    }
+    .key-term-icon {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--keyterm-color);
+      border-radius: 50%;
+      font-size: 9px; font-weight: 800;
+      font-style: italic;
+      color: var(--keyterm-color);
+      margin-left: 2px;
+      vertical-align: middle;
+      position: relative; top: -1px;
+      line-height: 1;
+    }
+
+    /* ── CITATIONS ── */
+    .citation {
+      color: var(--cite-color);
+      cursor: pointer;
+      position: relative;
+      display: inline;
+    }
+
+    /* ── POP-UP BOXES ── */
+    .popup-box {
+      display: none;
+      position: absolute;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 32px 14px 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+      max-width: 300px; min-width: 200px;
+      z-index: 600;
+      font-size: 13px; font-weight: 400;
+      color: var(--text);
+      text-align: left;
+      top: calc(100% + 6px); left: 0;
+      line-height: 1.5;
+    }
+    .popup-box.active { display: block; }
+    .popup-box strong {
+      display: block;
+      font-size: 12px; font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .citation .popup-box strong { color: var(--cite-color); }
+    .popup-close {
+      position: absolute; top: 8px; right: 10px;
+      background: none; border: none;
+      font-size: 17px; cursor: pointer;
+      color: #9CA3AF; line-height: 1;
+    }
+    .popup-close:hover { color: var(--text); }
+
+    /* ── IMAGES ── */
+    .textbook-figure {
+      display: block; margin: 28px auto;
+      text-align: center;
+    }
+    .textbook-figure img {
+      border: 2px solid var(--img-border);
+      box-shadow: 4px 4px 16px rgba(0,0,0,0.22);
+      margin: 10px auto;
+      max-width: 100%; display: block;
+      border-radius: 2px;
+    }
+    .textbook-figure figcaption {
+      font-size: 13px; color: #6B7280;
+      font-style: italic; margin-top: 10px;
+      max-width: 640px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── VIDEO EMBED ── */
+    .video-wrapper {
+      position: relative; padding-bottom: 56.25%;
+      height: 0; overflow: hidden;
+      margin: 28px 10px;
+      border: 2px solid var(--img-border);
+      box-shadow: 4px 4px 16px rgba(0,0,0,0.22);
+    }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; border: 0;
+    }
+
+    /* ── QUESTION BLOCKS ── */
+    .question-block {
+      background: var(--surface);
+      border-left: 5px solid var(--primary);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .question-type-label {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--primary); margin-bottom: 10px;
+    }
+    .question-text {
+      font-weight: 600; font-size: 15px;
+      margin-bottom: 16px;
+      text-align: left; hyphens: none;
+      color: var(--text);
+    }
+
+    /* MCQ answers */
+    .mcq-options { display: flex; flex-direction: column; gap: 8px; }
+    .answer-option {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 14px;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer; font-size: 14px;
+      transition: all 0.15s;
+      text-align: left;
+    }
+    .answer-option:hover:not(.locked) {
+      border-color: var(--primary);
+      background: #EFF6FF;
+    }
+    .answer-option.selected { border-color: var(--primary); background: #EFF6FF; }
+    .answer-option.correct { border-color: #16A34A; background: #F0FDF4; color: #15803D; }
+    .answer-option.incorrect { border-color: var(--accent); background: #FEF2F2; color: #DC2626; }
+    .answer-letter {
+      font-weight: 700; min-width: 20px;
+      color: var(--primary); flex-shrink: 0;
+    }
+    .answer-option.correct .answer-letter { color: #16A34A; }
+    .answer-option.incorrect .answer-letter { color: #DC2626; }
+
+    /* True/False — same structure as MCQ */
+
+    /* Matching */
+    .match-container { display: flex; flex-direction: column; gap: 10px; }
+    .match-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .match-term {
+      font-weight: 600; font-size: 14px;
+      background: white; border: 2px solid var(--border);
+      padding: 8px 14px; border-radius: 6px;
+      min-width: 160px; flex: 1;
+    }
+    .match-select {
+      flex: 2; padding: 8px 12px;
+      border: 2px solid var(--border); border-radius: 6px;
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      background: white; cursor: pointer;
+    }
+    .match-select.correct { border-color: #16A34A; background: #F0FDF4; }
+    .match-select.incorrect { border-color: var(--accent); background: #FEF2F2; }
+
+    /* Sorting */
+    .sort-list {
+      list-style: none; display: flex;
+      flex-direction: column; gap: 8px;
+    }
+    .sort-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      background: white; border: 2px solid var(--border);
+      border-radius: 6px; cursor: grab;
+      font-size: 14px; user-select: none;
+    }
+    .sort-item:active { cursor: grabbing; }
+    .sort-handle { color: #9CA3AF; font-size: 18px; flex-shrink: 0; }
+    .sort-item.correct { border-color: #16A34A; background: #F0FDF4; }
+    .sort-item.incorrect { border-color: var(--accent); background: #FEF2F2; }
+
+    /* Fill-in-the-blank */
+    .fitb-sentence {
+      font-size: 15px; font-weight: 500;
+      line-height: 2; margin-bottom: 12px;
+      text-align: left; hyphens: none;
+    }
+    .fitb-input {
+      border: none; border-bottom: 2px solid var(--primary);
+      font-family: 'Inter', sans-serif; font-size: 15px;
+      font-weight: 600; color: var(--primary);
+      background: transparent; width: 140px;
+      text-align: center; outline: none;
+      padding: 2px 4px;
+    }
+    .fitb-input.correct { border-color: #16A34A; color: #15803D; }
+    .fitb-input.incorrect { border-color: var(--accent); color: #DC2626; }
+
+    /* Click-on-target */
+    .cot-image-wrap {
+      position: relative; display: inline-block;
+      cursor: crosshair; margin: 10px auto;
+    }
+    .cot-image-wrap img { display: block; max-width: 100%; }
+    .selection-circle {
+      position: absolute;
+      width: 25px; height: 25px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      background: rgba(220,38,38,0.2);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      display: none;
+    }
+
+    /* Submit button */
+    .submit-btn {
+      margin-top: 14px;
+      background: var(--primary); color: white;
+      border: none; padding: 9px 22px;
+      border-radius: 5px;
+      font-size: 14px; font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--primary-dark); }
+    .submit-btn:disabled { background: #9CA3AF; cursor: default; }
+
+    /* Explanation box */
+    .explanation-box {
+      display: none;
+      margin-top: 14px;
+      background: #FFFBEB;
+      border: 1px solid #FCD34D;
+      border-radius: 5px;
+      padding: 12px 16px;
+      font-size: 13px; color: #78350F;
+      line-height: 1.6;
+    }
+    .explanation-box.show { display: block; }
+
+    /* ── REFERENCES ── */
+    .references-section {
+      border-top: 2px solid var(--border);
+      margin-top: 56px; padding-top: 24px;
+    }
+    .references-list { list-style: none; padding: 0; }
+    .references-list li {
+      font-size: 14px; line-height: 1.7;
+      padding-left: 36px; text-indent: -36px;
+      text-align: left; margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    /* ── GLOSSARY SECTION ── */
+    .glossary-section {
+      border-top: 2px solid var(--border);
+      margin-top: 40px; padding-top: 24px;
+    }
+    .glossary-list { list-style: none; padding: 0; }
+    .glossary-list li {
+      font-size: 14px; padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.6;
+    }
+    .glossary-list .g-term {
+      font-weight: 700; color: var(--keyterm-color);
+      margin-right: 6px;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .menu-btn, .nav-panel, .nav-overlay { display: none !important; }
+      .chapter-hero { clip-path: none !important; }
+      .explanation-box, .submit-btn { display: none !important; }
+      .answer-option { break-inside: avoid; border: 1px solid #ccc; }
+      .content-wrapper { padding: 0 !important; }
+      body { font-size: 12pt; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .content-wrapper { padding: 0 16px 60px; }
+      .chapter-hero { padding: 36px 20px 56px; margin: 8px -16px 36px; }
+      .chapter-title { font-size: 26px !important; }
+      .chapter-hero::before { font-size: 110px; }
+      h1 { font-size: 17px; }
+      h2 { font-size: 14px; }
+      h3 { font-size: 13px; }
+      .match-row { flex-direction: column; }
+      .match-term, .match-select { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav overlay -->
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<!-- Slide-in nav panel -->
+<nav class="nav-panel" id="navPanel" aria-label="Chapter navigation">
+  <div class="nav-book-title">Introduction to Psychology</div>
+  <div class="nav-chapter-label">Ch. 1 · The Science of Mind</div>
+
+  <a href="index.html" class="nav-btn home">⌂ Back to Home</a>
+  <div class="nav-btn-row">
+    <a href="#" class="nav-btn">← Prev Chapter</a>
+    <a href="#" class="nav-btn primary">Next Chapter →</a>
+  </div>
+
+  <hr class="nav-divider">
+  <div class="nav-section-label">In This Chapter</div>
+  <ul class="nav-toc" id="tocList">
+    <li><a href="#section1">1.1 What Is Psychology?</a></li>
+    <li><a href="#section2">1.2 A Brief History</a></li>
+    <li><a href="#s2-early" class="sub">Early Foundations</a></li>
+    <li><a href="#s2-wundt" class="sub">Wundt's Laboratory</a></li>
+    <li><a href="#section3">1.3 Major Perspectives</a></li>
+    <li><a href="#s3-bio" class="sub">Biological</a></li>
+    <li><a href="#s3-psycho" class="sub">Psychodynamic</a></li>
+  </ul>
+
+  <hr class="nav-divider">
+  <div class="nav-utility-row">
+    <button onclick="window.print()" class="nav-btn" style="flex:1">🖨 Print</button>
+    <button onclick="downloadPDF()" class="nav-btn" style="flex:1">⬇ PDF</button>
+  </div>
+</nav>
+
+<!-- Floating menu button -->
+<button class="menu-btn" id="menuBtn" onclick="toggleNav()" aria-label="Open navigation menu">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- MAIN CONTENT — replace lorem ipsum with chapter -->
+<!-- ═══════════════════════════════════════════════ -->
+<main class="content-wrapper">
+
+  <div class="textbook-meta">Introduction to Psychology · Avilla, 2026</div>
+
+  <!-- CHAPTER HERO: update data-chapter-num, label, title, subtitle -->
+  <header class="chapter-hero" data-chapter-num="1">
+    <div class="chapter-label">Chapter 1</div>
+    <h1 class="chapter-title">The Science of Mind</h1>
+    <p class="chapter-subtitle">Exploring the foundations of psychological science, its history, and its major theoretical frameworks for understanding human behavior.</p>
+  </header>
+
+  <!-- ─── SECTION 1 ─── -->
+  <section id="section1">
+    <h1>1.1 What Is Psychology?</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">cognitive psychology<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Cognitive Psychology</strong>The branch of psychology concerned with mental processes such as attention, language, memory, perception, and problem-solving.</span></span> est laborum et dolorum fuga. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(James, 1890)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Full Reference</strong>James, W. (1890). <em>The principles of psychology.</em> Henry Holt and Company.</span></span>.</p>
+
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur adipiscing elit sed quia non numquam.</p>
+
+    <!-- Sample image -->
+    <figure class="textbook-figure">
+      <img src="https://placehold.co/680x360/1A56DB/ffffff?text=Figure+1.1+—+Placeholder" alt="Diagram illustrating the major subfields of psychology arranged in a circular layout, including clinical, cognitive, developmental, social, and biological psychology." width="680" height="360">
+      <figcaption><strong>Figure 1.1.</strong> The major subfields of psychology and their areas of focus. Each subfield examines human behavior and mental processes from a different vantage point.</figcaption>
+    </figure>
+
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+
+    <!-- MCQ QUESTION TEMPLATE -->
+    <div class="question-block" role="region" aria-label="Practice question 1">
+      <div class="question-type-label">Multiple Choice</div>
+      <p class="question-text">Which of the following best defines psychology as a scientific discipline?</p>
+      <div class="mcq-options" id="q1">
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectMCQ(this,'q1')">
+          <span class="answer-letter">A</span>
+          <span>The study of the brain's physical structure and neural pathways.</span>
+        </div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectMCQ(this,'q1')">
+          <span class="answer-letter">B</span>
+          <span>The scientific study of behavior and mental processes.</span>
+        </div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectMCQ(this,'q1')">
+          <span class="answer-letter">C</span>
+          <span>A philosophical analysis of the nature of consciousness and free will.</span>
+        </div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')selectMCQ(this,'q1')">
+          <span class="answer-letter">D</span>
+          <span>The medical diagnosis and treatment of mental health disorders.</span>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="submitMCQ('q1','B','The scientific study of behavior and mental processes is the standard definition of psychology, distinguishing it from neuroscience (brain structure), philosophy (consciousness), and psychiatry (medical treatment).')">Submit</button>
+      <div class="explanation-box" id="q1-exp"></div>
+    </div>
+
+  </section>
+
+  <!-- ─── SECTION 2 ─── -->
+  <section id="section2">
+    <h1>1.2 A Brief History of Psychology</h1>
+
+    <section id="s2-early">
+      <h2>Early Foundations</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">structuralism<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Structuralism</strong>An early school of psychology, founded by Wilhelm Wundt and Edward Titchener, that aimed to identify the basic elements of conscious experience through systematic introspection.</span></span> ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+
+      <!-- TRUE/FALSE QUESTION TEMPLATE -->
+      <div class="question-block" role="region" aria-label="Practice question 2">
+        <div class="question-type-label">True / False</div>
+        <p class="question-text">Wilhelm Wundt established the first formal psychology laboratory in Leipzig, Germany in 1879.</p>
+        <div class="mcq-options" id="q2">
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0">
+            <span class="answer-letter">A</span><span>True</span>
+          </div>
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0">
+            <span class="answer-letter">B</span><span>False</span>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q2','A','This is true. Wundt opened his experimental psychology laboratory at the University of Leipzig in 1879, marking the formal beginning of psychology as a scientific discipline.')">Submit</button>
+        <div class="explanation-box" id="q2-exp"></div>
+      </div>
+    </section>
+
+    <section id="s2-wundt">
+      <h2>Wundt's Laboratory</h2>
+      <h3 id="s2-wundt-h3">The Method of Introspection</h3>
+      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Wundt, 1897)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Full Reference</strong>Wundt, W. (1897). <em>Outlines of psychology.</em> Wilhelm Engelmann.</span></span>. Lorem ipsum dolor sit amet consectetur.</p>
+
+      <!-- MATCHING QUESTION TEMPLATE -->
+      <div class="question-block" role="region" aria-label="Practice question 3">
+        <div class="question-type-label">Matching</div>
+        <p class="question-text">Match each early psychologist to their primary contribution.</p>
+        <div class="match-container" id="q3">
+          <div class="match-row">
+            <div class="match-term">Wilhelm Wundt</div>
+            <select class="match-select" data-correct="First psychology laboratory (1879)" onchange="clearMatchFeedback('q3')">
+              <option value="">— Select —</option>
+              <option>First psychology laboratory (1879)</option>
+              <option>Theory of psychoanalysis</option>
+              <option>Law of effect</option>
+              <option>Stream of consciousness</option>
+            </select>
+          </div>
+          <div class="match-row">
+            <div class="match-term">William James</div>
+            <select class="match-select" data-correct="Stream of consciousness" onchange="clearMatchFeedback('q3')">
+              <option value="">— Select —</option>
+              <option>First psychology laboratory (1879)</option>
+              <option>Theory of psychoanalysis</option>
+              <option>Law of effect</option>
+              <option>Stream of consciousness</option>
+            </select>
+          </div>
+          <div class="match-row">
+            <div class="match-term">Sigmund Freud</div>
+            <select class="match-select" data-correct="Theory of psychoanalysis" onchange="clearMatchFeedback('q3')">
+              <option value="">— Select —</option>
+              <option>First psychology laboratory (1879)</option>
+              <option>Theory of psychoanalysis</option>
+              <option>Law of effect</option>
+              <option>Stream of consciousness</option>
+            </select>
+          </div>
+          <div class="match-row">
+            <div class="match-term">Edward Thorndike</div>
+            <select class="match-select" data-correct="Law of effect" onchange="clearMatchFeedback('q3')">
+              <option value="">— Select —</option>
+              <option>First psychology laboratory (1879)</option>
+              <option>Theory of psychoanalysis</option>
+              <option>Law of effect</option>
+              <option>Stream of consciousness</option>
+            </select>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="submitMatch('q3','Wundt → First psychology laboratory. James → Stream of consciousness. Freud → Theory of psychoanalysis. Thorndike → Law of effect.')">Submit</button>
+        <div class="explanation-box" id="q3-exp"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ─── SECTION 3 ─── -->
+  <section id="section3">
+    <h1>1.3 Major Perspectives in Psychology</h1>
+
+    <section id="s3-bio">
+      <h2>The Biological Perspective</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecati cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet adipiscing.</p>
+
+      <!-- SORTING QUESTION TEMPLATE -->
+      <div class="question-block" role="region" aria-label="Practice question 4">
+        <div class="question-type-label">Sorting</div>
+        <p class="question-text">Drag to arrange the following milestones in the history of psychology in chronological order (earliest first).</p>
+        <ul class="sort-list" id="q4" aria-label="Drag to reorder">
+          <li class="sort-item" draggable="true" data-order="3"><span class="sort-handle" aria-hidden="true">⠿</span>Behaviorism emerges with Watson (1913)</li>
+          <li class="sort-item" draggable="true" data-order="1"><span class="sort-handle" aria-hidden="true">⠿</span>Wundt opens first psychology lab (1879)</li>
+          <li class="sort-item" draggable="true" data-order="4"><span class="sort-handle" aria-hidden="true">⠿</span>Cognitive revolution begins (1950s)</li>
+          <li class="sort-item" draggable="true" data-order="2"><span class="sort-handle" aria-hidden="true">⠿</span>Freud publishes <em>The Interpretation of Dreams</em> (1900)</li>
+        </ul>
+        <button class="submit-btn" onclick="submitSort('q4','Correct order: (1) Wundt 1879 → (2) Freud 1900 → (3) Watson 1913 → (4) Cognitive revolution 1950s.')">Submit</button>
+        <div class="explanation-box" id="q4-exp"></div>
+      </div>
+
+      <!-- Sample table -->
+      <table aria-describedby="table1-caption">
+        <caption id="table1-caption"><strong>Table 1.1.</strong> Comparison of major psychological perspectives and their primary focus areas.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Perspective</th>
+            <th scope="col">Primary Focus</th>
+            <th scope="col">Key Figure(s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Biological</td><td>Brain, genes, nervous system</td><td>Kandel, Hebb</td></tr>
+          <tr><td>Psychodynamic</td><td>Unconscious drives, early experience</td><td>Freud, Jung</td></tr>
+          <tr><td>Behavioral</td><td>Observable behavior, conditioning</td><td>Watson, Skinner</td></tr>
+          <tr><td>Cognitive</td><td>Mental processes, schemas</td><td>Piaget, Miller</td></tr>
+          <tr><td>Humanistic</td><td>Growth, self-actualization</td><td>Maslow, Rogers</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="s3-psycho">
+      <h2>The Psychodynamic Perspective</h2>
+      <h3>Freud's Contributions</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+      <!-- FILL-IN-THE-BLANK QUESTION TEMPLATE -->
+      <div class="question-block" role="region" aria-label="Practice question 5">
+        <div class="question-type-label">Fill in the Blank</div>
+        <p class="fitb-sentence">According to Freud, the part of the personality that operates on the "pleasure principle" and demands immediate gratification is called the <input class="fitb-input" id="q5-input" type="text" aria-label="Fill in the blank" autocomplete="off" placeholder="________">.</p>
+        <button class="submit-btn" onclick="submitFITB('q5','id','ego,superego,libido')">Submit</button>
+        <div class="explanation-box" id="q5-exp"></div>
+      </div>
+
+      <!-- Sample YouTube video embed -->
+      <div class="video-wrapper" aria-label="Embedded video: Overview of Freud's psychodynamic theory" role="region">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Overview of Freud's Psychodynamic Theory" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p style="font-size:13px; color:#6B7280; font-style:italic; text-align:center; margin-top:-16px; margin-bottom:24px;">Video 1.1. An overview of Freud's psychodynamic theory and its legacy in modern psychology.</p>
+
+      <!-- CLICK-ON-TARGET QUESTION TEMPLATE -->
+      <!-- CLAUDE: For COT questions, upload two images to Img/:
+           (1) display image (what students see), (2) answer key image with correct region circled.
+           Set data-target-x, data-target-y as % of image width/height, data-target-r as hit radius in px. -->
+      <div class="question-block" role="region" aria-label="Practice question 6">
+        <div class="question-type-label">Click on Target</div>
+        <p class="question-text">Click on the part of the diagram that represents the <strong>preconscious</strong> mind in Freud's iceberg model.</p>
+        <div style="text-align:center;">
+          <div class="cot-image-wrap" id="q6-wrap"
+               data-target-x="50" data-target-y="40" data-target-r="60"
+               onclick="handleCOTClick(event,'q6')"
+               role="img" aria-label="Diagram of Freud's iceberg model showing conscious, preconscious, and unconscious layers">
+            <img src="https://placehold.co/500x380/1A56DB/ffffff?text=Iceberg+Diagram+Placeholder" alt="Freud's iceberg model diagram. The tip above water is labeled conscious. Just below the waterline is the preconscious. The large mass below is the unconscious." width="500" height="380" id="q6-img">
+            <div class="selection-circle" id="q6-circle"></div>
+          </div>
+        </div>
+        <button class="submit-btn" id="q6-btn" onclick="submitCOT('q6','The preconscious layer sits just below the waterline in the middle band of the iceberg — above the large unconscious mass but below the small conscious tip.')" disabled>Submit Selection</button>
+        <div class="explanation-box" id="q6-exp"></div>
+      </div>
+
+    </section>
+  </section>
+
+  <!-- ─── GLOSSARY ─── -->
+  <div class="glossary-section">
+    <h1>Key Terms</h1>
+    <ul class="glossary-list">
+      <li><span class="g-term">Cognitive Psychology</span> — The branch of psychology concerned with mental processes such as attention, language, memory, perception, and problem-solving.</li>
+      <li><span class="g-term">Structuralism</span> — An early school of psychology that aimed to identify the basic elements of conscious experience through systematic introspection.</li>
+    </ul>
+  </div>
+
+  <!-- ─── REFERENCES ─── -->
+  <div class="references-section">
+    <h1>References</h1>
+    <ul class="references-list">
+      <li>James, W. (1890). <em>The principles of psychology.</em> Henry Holt and Company.</li>
+      <li>Wundt, W. (1897). <em>Outlines of psychology.</em> Wilhelm Engelmann.</li>
+    </ul>
+  </div>
+
+</main>
+
+<script>
+// ── NAV ──
+function toggleNav() {
+  document.getElementById('navPanel').classList.toggle('open');
+  document.getElementById('navOverlay').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('navPanel').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+}
+
+// ── POPUPS ──
+function togglePopup(el) {
+  const popup = el.querySelector(':scope > .popup-box');
+  document.querySelectorAll('.popup-box.active').forEach(p => { if (p !== popup) p.classList.remove('active'); });
+  popup.classList.toggle('active');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.key-term') && !e.target.closest('.citation'))
+    document.querySelectorAll('.popup-box.active').forEach(p => p.classList.remove('active'));
+});
+
+// ── MCQ / TRUE-FALSE ──
+const qState = {};
+function selectMCQ(el, qId) {
+  if (qState[qId]?.locked) return;
+  document.querySelectorAll(`#${qId} .answer-option`).forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  if (!qState[qId]) qState[qId] = { attempts: 0 };
+  qState[qId].selected = el.querySelector('.answer-letter').textContent.trim();
+}
+function submitMCQ(qId, correct, explanation) {
+  const state = qState[qId];
+  if (!state || !state.selected) { alert('Please select an answer.'); return; }
+  if (state.locked) return;
+  state.attempts++;
+  const opts = document.querySelectorAll(`#${qId} .answer-option`);
+  const letters = ['A','B','C','D','E'];
+  if (state.selected === correct) {
+    opts.forEach((o,i) => { if (letters[i] === correct) o.classList.add('correct'); });
+    showExp(qId, '✓ Correct! ' + explanation, true);
+    state.locked = true;
+  } else {
+    opts.forEach((o,i) => { if (letters[i] === state.selected) o.classList.add('incorrect'); });
+    if (state.attempts >= 2) {
+      opts.forEach((o,i) => { if (letters[i] === correct) o.classList.add('correct'); });
+      showExp(qId, '✗ Incorrect. ' + explanation, false);
+      state.locked = true;
+    } else {
+      setTimeout(() => {
+        opts.forEach(o => o.classList.remove('incorrect', 'selected'));
+        state.selected = null;
+      }, 800);
+    }
+  }
+}
+
+// ── MATCHING ──
+function clearMatchFeedback(qId) {
+  document.querySelectorAll(`#${qId} .match-select`).forEach(s => s.classList.remove('correct','incorrect'));
+  const exp = document.getElementById(qId+'-exp');
+  if (exp) exp.classList.remove('show');
+}
+function submitMatch(qId, explanation) {
+  const selects = document.querySelectorAll(`#${qId} .match-select`);
+  let allCorrect = true;
+  selects.forEach(s => {
+    if (s.value === s.dataset.correct) s.classList.add('correct');
+    else { s.classList.add('incorrect'); allCorrect = false; }
+  });
+  showExp(qId, (allCorrect ? '✓ All correct! ' : '✗ Some answers are incorrect. ') + explanation, allCorrect);
+  if (allCorrect) selects.forEach(s => s.disabled = true);
+}
+
+// ── SORTING (drag-and-drop) ──
+let dragSrc = null;
+document.addEventListener('dragstart', e => {
+  if (e.target.classList.contains('sort-item')) { dragSrc = e.target; e.target.style.opacity = '0.4'; }
+});
+document.addEventListener('dragend', e => {
+  if (e.target.classList.contains('sort-item')) e.target.style.opacity = '';
+});
+document.addEventListener('dragover', e => {
+  const item = e.target.closest('.sort-item');
+  if (item && item !== dragSrc) {
+    e.preventDefault();
+    const list = item.parentElement;
+    const items = [...list.children];
+    const srcIdx = items.indexOf(dragSrc);
+    const tgtIdx = items.indexOf(item);
+    if (srcIdx < tgtIdx) list.insertBefore(dragSrc, item.nextSibling);
+    else list.insertBefore(dragSrc, item);
+  }
+});
+function submitSort(qId, explanation) {
+  const items = document.querySelectorAll(`#${qId} .sort-item`);
+  const orders = [...items].map(i => parseInt(i.dataset.order));
+  let correct = true;
+  for (let i = 0; i < orders.length - 1; i++) { if (orders[i] > orders[i+1]) { correct = false; break; } }
+  items.forEach((item, i) => {
+    if (orders[i] === i + 1) item.classList.add('correct');
+    else { item.classList.add('incorrect'); }
+  });
+  showExp(qId, (correct ? '✓ Correct order! ' : '✗ Not quite. ') + explanation, correct);
+  if (correct) items.forEach(i => i.setAttribute('draggable','false'));
+}
+
+// ── FILL-IN-THE-BLANK ──
+function submitFITB(qId, correct, alternatesStr) {
+  const input = document.getElementById(qId+'-input');
+  const val = input.value.trim().toLowerCase();
+  const accepted = [correct.toLowerCase(), ...alternatesStr.split(',').map(s=>s.trim().toLowerCase())];
+  const isCorrect = accepted.includes(val);
+  input.classList.remove('correct','incorrect');
+  input.classList.add(isCorrect ? 'correct' : 'incorrect');
+  input.disabled = true;
+  if (!isCorrect) input.value = correct.charAt(0).toUpperCase() + correct.slice(1);
+  showExp(qId, (isCorrect ? '✓ Correct! ' : `✗ The correct answer is "${correct}". `) + 'In Freudian theory, the id operates entirely on the pleasure principle, seeking immediate satisfaction of drives and desires without regard for reality or morality.', isCorrect);
+}
+
+// ── CLICK-ON-TARGET ──
+function handleCOTClick(e, qId) {
+  if (qState[qId]?.locked) return;
+  const wrap = document.getElementById(qId+'-wrap');
+  const circle = document.getElementById(qId+'-circle');
+  const btn = document.getElementById(qId+'-btn');
+  const rect = wrap.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  circle.style.left = x + 'px';
+  circle.style.top = y + 'px';
+  circle.style.display = 'block';
+  if (!qState[qId]) qState[qId] = {};
+  qState[qId].x = x; qState[qId].y = y;
+  btn.disabled = false;
+}
+function submitCOT(qId, explanation) {
+  const state = qState[qId];
+  if (!state || state.x === undefined) return;
+  if (state.locked) return;
+  const wrap = document.getElementById(qId+'-wrap');
+  const img = wrap.querySelector('img');
+  const tx = parseFloat(wrap.dataset.targetX) / 100 * img.offsetWidth;
+  const ty = parseFloat(wrap.dataset.targetY) / 100 * img.offsetHeight;
+  const tr = parseFloat(wrap.dataset.targetR);
+  const dist = Math.sqrt((state.x - tx)**2 + (state.y - ty)**2);
+  const isCorrect = dist <= tr;
+  const circle = document.getElementById(qId+'-circle');
+  circle.style.border = `3px solid ${isCorrect ? '#16A34A' : '#DC2626'}`;
+  circle.style.background = isCorrect ? 'rgba(22,163,74,0.2)' : 'rgba(220,38,38,0.2)';
+  showExp(qId, (isCorrect ? '✓ Correct! ' : '✗ Not quite. ') + explanation, isCorrect);
+  state.locked = true;
+  document.getElementById(qId+'-btn').disabled = true;
+}
+
+// ── SHARED FEEDBACK ──
+function showExp(qId, text, wasCorrect) {
+  const box = document.getElementById(qId+'-exp');
+  box.textContent = text;
+  box.classList.add('show');
+  box.style.background = wasCorrect ? '#F0FDF4' : '#FFFBEB';
+  box.style.borderColor = wasCorrect ? '#86EFAC' : '#FCD34D';
+  box.style.color = wasCorrect ? '#166534' : '#78350F';
+}
+
+// ── SCROLL-TRACKING TOC ──
+const sections = document.querySelectorAll('section[id], div[id]');
+const tocLinks = document.querySelectorAll('#tocList a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+}, { passive: true });
+
+// ── PDF DOWNLOAD (print dialog as fallback) ──
+function downloadPDF() { window.print(); }
+</script>
+</body>
+</html>

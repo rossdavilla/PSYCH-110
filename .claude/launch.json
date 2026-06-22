@@ -1,0 +1,30 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "textbook",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8123"],
+      "port": 8123
+    },
+    {
+      "name": "syllabus",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8201"],
+      "port": 8201,
+      "autoPort": false
+    },
+    {
+      "name": "tlap-demo",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8731",
+        "--directory",
+        "/Users/rossavilla/My Drive/School/Writing/Top Hat/Intro to Psych (Altman)/2026 PSY1 Edition/Chapter 16 - Sex & Gender (due June 22)/Interactive"
+      ],
+      "port": 8731
+    }
+  ]
+}

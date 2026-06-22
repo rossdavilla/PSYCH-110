@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Capital Bank</title>
+<link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/img/favicon/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple:        #6D28D9;
+  --purple-dark:   #5B21B6;
+  --purple-darker: #4C1D95;
+  --purple-light:  #F5F3FF;
+  --orange:        #f37d26;
+  --yellow:        #f3f126;
+  --indigo:        #1E1B4B;
+  --text:          #111827;
+  --text-muted:    #6B7280;
+  --border:        #E5E7EB;
+  --bg:            #F9FAFB;
+  --white:         #FFFFFF;
+  --green:         #059669;
+  --red:           #DC2626;
+  --radius:        12px;
+  --shadow:        0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg:     0 4px 24px rgba(0,0,0,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+.page-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+
+/* ── PAGE TITLE ────────────────────────────────────────── */
+.page-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.page-title .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.page-title h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--purple);
+  line-height: 1.2;
+}
+
+/* ── SECTION CARD ──────────────────────────────────────── */
+.syllabus-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.section-header {
+  background: var(--indigo);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  flex: 1;
+}
+.section-done-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: transparent;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.section-done-badge.done {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
+.section-body { padding: 20px; }
+
+/* ── PIGGY BANK ────────────────────────────────────────── */
+.piggybank-intro { font-size: 15px; margin-bottom: 16px; line-height: 1.7; }
+
+.piggybank-scene { position: relative; }
+
+/* 4+3 grid of coins — flexbox wraps naturally, justify-content centers the short row */
+.coins-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 0 16px;
+}
+
+.coin-slot {
+  flex: 0 0 auto;
+}
+
+/* Circular coin button */
+.coin-btn {
+  width:  clamp(110px, 23vw, 185px);
+  height: clamp(110px, 23vw, 185px);
+  padding: 0;
+  background: none;
+  border: 4px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.22s cubic-bezier(0.34, 1.3, 0.64, 1),
+              filter   0.18s ease,
+              opacity  0.18s ease,
+              border-color 0.18s ease,
+              box-shadow   0.18s ease;
+}
+
+/* Selected coin: slight scale + gold glow ring */
+.coin-slot.active .coin-btn {
+  transform: scale(1.12);
+  border-color: #f37d26;
+  box-shadow: 0 0 0 4px rgba(243,125,38,0.35), 0 4px 18px rgba(0,0,0,0.22);
+}
+
+/* Other coins dim when one is active */
+.coins-grid.has-active .coin-slot:not(.active) .coin-btn {
+  opacity: 0.45;
+  filter: brightness(0.65);
+}
+
+.coin-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* While the clone flies, hide the original slot */
+.coin-launching {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+/* ── ACTION BAR (appears between spread and bank) ── */
+.coin-action-bar {
+  display: none;
+  text-align: center;
+  padding: 14px 0 10px;
+}
+.active-coin-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 10px;
+}
+.btn-put-in-bank {
+  padding: 13px 36px;
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-put-in-bank:hover   { background: #e06b18; }
+.btn-put-in-bank:active  { transform: scale(0.96); }
+.btn-put-in-bank:disabled {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bank-wrap {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+#piggyBankImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: center bottom;
+}
+
+/* ── COIN COUNT + RESET ── */
+.coin-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--purple);
+  text-align: center;
+  margin: 10px 0 16px;
+}
+.coin-count .count-num { font-size: 26px; color: var(--orange); line-height: 1; }
+.coin-reset-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: 'Inter', sans-serif;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.coin-reset-btn:hover { color: var(--red); }
+
+/* ── PIGGY BANK JIGGLE ── */
+@keyframes piggyJiggle {
+  0%   { transform: rotate(0deg)    scale(1)    translateX(0); }
+  10%  { transform: rotate(-4deg)   scale(1.03) translateX(-3px); }
+  25%  { transform: rotate(4deg)    scale(1.03) translateX(3px); }
+  40%  { transform: rotate(-2.5deg) scale(1.01) translateX(-2px); }
+  55%  { transform: rotate(2deg)    scale(1.01) translateX(2px); }
+  68%  { transform: rotate(-1deg)               translateX(-1px); }
+  80%  { transform: rotate(0.5deg); }
+  90%  { transform: rotate(-0.3deg); }
+  100% { transform: rotate(0deg)    scale(1)    translateX(0); }
+}
+.piggybank-jiggle {
+  animation: piggyJiggle 0.62s ease-out;
+  transform-origin: center bottom;
+}
+.coin-reason label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+/* ── TEXTAREA / SAVE ───────────────────────────────────── */
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 100px;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--purple); }
+.save-indicator {
+  font-size: 12px;
+  color: var(--green);
+  text-align: right;
+  margin-top: 6px;
+  min-height: 18px;
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <div class="page-title">
+    <div class="eyebrow">Classroom Activity</div>
+    <h1>Social Capital Bank</h1>
+  </div>
+
+  <!-- ────────────────────────────── SOCIAL CAPITAL ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-coins">
+    <div class="section-header">
+      <div class="section-done-badge" id="badge-coins">✓</div>
+      <h2>🐷 Social Capital</h2>
+    </div>
+    <div class="section-body">
+      <p class="piggybank-intro">
+        <strong>What is social capital?</strong> Social capital refers to the value that comes from relationships built on trust, goodwill, and mutual investment. In an academic setting, it's the currency of being known as someone who shows up, participates, and genuinely tries. When a student asks me for an extension, extra credit opportunity, or a letter of recommendation, the single biggest factor in my response is whether I know them as an engaged member of our classroom community. That's social capital at work. The behaviors below are small — but they send a big signal about the kind of student and person you are. Choose 3 that you'll genuinely commit to this semester.
+      </p>
+      <p class="piggybank-intro">
+        Your piggy bank is your <strong>personal commitment</strong> for this semester. Choose <strong>3 coins</strong> below — these are the behaviors you'll commit to. You can update your choices anytime before the due date.
+      </p>
+
+      <div class="piggybank-scene">
+        <div class="coins-grid" id="coinsGrid">
+          <!-- Rendered by renderCoins() -->
+        </div>
+        <div class="coin-action-bar" id="coinActionBar">
+          <span class="active-coin-label" id="activeCoinLabel"></span>
+          <button class="btn-put-in-bank" id="putInBankBtn" onclick="putInBank()">
+            💰 Put in Bank
+          </button>
+        </div>
+        <div class="bank-wrap">
+          <img id="piggyBankImg"
+               src="assets/img/socialcapitalbank/piggybank.png"
+               alt="Social Capital Piggy Bank">
+        </div>
+      </div>
+      <div class="coin-count">
+        <span class="count-num" id="coinCountNum">0</span>/3 coins selected
+        <button class="coin-reset-btn" id="coinResetBtn" onclick="resetCoins()" style="display:none;">
+          Reset
+        </button>
+      </div>
+
+      <div id="coinReasonSection" style="display:none;">
+        <div class="coin-reason">
+          <label for="coinReasonText">How will you make sure you're executing these 3 personal commitments?</label>
+          <ul id="coinReasonList" style="margin: 4px 0 12px 18px; padding: 0; font-size: 14px; font-weight: 600; color: var(--purple); line-height: 1.8;"></ul>
+          <textarea
+            id="coinReasonText"
+            placeholder="What's your plan for actually following through this semester?"
+            rows="4"
+            oninput="debouncedSaveCoins()"
+          ></textarea>
+          <div class="save-indicator" id="coinSaveIndicator"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════
+const COINS = [
+  { id: 'coin_early',       img: 'assets/img/socialcapitalbank/coin-show-up-to-class-early.png',   label: 'Show up to class early' },
+  { id: 'coin_discussions', img: 'assets/img/socialcapitalbank/coin-shares-during-discussions.png', label: 'Share during discussions' },
+  { id: 'coin_hw',          img: 'assets/img/socialcapitalbank/coin-turn-in-HW-on-time.png',        label: 'Turn in assignments on time' },
+  { id: 'coin_officehours', img: 'assets/img/socialcapitalbank/coin-visits-office-hours.png',       label: 'Visit office hours' },
+  { id: 'coin_read',        img: 'assets/img/socialcapitalbank/coin-read-text-before-class.png',    label: 'Read text before class' },
+  { id: 'coin_questions',   img: 'assets/img/socialcapitalbank/coin-ask-questions-in-class.png',    label: 'Ask questions in class' },
+  { id: 'coin_help',        img: 'assets/img/socialcapitalbank/coin-help-a-fellow-student.png',     label: 'Help a fellow student' },
+];
+
+// ═══════════════════════════════════════════════════════════
+// STATE  (persisted to localStorage — no backend needed)
+// ═══════════════════════════════════════════════════════════
+const STORAGE_KEY = 'socialCapitalBank';
+let activeCoinId  = null;             // which coin is currently popped up
+let state = { coins: [], coinReason: '' };
+const saveTimers = {};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      state.coins      = Array.isArray(parsed.coins) ? parsed.coins.filter(id => COINS.some(c => c.id === id)) : [];
+      state.coinReason = typeof parsed.coinReason === 'string' ? parsed.coinReason : '';
+    }
+  } catch (e) { /* ignore malformed storage */ }
+}
+
+function persist() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  renderCoins();
+
+  // Restore previously banked coins (remove them from the grid)
+  state.coins.forEach(coinId => document.getElementById(`slot-${coinId}`)?.remove());
+  if (state.coinReason) document.getElementById('coinReasonText').value = state.coinReason;
+  updateCoinUI();
+});
+
+// ═══════════════════════════════════════════════════════════
+// RENDER & LAYOUT
+// ═══════════════════════════════════════════════════════════
+function renderCoins() {
+  const grid = document.getElementById('coinsGrid');
+  grid.innerHTML = '';
+  COINS.forEach(coin => {
+    const slot = document.createElement('div');
+    slot.className = 'coin-slot';
+    slot.id = `slot-${coin.id}`;
+
+    const btn = document.createElement('button');
+    btn.className = 'coin-btn';
+    btn.id = `coin-${coin.id}`;
+    btn.setAttribute('aria-label', coin.label);
+    btn.title = coin.label;
+    btn.addEventListener('click', () => activateCoin(coin.id));
+    btn.innerHTML = `<img class="coin-img" src="${coin.img}" alt="${coin.label}">`;
+
+    slot.appendChild(btn);
+    grid.appendChild(slot);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// ACTIVATE / DEACTIVATE / PUT IN BANK
+// ═══════════════════════════════════════════════════════════
+function activateCoin(coinId) {
+  const grid = document.getElementById('coinsGrid');
+
+  // Tap same coin again → close it
+  if (activeCoinId === coinId) { deactivateCoin(); return; }
+
+  // Deactivate previous
+  if (activeCoinId) {
+    document.getElementById(`slot-${activeCoinId}`)?.classList.remove('active');
+  }
+
+  activeCoinId = coinId;
+  document.getElementById(`slot-${coinId}`).classList.add('active');
+  grid.classList.add('has-active');
+
+  // Populate and show action bar
+  const coin = COINS.find(c => c.id === coinId);
+  document.getElementById('activeCoinLabel').textContent = coin?.label || '';
+  document.getElementById('coinActionBar').style.display = 'block';
+  document.getElementById('putInBankBtn').disabled = state.coins.length >= 3;
+}
+
+function deactivateCoin() {
+  if (activeCoinId) {
+    document.getElementById(`slot-${activeCoinId}`)?.classList.remove('active');
+    activeCoinId = null;
+  }
+  document.getElementById('coinsGrid').classList.remove('has-active');
+  document.getElementById('coinActionBar').style.display = 'none';
+}
+
+function putInBank() {
+  if (!activeCoinId || state.coins.length >= 3) return;
+  const coinId = activeCoinId;
+  deactivateCoin();
+  animateCoinDrop(coinId);
+}
+
+function resetCoins() {
+  state.coins      = [];
+  state.coinReason = '';
+  document.getElementById('coinReasonText').value = '';
+  document.getElementById('coinReasonSection').style.display = 'none';
+  document.getElementById('coinResetBtn').style.display = 'none';
+  renderCoins();
+  updateCoinUI();
+  saveCoins();
+}
+
+// ═══════════════════════════════════════════════════════════
+// DROP ANIMATION & JIGGLE
+// ═══════════════════════════════════════════════════════════
+function animateCoinDrop(coinId) {
+  const btn  = document.getElementById(`coin-${coinId}`);
+  const slot = document.getElementById(`slot-${coinId}`);
+  if (!btn || !slot) return;
+
+  const coin     = COINS.find(c => c.id === coinId);
+  // getBoundingClientRect gives the ACTUAL rendered rect (including scale transform)
+  const coinRect = btn.getBoundingClientRect();
+  const bankRect = document.getElementById('piggyBankImg').getBoundingClientRect();
+
+  // Target: slot on top of the piggy bank (adjust ratios to match PNG)
+  const slotX = bankRect.left + bankRect.width  * 0.56;
+  const slotY = bankRect.top  + bankRect.height * 0.09;
+
+  // Flying clone starts at coin's current rendered size/position
+  const clone = document.createElement('img');
+  clone.src = coin.img;
+  clone.style.cssText = `
+    position:fixed; left:${coinRect.left}px; top:${coinRect.top}px;
+    width:${coinRect.width}px; height:${coinRect.height}px;
+    border-radius:50%; pointer-events:none; z-index:9999;
+    transition:none; will-change:transform,opacity;
+  `;
+  document.body.appendChild(clone);
+
+  // Hide the original slot immediately
+  slot.style.opacity = '0';
+  slot.style.pointerEvents = 'none';
+
+  // Phase 1 — brief lift
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    clone.style.transition = 'transform 0.11s ease-out';
+    clone.style.transform  = 'translateY(-14px) scale(1.06)';
+  }));
+
+  // Phase 2 — arc to slot, shrink into it
+  setTimeout(() => {
+    const cx = coinRect.left + coinRect.width  / 2;
+    const cy = coinRect.top  + coinRect.height / 2;
+    clone.style.transition = 'transform 0.42s cubic-bezier(0.55,0,1,0.7), opacity 0.15s ease 0.29s';
+    clone.style.transform  = `translate(${slotX - cx}px, ${slotY - cy + 14}px) scale(0.10)`;
+    clone.style.opacity    = '0';
+  }, 115);
+
+  // Phase 3 — impact: jiggle, update state, remove slot
+  setTimeout(() => {
+    jiggleBank();
+    state.coins.push(coinId);
+    slot.remove();
+    updateCoinUI();
+    if (state.coins.length >= 3) {
+      document.getElementById('coinReasonSection').style.display = 'block';
+      updateCoinReasonList();
+    }
+    saveCoins();
+  }, 510);
+
+  setTimeout(() => clone.parentNode?.removeChild(clone), 580);
+}
+
+function jiggleBank() {
+  const bank = document.getElementById('piggyBankImg');
+  if (!bank) return;
+  bank.classList.remove('piggybank-jiggle');
+  void bank.offsetWidth;
+  bank.classList.add('piggybank-jiggle');
+  bank.addEventListener('animationend', () => bank.classList.remove('piggybank-jiggle'), { once: true });
+}
+
+function updateCoinUI() {
+  const count = state.coins.length;
+  document.getElementById('coinCountNum').textContent = count;
+  const resetBtn = document.getElementById('coinResetBtn');
+  if (resetBtn) resetBtn.style.display = count > 0 ? 'inline' : 'none';
+  const pibBtn = document.getElementById('putInBankBtn');
+  if (pibBtn) pibBtn.disabled = count >= 3;
+  if (count >= 3) {
+    document.getElementById('coinReasonSection').style.display = 'block';
+    updateCoinReasonList();
+  } else {
+    document.getElementById('coinReasonSection').style.display = 'none';
+  }
+  checkCoinsDone();
+}
+
+function updateCoinReasonList() {
+  const ul = document.getElementById('coinReasonList');
+  if (!ul) return;
+  ul.innerHTML = '';
+  state.coins.forEach(coinId => {
+    const coin = COINS.find(c => c.id === coinId);
+    if (!coin) return;
+    const li = document.createElement('li');
+    li.textContent = coin.label;
+    ul.appendChild(li);
+  });
+}
+
+function checkCoinsDone() {
+  const reason = document.getElementById('coinReasonText').value.trim();
+  const done = state.coins.length === 3 && reason.length >= 10;
+  document.getElementById('badge-coins').classList.toggle('done', done);
+}
+
+const debouncedSaveCoins = debounce(saveCoins, 800);
+
+function saveCoins() {
+  state.coinReason = document.getElementById('coinReasonText').value;
+  checkCoinsDone();
+  persist();
+  showSaveIndicator('coinSaveIndicator');
+}
+
+// ═══════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════
+function showSaveIndicator(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = 'Saved ✓';
+  clearTimeout(saveTimers[id]);
+  saveTimers[id] = setTimeout(() => { el.textContent = ''; }, 3000);
+}
+
+function debounce(fn, ms) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+</script>
+</body>
+</html>

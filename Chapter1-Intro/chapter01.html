@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1 — Exploring Human Sexuality · Human Sexuality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/img/favicon/site.webmanifest">
+</head>
+<body>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<nav class="nav-panel" id="navPanel" aria-label="Chapter navigation">
+  <div class="nav-book-title">Human Sexuality</div>
+  <div class="nav-chapter-label">Ch. 1 · Exploring Human Sexuality</div>
+  <a href="../index.html" class="nav-btn home">⌂ Back to Home</a>
+  <div class="nav-btn-row">
+    <a href="../toc.html" class="nav-btn">☰ Full TOC</a>
+    <a href="../author.html" class="nav-btn">👤 Author</a>
+  </div>
+  <div class="nav-btn-row">
+    <a href="#" class="nav-btn">← Prev Chapter</a>
+    <a href="../Chapter2-Female/chapter02.html" class="nav-btn primary">Next Chapter →</a>
+  </div>
+  <hr class="nav-divider">
+  <div class="nav-section-label">In This Chapter</div>
+  <ul class="nav-toc" id="tocList">
+    <li><a href="#section1">1.1 What Is Human Sexuality?</a></li>
+    <li><a href="#section2">1.2 Development as a Scientific Field</a></li>
+    <li><a href="#s2-freud" class="sub">Sigmund Freud</a></li>
+    <li><a href="#s2-horney" class="sub">Karen Horney</a></li>
+    <li><a href="#s2-kinsey" class="sub">Alfred Kinsey</a></li>
+    <li><a href="#s2-masters" class="sub">Masters and Johnson</a></li>
+    <li><a href="#section3">1.3 Cross-Cultural Perspectives</a></li>
+    <li><a href="#s3-western" class="sub">Western Attitudes</a></li>
+    <li><a href="#s3-eastern" class="sub">Eastern Attitudes</a></li>
+    <li><a href="#section4">1.4 Why Study Sexuality?</a></li>
+    <li><a href="#s4-personal" class="sub">Personal Benefits</a></li>
+    <li><a href="#s4-social" class="sub">Public Health</a></li>
+    <li><a href="#s4-literacy" class="sub">Sexual Literacy</a></li>
+    <li><a href="#study-guide">Study Guide</a></li>
+    <li><a href="#glossary">Key Terms</a></li>
+  </ul>
+  <hr class="nav-divider">
+  <div class="nav-utility-row">
+    <button onclick="window.print()" class="nav-btn" style="flex:1">🖨 Print</button>
+    <button onclick="downloadPDF()" class="nav-btn" style="flex:1">⬇ PDF</button>
+  </div>
+</nav>
+
+<button class="menu-btn" id="menuBtn" onclick="toggleNav()" aria-label="Open navigation menu">
+  <svg width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+
+<main class="content-wrapper">
+
+  <div class="title-bar">Human Sexuality</div>
+
+  <header class="chapter-hero">
+    <div class="hero-chapter-num">Chapter 1</div>
+    <h1 class="chapter-title">Exploring Human Sexuality</h1>
+    <p class="chapter-subtitle">An introduction to the field, its founders, and its cultural dimensions.</p>
+  </header>
+
+  <nav class="chapter-resources" aria-label="Chapter resources">
+    <a class="resource-link" href="#study-guide">📝 Study Guide</a>
+    <a class="resource-link" href="#glossary">🔑 Key Terms</a>
+  </nav>
+
+  <!-- ─── SECTION 1 ─── -->
+  <section id="section1">
+    <h1><span class="section-num">1.1</span> What Is Human Sexuality?</h1>
+
+    <figure class="textbook-figure">
+      <img src="img/Banner.png" alt="Close-up photograph of two people — faces shown only from the nose down — leaning toward each other in an intimate moment, about to kiss." width="680">
+      <figcaption><strong>Figure 1.1.</strong> The study of human sexuality spans research on sexual behavior, attitudes, identities, and more.</figcaption>
+    </figure>
+
+    <p><span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">Human sexuality<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Human Sexuality</strong>The academic field of inquiry concerned with understanding how human beings experience, express, and make meaning of themselves as sexual beings; inherently interdisciplinary, drawing from biology, psychology, sociology, anthropology, history, and more.<a class="glossary-link" href="#term-human-sexuality" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span>, as an academic field of inquiry, is concerned with understanding the ways in which human beings experience, express, and make meaning of themselves as sexual beings. It is a discipline that defies simple definition precisely because it touches on nearly every dimension of human life — biological drives, psychological needs, cultural norms, historical context, social structures, and personal identity all converge within it. <em>To study human sexuality is to study what it means to be human.</em></p>
+
+    <p>Human sexuality is fundamentally interdisciplinary. It draws from biology and medicine to understand how our bodies are organized, how hormones function, and how reproduction occurs. It borrows from psychology to examine desire, attraction, identity, and the emotional dimensions of intimate life. It incorporates sociology and anthropology to understand how communities and cultures shape what counts as normal, acceptable, or deviant sexual behavior. And it engages with history, philosophy, and literary studies to trace how ideas about sexuality have evolved across time. This breadth is both a strength and a challenge: human sexuality resists being reduced to any single discipline's framework.</p>
+
+    <div class="question-block" role="region" aria-label="Practice question 1">
+      <div class="question-type-label">Multiple Choice</div>
+      <p class="question-text">Which disciplines contribute to the interdisciplinary nature of human sexuality as a field of study?</p>
+      <div class="mcq-options" id="q1">
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">A</span><span>Biology, psychology, sociology, and anthropology</span></div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">B</span><span>Physics, chemistry, geology, and astronomy</span></div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">C</span><span>Art, music, dance, and theater</span></div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">D</span><span>Linguistics, mathematics, computer science, and engineering</span></div>
+      </div>
+      <button class="submit-btn" onclick="submitMCQ('q1','A','Human sexuality is interdisciplinary, involving biology and psychology to explore physical and emotional aspects. Sociology and anthropology help understand cultural norms, while history, philosophy, and literary studies trace evolving ideas about sexuality. The incorrect options include disciplines unrelated to the study of human sexuality.')">Submit</button>
+      <div class="explanation-box" id="q1-exp"></div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2 ─── -->
+  <section id="section2">
+    <h1><span class="section-num">1.2</span> The Development of Human Sexuality as a Scientific Field</h1>
+
+    <p>The formal, scientific study of human sexuality is a relatively recent enterprise. For most of recorded human history, considerations around sex were governed by religious doctrine, legal codes, and cultural customs. It was understood as a moral domain rather than a scientific one, and the dominant institutions of Western society — especially the Christian church — wielded enormous authority over what was considered "normal" sexual behavior. Premarital sex, homosexuality, masturbation, and non-procreative sexual acts were viewed as abnormal, and those who engaged in them were often condemned or even jailed.</p>
+
+    <p>The shift toward a scientific understanding of sexuality began in the nineteenth century, when European physicians and psychiatrists began cataloguing and classifying sexual behaviors with the same systematic approach they applied to physical illness. Figures such as Richard von Krafft-Ebing, whose 1886 work <em>Psychopathia Sexualis</em> catalogued hundreds of sexual behaviors under the framework of pathology, and Havelock Ellis, whose multi-volume <em>Studies in the Psychology of Sex</em> (published between 1897 and 1928) took a more humanistic and descriptive approach, laid the groundwork for sexuality as an object of scientific inquiry. But it was Sigmund Freud whose work most dramatically placed sexuality at the center of psychological theory — and whose legacy in the field remains both profound and hotly debated.</p>
+
+
+    <!-- ── Freud ── -->
+    <section id="s2-freud">
+      <h2>Sigmund Freud</h2>
+
+      <figure class="textbook-figure figure-left">
+        <img src="img/Freud.jpg" alt="Black-and-white portrait photograph of Sigmund Freud, an older man with a neatly trimmed beard, wearing a three-piece suit and tie. He holds a cigar in his right hand, has a pocket watch chain across his vest, and gazes directly at the camera with a serious, composed expression." width="400">
+        <figcaption><strong>Figure 1.2.</strong> Sigmund Freud (1856–1939).</figcaption>
+      </figure>
+
+      <p><strong>Sigmund Freud</strong> (1856–1939) is arguably the most influential figure in the history of thinking about human sexuality, not because his theories have held up under empirical scrutiny — many have not — but because he fundamentally altered what questions the modern world thought to ask about our sexual lives. Working as a neurologist and psychiatrist in Vienna in the late nineteenth and early twentieth centuries, Freud developed a theory of the mind in which sexuality played a foundational role.</p>
+
+      <p>Freud's theory of psychosexual development proposed that children pass through a series of stages — oral, anal, phallic, latency, and genital — in which erogenous zones shift and the child's sexual energies are directed toward different objects and aims. The most controversial of these was the phallic stage, during which Freud argued that children between the ages of 3 and 6 experience unconscious desires for the opposite-sex parent and hostility toward the same-sex parent. He called this the Oedipus complex for boys and the Electra complex. According to Freud, the resolution of these conflicts through identification (mimicry) with the same-sex parent was central to the formation of a child's gender identity <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Freud, 1924; McBride &amp; Meltzer, 2023)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Freud, S. (1924). The dissolution of the Oedipus complex. In J. Strachey (Ed. &amp; Trans.), <em>The standard edition of the complete psychological works of Sigmund Freud</em> (Vol. 19, pp. 173–179). Hogarth Press. | McBride, D. L., &amp; Meltzer, A. L. (2023). Freud's developmental theory. <em>StatPearls.</em> NCBI Bookshelf.</span></span>.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Freud%20Psychosexual%20Stages.png" alt="Infographic titled 'Freud's Psychosexual Stages: A Theory of Early Development.' Five color-coded rows present each stage with its approximate age range, primary erogenous zone, and central developmental conflict: (1) Oral Stage, birth–18 months, erogenous zone: mouth, conflict: weaning; (2) Anal Stage, 18 months–3 years, erogenous zone: anus, conflict: toilet training and learning control; (3) Phallic Stage, 3–6 years, erogenous zone: genitals, conflict: Oedipus/Electra complex — the child experiences desire for the opposite-sex parent and rivalry with the same-sex parent; (4) Latency Stage, 6 years–puberty, erogenous zone: none (dormant), conflict: social and intellectual skills develop while sexual urges are repressed; (5) Genital Stage, puberty onward, erogenous zone: genitals, conflict: maturation of sexual interests and forming intimate relationships. Each row includes a small cartoon illustration." width="680">
+        <figcaption><strong>Figure 1.3.</strong> Freud's psychosexual stages of development.</figcaption>
+      </figure>
+
+      <p>Freud also introduced the concept of the <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">libido<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Libido</strong>Freud's term for the reservoir of sexual energy he believed drove much of human motivation, creativity, and neurotic conflict.<a class="glossary-link" href="#term-libido" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span> — a reservoir of sexual energy that he believed was the driving force behind much of human motivation, creativity, and neurotic conflict <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Freud, 1905)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Freud, S. (1905). <em>Three essays on the theory of sexuality</em> (J. Strachey, Trans.). Basic Books.</span></span>. In his view, many psychological symptoms could be traced to the repression of unacceptable sexual wishes or the failure to adequately resolve early psychosexual conflicts. This idea — that the unconscious sexual life has enormous consequences for mental health — was genuinely radical in a Victorian era, which was a time of extreme sexual repression, especially for women.</p>
+
+      <p>Yet Freud's framework was riddled with problems that have become increasingly apparent over time. His theories were derived almost entirely from clinical work with a small population of affluent Viennese women, and he never subjected them to systematic empirical testing. His accounts of female sexuality in particular were deeply problematic. His claim that women who experienced clitoral, rather than vaginal, orgasm were sexually immature <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Freud, 1905; Gerhard, 2000)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Freud, S. (1905). <em>Three essays on the theory of sexuality</em> (J. Strachey, Trans.). Basic Books. | Gerhard, J. (2000). Revisiting "The Myth of the Vaginal Orgasm": The female orgasm in American sexual thought and second wave feminism. <em>Feminist Studies, 26</em>(2), 449–476.</span></span>. He argued that a clitoral orgasm was "childish," and a sign of a "weak ego." These claims have no biological basis and contributed to decades of misinformation about how women can and "should" have orgasms. He also came up with the idea of penis envy — that girls harbor a sense of inferiority in comparison to boys and a deep desire to have their own penis. Clearly, many of Freud's ideas were rooted in the common misogyny of his time.</p>
+
+      <p>Freud also largely ignored same-sex desire as a natural variation of human sexuality, classifying homosexuality as a developmental disorder that resulted from poor parenting <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Freud, 1905; Drescher, 2015)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Freud, S. (1905). <em>Three essays on the theory of sexuality</em> (J. Strachey, Trans.). Basic Books. | Drescher, J. (2015). Out of DSM: Depathologizing homosexuality. <em>Behavioral Sciences, 5</em>(4), 565–575.</span></span>. His framework assumed a heterosexual endpoint to normal development, a bias that would shape how psychologists viewed gay people for decades. Despite these limitations, Freud opened the door to taking sexuality seriously as a psychological phenomenon, insisting that desire, fantasy, and erotic life could not simply be bracketed off from the rest of mental and social existence. His influence on culture, literature, and therapy remains profound even as his specific claims have been largely abandoned or radically revised by contemporary researchers.</p>
+
+      <div class="question-block" role="region" aria-label="Practice question 2">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">Which of the following correctly pairs a psychosexual stage with its primary developmental conflict?</p>
+        <div class="mcq-options" id="q2">
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0"><span class="answer-letter">A</span><span>Oral Stage — rivalry with the same-sex parent</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0"><span class="answer-letter">B</span><span>Phallic Stage — balancing satisfaction and frustration during weaning</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0"><span class="answer-letter">C</span><span>Latency Stage — repression of sexual urges while social and intellectual skills develop</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0"><span class="answer-letter">D</span><span>Genital Stage — learning to balance control and letting go</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q2','C','The Latency Stage is characterized by dormant sexual energy and a redirected focus toward social and cognitive development.')">Submit</button>
+        <div class="explanation-box" id="q2-exp"></div>
+      </div>
+
+      <div class="question-block" role="region" aria-label="Practice question 3">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">How did Freud's approach to human sexuality demonstrate biases common in his era?</p>
+        <div class="mcq-options" id="q3">
+          <div class="answer-option" onclick="selectMCQ(this,'q3')" role="button" tabindex="0"><span class="answer-letter">A</span><span>He supported the idea of clitoral orgasms as mature.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q3')" role="button" tabindex="0"><span class="answer-letter">B</span><span>He viewed homosexuality as a developmental disorder.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q3')" role="button" tabindex="0"><span class="answer-letter">C</span><span>He emphasized same-sex desire as natural.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q3')" role="button" tabindex="0"><span class="answer-letter">D</span><span>He conducted empirical testing on diverse populations.</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q3','B','Freud saw homosexuality as a developmental disorder, a misunderstanding reflective of his time. His theories did not recognize same-sex attraction as a natural variation, impacting psychological perspectives for years. He also considered clitoral orgasms immature, further illustrating his biases, and used limited clinical observations that lacked empirical support.')">Submit</button>
+        <div class="explanation-box" id="q3-exp"></div>
+      </div>
+    </section>
+
+    <!-- ── Horney ── -->
+    <section id="s2-horney">
+      <h2>Karen Horney and the Feminist Critiques of Sexual Theory</h2>
+
+      <figure class="textbook-figure figure-right">
+        <img src="img/Karen%20Horney.png" alt="Black-and-white portrait photograph of Karen Horney, a middle-aged woman with short, curly white hair. She wears a dark blouse with a white ruffled collar and looks slightly off-camera with a calm, composed expression." width="400">
+        <figcaption><strong>Figure 1.4.</strong> Karen Horney (1885–1952).</figcaption>
+      </figure>
+
+      <p><strong>Karen Horney</strong> (pronounced Horn-Eye; 1885–1952), a German-American psychoanalyst who trained in the Freudian tradition before departing from it, offered some of the most incisive and enduring feminist critiques of Freudian sexual theory. Horney challenged Freud on multiple fronts, but her critique of the concept of penis envy was perhaps her most influential contribution. In a series of papers beginning in the 1920s, Horney argued that Freud's account of female psychology was constructed entirely from a male perspective. She pointed out that if girls experienced envy of the male body, it was far more plausibly explained by the social privileges that maleness conferred than by any inherent sense of inferiority. The problem, Horney argued, was not that women lacked penises but that they lived in societies that devalued women's bodies. Freud simply attributed the psychological consequences of that oppression to some kind of "female deficiency." <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Horney, 1926)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Horney, K. (1926). The flight from womanhood: The masculinity complex in women as viewed by men and women. <em>International Journal of Psychoanalysis, 7,</em> 324–339.</span></span></p>
+
+      <p>Horney also challenged Freud's account of the vaginal orgasm as the mature form of female sexual pleasure, arguing that there was no clinical or biological basis for distinguishing between clitoral and vaginal orgasm <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Horney, 1926; Masters &amp; Johnson, 1966)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Horney, K. (1926). The flight from womanhood. <em>International Journal of Psychoanalysis, 7,</em> 324–339. | Masters, W. H., &amp; Johnson, V. E. (1966). <em>Human sexual response.</em> Little, Brown.</span></span>. This argument was grounded in Horney's insistence that female sexuality had to be understood on its own terms rather than as a derivative version of male sexuality.</p>
+
+      <p>Horney's work prefigured many of the central concerns of feminist psychology and gender studies. She insisted that theories of female psychology should be rooted in the female perspective (rather than a male one). She also helped establish a tradition of criticism of old psychoanalytic ideas, which eventually helped the study of human sexuality break from these antiquated ideas.</p>
+
+      <div class="question-block" role="region" aria-label="Practice question 4">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">Which critique did Karen Horney make about Freud's concept of penis envy?</p>
+        <div class="mcq-options" id="q4">
+          <div class="answer-option" onclick="selectMCQ(this,'q4')" role="button" tabindex="0"><span class="answer-letter">A</span><span>It highlighted women's inherent sense of inferiority.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q4')" role="button" tabindex="0"><span class="answer-letter">B</span><span>It described envy of male biological attributes.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q4')" role="button" tabindex="0"><span class="answer-letter">C</span><span>It emphasized the social privileges associated with maleness.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q4')" role="button" tabindex="0"><span class="answer-letter">D</span><span>It reinforced the notion of female deficiency.</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q4','C','Horney critiqued Freud\'s concept of penis envy, arguing it was more about societal privileges granted to males rather than intrinsic female inferiority. She also highlighted how societies devalue women\'s bodies, leading Freud to incorrectly attribute psychological issues to female deficiencies.')">Submit</button>
+        <div class="explanation-box" id="q4-exp"></div>
+      </div>
+
+      <p><strong>Evelyn Hooker</strong> (1907–1996) later disproved one of Freud's core ideas that homosexuality was a sign of disordered sexual development. Hooker recruited two matched groups of men who were not in therapy — 30 gay men and 30 straight men. She gave all of them three widely used psychological tests and then gave their results to a panel of expert psychologists, asking them to identify which men were gay and to rate each man's overall mental health. Without knowing the men's sexual orientation, the panel could not tell the difference. They rated both groups as equally well-adjusted <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Hooker, 1957)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Hooker, E. (1957). The adjustment of the male overt homosexual. <em>Journal of Projective Techniques, 21</em>(1), 18–31.</span></span>. Her study was the first to show that homosexuality was not inherently linked to mental illness <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Drescher, 2015)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Drescher, J. (2015). Out of DSM: Depathologizing homosexuality. <em>Behavioral Sciences, 5</em>(4), 565–575.</span></span>. This evidence became a cornerstone of the American Psychiatric Association's decision to remove homosexuality from the official list of mental disorders in 1973 <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(APA, 1973)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>American Psychiatric Association. (1973). Homosexuality and sexual orientation disturbance: Proposed change in DSM-II, 6th printing, page 44. APA Document Reference No. 730008.</span></span>.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Freud%20vs%20Horney.png" alt="Infographic titled 'Freud vs. Horney: Contrasting Views on Female Sexuality and Psychology,' with portrait photos of each at the top. Freud's column (left): (1) Penis envy — girls feel inferior and wish to have a penis; (2) Female sexuality as derivative — viewed as a lesser version of men's; (3) Vaginal orgasm as 'mature' — clitoral orgasm seen as immature; (4) Male-centered theory — female experience interpreted through male assumptions. Horney's column (right): (1) Social inequality explains envy — inferiority stems from lower social status, not anatomy; (2) Female psychology on its own terms — women's sexuality is primary and complete; (3) Clitoral/vaginal distinction rejected — pleasure is emotional and relational; (4) Feminist critique — Horney challenged male-centered biases and called for equality in psychology." width="680">
+        <figcaption><strong>Figure 1.5.</strong> The differing views of male vs. female-centric early psychologists.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ── Kinsey ── -->
+    <section id="s2-kinsey">
+      <h2>Alfred Kinsey and The Turn Toward Empiricism</h2>
+
+      <p>If Freud gave the study of sexuality its theoretical beginnings, <strong>Alfred Kinsey</strong> (1894–1956) added its empirical foundations. While Kinsey started out as an entomologist studying wasps, he found himself teaching a course in human sexuality at Indiana University. He quickly found that there was an almost complete lack of scientifically collected information on the sex lives of regular people. Over the next two decades, he sought to change that and his findings shook American society to its core.</p>
+
+      <figure class="textbook-figure figure-right">
+        <img src="img/Alfred%20Kinsey.jpg" alt="Black-and-white photograph of Alfred Kinsey, a middle-aged man with a broad, warm smile, wearing a light-colored suit and a polka-dot bow tie. He sits in a chair with his arms crossed, appearing relaxed and approachable." width="400">
+        <figcaption><strong>Figure 1.6.</strong> Alfred Kinsey (1894–1956).</figcaption>
+      </figure>
+
+      <p>Kinsey began conducting face-to-face interviews with Americans about their sex lives, believing he could get more accurate information by building rapport with interviewees. Over the course of nearly 20 years, Kinsey and his team collected sexual histories from over 18,000 Americans. The results were published in two landmark volumes: <em>Sexual Behavior in the Human Male</em> (1948) and <em>Sexual Behavior in the Human Female</em> (1953).</p>
+
+      <p>The findings were startling. Kinsey documented that masturbation was nearly universal among men and even common among women. Keep in mind that, at this time, masturbation was seen as being <em>dangerous</em> to one's own health! He found that premarital sex was far more prevalent than was commonly thought in polite society. He also found that extramarital sex was common. Most controversially, Kinsey interviewed many people who admitted to having same-sex sexual experience, documenting that approximately 37 percent of the men he interviewed reported at least one homosexual experience to the point of orgasm during their adult life. A significant proportion of both men and women reported ongoing attraction to members of their own sex. This shocked the world, given that homosexuality was deemed a mental disorder among most in the medical community. How could millions of Americans be gay if it was a mental disorder?</p>
+
+      <p>To capture the continuous variation in sexual orientation that his data revealed, Kinsey developed what became known as the <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">Kinsey Scale<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Kinsey Scale</strong>Alfred Kinsey's seven-point continuum of sexual orientation, ranging from 0 (exclusively heterosexual) to 6 (exclusively homosexual), introduced to capture the spectrum of human sexual attraction rather than treating it as a binary.<a class="glossary-link" href="#term-kinsey-scale" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span> — a seven-point continuum running from 0 (exclusively heterosexual) to 6 (exclusively homosexual), with 3 representing equal attraction to both sexes <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Kinsey et al., 1948)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Kinsey, A. C., Pomeroy, W. B., &amp; Martin, C. E. (1948). <em>Sexual behavior in the human male.</em> W. B. Saunders.</span></span>. This was a conceptually revolutionary move: rather than treating heterosexuality and homosexuality as discrete categories, Kinsey proposed that sexual orientation was distributed along a spectrum, and that most people fell somewhere between the hetero and homosexual. The scale challenged the binary thinking that had dominated both scientific and popular understanding of sexual orientation. Even today, most people think of sexuality as a binary (straight or LGBT), while researchers have continually found that many individuals' sexuality lies somewhere between these poles.</p>
+
+      <p>Kinsey's work has been criticized on both methodological and ethical grounds. His samples were not truly random — they overrepresented prison populations, volunteers, and people already involved in sexual subcultures — raising questions about how representative his findings were <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Cochran, Mosteller, &amp; Tukey, 1954; Gebhard &amp; Johnson, 1979)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Cochran, W. G., Mosteller, F., &amp; Tukey, J. W. (1954). Statistical problems of the Kinsey report on sexual behavior in the human male. <em>Journal of the American Statistical Association, 49</em>(267), 673–716. | Gebhard, P. H., &amp; Johnson, A. B. (1979). <em>The Kinsey data: Marginal tabulations of the 1938–1963 interviews conducted by the Institute for Sex Research.</em> Saunders.</span></span>. Some critics have accused him of inflating estimates of homosexuality by disproportionately sampling gay-friendly networks. His interview methodology, while thorough, was conducted by a small team, and concerns have been raised about the training and consistency of interviewers. Despite these criticisms, Kinsey's fundamental contributions to the scientific study of sex were undeniably transformative. He demonstrated that a rigorous, empirical, non-moralistic science of human sexual behavior was possible and could produce insightful findings. He showed that the gap between public norms and private behavior was enormous — that many Americans were doing "perverse" things that their friends and family were unaware of (such as masturbating!). And he initiated a conversation about the diversity of human sexual expression that has continued to this day.</p>
+
+      <div class="question-block" role="region" aria-label="Practice question 5">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">How did Kinsey's research fundamentally change the understanding of human sexual orientation?</p>
+        <div class="mcq-options" id="q5">
+          <div class="answer-option" onclick="selectMCQ(this,'q5')" role="button" tabindex="0"><span class="answer-letter">A</span><span>By categorizing sexual orientation as strictly binary.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q5')" role="button" tabindex="0"><span class="answer-letter">B</span><span>By introducing a spectrum-based model for sexual orientation.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q5')" role="button" tabindex="0"><span class="answer-letter">C</span><span>By proving that all Americans fit into traditional sexual norms.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q5')" role="button" tabindex="0"><span class="answer-letter">D</span><span>By reinforcing the psychological disorder model of homosexuality.</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q5','B','Kinsey\'s introduction of the seven-point Kinsey Scale marked a shift from viewing sexual orientation in binary terms to understanding it as a spectrum. The other options are incorrect because Kinsey\'s work did not categorize sexual orientation as binary, did not support traditional norms, and instead challenged the idea of homosexuality as a disorder.')">Submit</button>
+        <div class="explanation-box" id="q5-exp"></div>
+      </div>
+    </section>
+
+    <!-- ── Masters and Johnson ── -->
+    <section id="s2-masters">
+      <h2>Masters and Johnson: The Physiology of Sexual Response</h2>
+
+      <p><strong>William Masters</strong> (1915–2001) and <strong>Virginia Johnson</strong> (1925–2013) contributed something that had never before been attempted in systematic scientific research: direct laboratory observation of human sexual response. Working together at Washington University in the late 1950s, Masters and Johnson recruited volunteers to engage in sexual activity — including both masturbation and partnered sex — while they monitored participants via physiological instruments. Their findings, published in <em>Human Sexual Response</em> in 1966, fundamentally transformed scientific understanding of how the body works during sexual arousal and orgasm.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Masters%20and%20Johnson.jpg" alt="Black-and-white photograph of Virginia Johnson (left) and William Masters (right), both wearing white laboratory coats and holding documents or journals. They stand side by side before a bookshelf, looking at the camera." width="500">
+        <figcaption><strong>Figure 1.7.</strong> Virginia Johnson (1925–2013) and William Masters (1915–2001).</figcaption>
+      </figure>
+
+      <p>Masters and Johnson's most important contribution was the description of what they called the human sexual response cycle — a model of the physiological changes that occur in the body during sexual activity, organized into four phases: excitement, plateau, orgasm, and resolution. They documented in precise physiological detail what happens to heart rate, blood pressure, breathing, muscle tension, genital engorgement, and skin response across these phases, providing for the first time an empirically grounded, biologically accurate account of sexual response.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Sexual%20Response%20Cycle%202.jpeg" alt="Line graph titled 'Sexual Response Cycle' with 'Arousal' on the vertical axis and 'Time' on the horizontal axis. A single curve rises gradually through the Excitement phase (beige), levels off during the Plateau phase (light blue), peaks sharply at Orgasm, then drops steeply through the Resolution phase (pink). Each phase is labeled along the bottom of the graph." width="680">
+        <figcaption><strong>Figure 1.8.</strong> The sexual response cycle, as proposed by Masters and Johnson.</figcaption>
+      </figure>
+
+      <p>Two findings from this research were particularly consequential. First, Masters and Johnson definitively demonstrated that there is no physiological distinction between clitoral and vaginal orgasm in women. The distinction Freud had posited — and which psychoanalysts had maintained for decades — between the "immature" clitoral orgasm and the "mature" vaginal orgasm had no basis in the body's actual physiology. All female orgasms, regardless of how they were triggered, involved the same physiological processes and neurological mechanisms. This finding was a landmark correction of one of the most consequential errors in the history of sexual science. It also helped lessen stigma against women who masturbate, given that clitoral stimulation was no longer viewed as a sign of a "weak ego."</p>
+
+      <p>Second, Masters and Johnson documented that women were capable of multiple orgasms — a capacity that men typically do not share. This finding further underscored that the prevailing assumption of male sexuality as the norm against which female sexuality should be compared was not simply biased but empirically wrong. It also busted the myth that men are more sexually advanced than women. In terms of multiple orgasms, women's sexual capacity exceeds men's!</p>
+
+      <div class="question-block" role="region" aria-label="Practice question 6">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">According to Masters and Johnson's research, what did they discover about clitoral and vaginal orgasms in women?</p>
+        <div class="mcq-options" id="q6">
+          <div class="answer-option" onclick="selectMCQ(this,'q6')" role="button" tabindex="0"><span class="answer-letter">A</span><span>Vaginal orgasms are physiologically more mature than clitoral orgasms.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q6')" role="button" tabindex="0"><span class="answer-letter">B</span><span>Clitoral orgasms are psychologically healthier than vaginal orgasms.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q6')" role="button" tabindex="0"><span class="answer-letter">C</span><span>There is no physiological difference between clitoral and vaginal orgasms.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q6')" role="button" tabindex="0"><span class="answer-letter">D</span><span>Vaginal orgasms only occur in emotionally healthy women.</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q6','C','Masters and Johnson\'s laboratory research definitively showed that all female orgasms involve the same physiological processes regardless of how they are stimulated — disproving Freud\'s claim that vaginal orgasms were physiologically more mature. Options A and D restate Freud\'s discredited view; Option B is not supported by any evidence.')">Submit</button>
+        <div class="explanation-box" id="q6-exp"></div>
+      </div>
+
+      <div class="question-block" role="region" aria-label="Practice question 7">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">Beyond studying sexual response, Masters and Johnson also made major contributions to…</p>
+        <div class="mcq-options" id="q7">
+          <div class="answer-option" onclick="selectMCQ(this,'q7')" role="button" tabindex="0"><span class="answer-letter">A</span><span>Evolutionary psychology</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q7')" role="button" tabindex="0"><span class="answer-letter">B</span><span>Attachment theory</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q7')" role="button" tabindex="0"><span class="answer-letter">C</span><span>Sex therapy</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q7')" role="button" tabindex="0"><span class="answer-letter">D</span><span>Love maps</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q7','C','Beyond their research on the sexual response cycle, Masters and Johnson pioneered clinical sex therapy and published Human Sexual Inadequacy (1970), developing treatment approaches for sexual dysfunctions that established the field of clinical sexology.')">Submit</button>
+        <div class="explanation-box" id="q7-exp"></div>
+      </div>
+
+      <p>Beyond their basic research on sexual response, Masters and Johnson pioneered the field of sex therapy, developing treatment approaches for sexual dysfunctions — including erectile dysfunction, premature ejaculation, and difficulties with arousal and orgasm. Their 1970 book <em>Human Sexual Inadequacy</em> introduced these therapeutic approaches to both professional and general audiences and initiated the development of clinical sexology as a recognized medical subspecialty.</p>
+
+      <p>Masters and Johnson's work was not without its own significant limitations and controversies. Their laboratory setting, while enabling physiological precision, raised questions about ecological validity — whether sexual response observed by researchers in a lab is even representative of more normal sexual experiences. Their sample, like Kinsey's, was not representative of the general population, overrepresenting white, educated, middle-class individuals who were comfortable enough with sexuality to have sex in front of scientists. And their later work, including their controversial 1979 book <em>Homosexuality in Perspective</em>, which claimed to be able to convert homosexual individuals to heterosexuals through therapy, has been thoroughly discredited and rightly criticized as harmful pseudoscience.</p>
+
+      <p>Nevertheless, their foundational research on the physiology of sexual response remains among the most significant empirical contributions to the science of human sexuality. By grounding the study of sexuality in the body's actual responses, Masters and Johnson helped establish the scientific legitimacy of sexology as a discipline.</p>
+    </section>
+  </section>
+
+  <!-- ─── SECTION 3 ─── -->
+  <section id="section3">
+    <h1><span class="section-num">1.3</span> Sexual Attitudes and Practices: A Cross-Cultural Perspective</h1>
+
+    <p>The dramatic variation in sexual attitudes and practices across different societies and eras shows how culture, rather than biology alone, shapes human sexuality. This diversity does not mean that anything goes or that there are no similarities across cultures. There are certain "sexual rules" that appear to exist across societies, such as the near-universal taboo against incest and having sex with the dead. But within these broad regularities, the range of cultural variation is striking, and it strongly suggests that what feels "natural" or obvious about sexuality to members of any given society is often a cultural construction rather than a biological given.</p>
+
+    <!-- ── Western ── -->
+    <section id="s3-western">
+      <h2>Western Cultural Attitudes Toward Sexuality</h2>
+
+      <p>Western attitudes toward sexuality — particularly in the United States and Western Europe — have been profoundly shaped by Judeo-Christian religious doctrine. The Christian tradition that dominated Western Europe for well over 1,000 years created ambivalent feelings about the body and sexuality. While it affirmed marriage and procreation as legitimate and worthwhile, it also elevated celibacy as the higher spiritual calling. Christian leaders developed elaborate theologies of sexual sin that classified all non-procreative sexual acts — masturbation, homosexuality, oral sex, contraception — as deeply immoral. This framework linked sexuality to guilt and shame in ways that has persisted into modern day, even among non-Christians.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Catholic%20Wedding.jpg" alt="Color photograph of a Catholic wedding ceremony inside a church. The bride in a white lace gown and the groom in a dark suit kneel at the altar while a priest in white vestments administers a blessing. An altar server stands nearby, with church furnishings and floral decorations visible in the background." width="560">
+        <figcaption><strong>Figure 1.9.</strong> Catholic weddings emphasize the purity and sanctity of virginity before marriage (such as having a "pure" white wedding dress) and the necessity of getting married before having sex.</figcaption>
+      </figure>
+
+      <p>The Victorian era of the nineteenth century represents a peculiar peak of sexual repression. The official Victorian ethos held that respectable women were essentially asexual. Sexuality was a regrettable and embarrassing necessity for procreation, but women certainly shouldn't <em>enjoy</em> sex. Sexual desires were to be distrusted, discouraged, and actively repressed. This was a time when doctors commonly believed that masturbation could literally sicken the body, causing blindness, seizures, and "insanity."</p>
+
+      <div class="video-wrapper" role="region" aria-label="Video: Dating in the Victorian Era">
+        <a href="https://www.youtube.com/watch?v=booTTAIvKf8" target="_blank" rel="noopener"
+           class="yt-ext-link"
+           style="background-image: url(https://img.youtube.com/vi/booTTAIvKf8/maxresdefault.jpg)"
+           aria-label="Watch 'Dating in the Victorian Era' on YouTube (opens in new tab)">
+          <div class="yt-play-btn" aria-hidden="true"></div>
+          <div class="yt-ext-label">Watch on YouTube ↗</div>
+        </a>
+      </div>
+      <p class="video-caption"><strong>Video 1.1.</strong> Dating in the Victorian era in America and in Britain meant navigating through a fog of modesty, prudence, ritual, corsets, and top hats.</p>
+
+      <p>Contemporary Western attitudes toward sexuality are considerably more open and diverse than those of the Victorian era, shaped by the social upheavals of the twentieth century, including the two world wars, the feminist movement, the sexual revolution of the 1960s and 1970s, the AIDS crisis of the 1980s and 1990s, and the ongoing struggle for LGBTQ+ rights. Several broad patterns characterize contemporary Western sexual culture, though with significant variation across countries and within them.</p>
+
+      <p>European Western nations, particularly those in Scandinavia and the Netherlands, tend to hold relatively permissive attitudes toward sexuality. Sweden introduced comprehensive sex education in its public schools as early as 1955 and has maintained it as a mandatory part of their children's schooling beginning around age six. Swedish sex education covers not only reproductive biology and contraception but also consent, pleasure, and diversity of sexual expression. The outcomes associated with this approach have been notable: Sweden maintains some of the world's lowest rates of teenage pregnancy and sexually transmitted infections among industrialized nations <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Guttmacher Institute, 2010; Lindberg, Santelli, &amp; Desai, 2016)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Guttmacher Institute. (2010). <em>Facts on American teens' sources of information about sex.</em> Guttmacher Institute. | Lindberg, L. D., Santelli, J. S., &amp; Desai, S. (2016). Understanding the decline in adolescent fertility in the United States, 2007–2012. <em>Journal of Adolescent Health, 59</em>(5), 577–583.</span></span>. Research comparing Scandinavian and American students consistently finds that Scandinavian students express more permissive attitudes toward premarital sex and report greater comfort discussing sexual topics openly <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Grose, 2007)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Grose, T. K. (2007, March 18). Straight facts about the birds and bees. <em>U.S. News and World Report.</em></span></span>.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Sex%20Ed%20in%20Sweden.png" alt="Color photograph of a female teacher leaning across a table, engaged with a group of five teenagers in matching blue school uniforms. Several colorful books and sexual health educational materials are spread on the table in a bright classroom setting." width="580">
+        <figcaption><strong>Figure 1.10.</strong> In Sweden, sex education is mandatory, open, honest, and primarily driven by science, rather than ideology.</figcaption>
+      </figure>
+
+      <p>The United States occupies a distinctive position within the Western world — more economically developed and globally influential than most nations, yet considerably more conservative in its sexual attitudes than most other Western nations. In a major cross-national survey of 24 countries, nearly 30 percent of Americans stated that "premarital sex is always wrong," compared to an average of 17 percent across other countries surveyed. American disapproval rates for sex before age 16, extramarital sex, and homosexuality each rank 11–13 percentage points higher than cross-national averages <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Widmer, Treas, &amp; Newcomb, 1998; Barber, 2018)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Widmer, E. D., Treas, J., &amp; Newcomb, R. (1998). Attitudes toward nonmarital sex in 24 countries. <em>Journal of Sex Research, 35</em>(4), 349–358. | Barber, N. (2018). Cross-national variation in attitudes to premarital sex: Economic development, disease risk, and marriage strength. <em>Cross-Cultural Research, 52</em>(3), 259–275.</span></span>. This relative conservatism reflects the continuing influence of conservative religious traditions and a persistent cultural ambivalence about sexuality.</p>
+
+      <p>Sex education in the United States illustrates this ambivalence well. Unlike Sweden, the United States has no national sex education curriculum; standards vary dramatically from state to state and even school district to school district. For much of the late twentieth and early twenty-first centuries, federal funding was directed toward abstinence-only or abstinence-until-marriage programs that, by law, could not discuss contraception except to emphasize its failure rates <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Santelli et al., 2017)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Santelli, J. S., Kantor, L. M., Grilo, S. A., Speizer, I. S., Lindberg, L. D., Heitel, J., … &amp; Ott, M. A. (2017). Abstinence-only-until-marriage: An updated review of U.S. policies and programs and their impact. <em>Journal of Adolescent Health, 61</em>(3), 273–280.</span></span>. The research evidence consistently demonstrated that these programs did not delay sexual initiation among young people and actually lead to higher rates of teen pregnancy and STIs <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Santelli et al., 2006)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Santelli, J., Ott, M. A., Lyon, M., Rogers, J., Summers, D., &amp; Schleifer, R. (2006). Abstinence and abstinence-only education: A review of U.S. policies and programs. <em>Journal of Adolescent Health, 38</em>(1), 72–81.</span></span>. Despite this evidence, abstinence-only programs continue to receive hundreds of millions of dollars in federal support, reflecting the degree to which sex policy in the United States is driven by ideological rather than real data.</p>
+
+      <div class="question-block" role="region" aria-label="Practice question 8">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">According to the Victorian ethos described in the passage, respectable women were expected to relate to sexuality in which of the following ways?</p>
+        <div class="mcq-options" id="q8">
+          <div class="answer-option" onclick="selectMCQ(this,'q8')" role="button" tabindex="0"><span class="answer-letter">A</span><span>They were permitted to enjoy sex within the context of marriage.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q8')" role="button" tabindex="0"><span class="answer-letter">B</span><span>They were considered essentially asexual, with sexuality tolerated only as needed for reproduction.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q8')" role="button" tabindex="0"><span class="answer-letter">C</span><span>They were encouraged to repress sexuality until marriage, after which normal desire was expected.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q8')" role="button" tabindex="0"><span class="answer-letter">D</span><span>They were held to the same sexual standards as men, emphasizing modesty for both sexes equally.</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q8','B','The passage is explicit that the Victorian ideal held that respectable women were &quot;essentially asexual&quot; and that even within marriage, women certainly shouldn\'t enjoy sex.')">Submit</button>
+        <div class="explanation-box" id="q8-exp"></div>
+      </div>
+
+      <p>A persistent feature of American sexual culture is what sociologists call the <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">sexual double standard<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Sexual Double Standard</strong>The differential application of sexual norms to men versus women, by which sexual behavior that is tolerated or praised in men is condemned in women.<a class="glossary-link" href="#term-sexual-double-standard" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span> — the differential application of sexual norms to men vs. women. Researcher Ira Reiss, who pioneered the sociological study of American sexual norms, documented in the 1960s that premarital sex was generally tolerated for men to engage in, but absolutely condemned for women <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Reiss, 1960)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Reiss, I. L. (1960). <em>Premarital sexual standards in America.</em> Free Press.</span></span>. Buss and colleagues (2020) surveyed 2,751 people across 14 countries and found that being sexually promiscuous greatly lowers the perceived status of women, compared to men <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Buss et al., 2020)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Buss, D. M., Durkee, P. K., Shackelford, T. K., Schmitt, D. P., Bowdle, B. F., Troisi, A., … &amp; Barr, A. B. (2020). Human status criteria: Sex differences and similarities across 14 nations. <em>Journal of Personality and Social Psychology, 119</em>(5), 979–998.</span></span>. You can also see this double standard in the type of language used to describe promiscuous women vs. men. Men who sleep around are known as "players," "studs," and "chads," while women who do the same are commonly called "sluts," "skanks," and "whores." Although, studies of more gender-equal countries find that such biases have weakened over time. A large, nationally representative sample of Norwegian adults found no differences in how women and men were judged when it came to their number of sexual partners <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Kennair et al., 2023)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Kennair, L. E. O., Thomas, A. G., Buss, D. M., &amp; Bendixen, M. (2023). Examining the sexual double standards and hypocrisy in partner suitability appraisals within a Norwegian sample. <em>Evolutionary Psychology, 21</em>(1).</span></span>.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Sexual%20Double%20Standards%20in%20Language.png" alt="Infographic titled 'Sexual Double Standard in Language.' Men's column: positive or neutral words imply success or confidence — 'He's a player' (Admired), 'He's experienced' (Respected), 'He gets around' (Seen as normal). Women's column: negative words imply promiscuity or disrespect — 'She's a slut' (Judged), 'She's easy' (Disrespected), 'She sleeps around' (Seen as shameful). The subtitle reads: 'We judge men and women differently for the same behavior — and our words reflect it.'" width="620">
+        <figcaption><strong>Figure 1.11.</strong> Sexual double standards can be revealed by the language used to describe "promiscuous" women vs. men.</figcaption>
+      </figure>
+
+      <div class="question-block" role="region" aria-label="Practice question 9">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">According to the research cited in the passage, what has been the outcome of abstinence-only sex education programs in the United States?</p>
+        <div class="mcq-options" id="q9">
+          <div class="answer-option" onclick="selectMCQ(this,'q9')" role="button" tabindex="0"><span class="answer-letter">A</span><span>They significantly delay sexual initiation among adolescents.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q9')" role="button" tabindex="0"><span class="answer-letter">B</span><span>They reduce rates of teen pregnancy and STIs.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q9')" role="button" tabindex="0"><span class="answer-letter">C</span><span>They increase communication between parents and children about sex.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q9')" role="button" tabindex="0"><span class="answer-letter">D</span><span>They have been linked to higher rates of teen pregnancy and STIs.</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q9','D','Research consistently found that abstinence-only programs did not delay sexual initiation and were actually linked to higher rates of teen pregnancy and STIs, as young people lacked accurate information about contraception and disease prevention.')">Submit</button>
+        <div class="explanation-box" id="q9-exp"></div>
+      </div>
+    </section>
+
+    <!-- ── Eastern ── -->
+    <section id="s3-eastern">
+      <h2>Eastern and Non-Western Cultural Attitudes Toward Sexuality</h2>
+
+      <p>The diversity of sexual attitudes across Eastern cultures is at least as great as within the Western world. In many East Asian societies, including China, Japan, and South Korea, sexuality has historically been governed by a complex interplay of Confucian ethics, which emphasized social harmony, hierarchical obligation, and the restraint of individual desire <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Fincham et al., 2024; Gao et al., 2012)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Fincham, F. D., Beach, S. R. H., &amp; Davila, J. (2024). Romantic relationships and attitudes in Asian emerging adults. <em>Emerging Adulthood.</em> Advance online publication. | Gao, E., Lou, C., Cheng, Y., Emerson, M. R., &amp; Zabin, L. S. (2012). The association between age at sexual debut and sexual risk behaviors in three Asian cities. <em>Journal of Adolescent Health, 50</em>(3), S87–S95.</span></span>. Confucian thought did not frame sexuality as inherently sinful the way Christians did, but it did subordinate individual sexual desire to familial obligations. Premarital sex, particularly for women, is still strongly discouraged in these countries. Even public displays of affection have traditionally been seen as inappropriate.</p>
+
+      <p>A major cross-cultural study of mate preferences in 37 countries found that non-Western societies including China, Iran, and India, placed significantly higher value on chastity in a potential partner than did Western European countries such as France, Sweden, and the Netherlands <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Buss, 1989)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Buss, D. M. (1989). Sex differences in human mate preferences: Evolutionary hypothesis tested in 37 cultures. <em>Behavioral and Brain Sciences, 12</em>(1), 1–49.</span></span>. In China and Iran, average scores for the importance of chastity in a potential mate were among the highest in the sample, while in Sweden, Norway, and Finland they were among the lowest. These findings reflect genuine cultural differences in how premarital sexual experience is understood — as a loss of value in the marriage market in some societies, while basically irrelevant in others.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Cross-cultural%20Variation%20in%20Sexual%20Attitudes.png" alt="World map infographic titled 'Cross-Cultural Variations in Sexual Attitudes.' Countries are color-coded: green (more permissive), yellow (moderate), red-orange (more restrictive). Callout boxes highlight Sweden (comprehensive sex education and acceptance of diverse sexualities), Norway (weaker sexual double standards), the United States (more conservative than other Western nations), and China, Japan, and South Korea (Confucian traditions emphasizing modesty and traditional gender roles). Key takeaway: 'Attitudes about sexuality are deeply shaped by history, religion, education, law, and social norms. There is no single normal — only cultural variation.'" width="680">
+        <figcaption><strong>Figure 1.12.</strong> World map of cross-cultural variations in sexual attitudes based on World Health Organization data.</figcaption>
+      </figure>
+
+      <p>These patterns are not static, however, and rapid social change in many East Asian societies has produced significant shifts in sexual attitudes, particularly among younger urban generations. Research conducted in China in the decades since the economic reforms of the 1980s has documented substantial increases in premarital sexual activity, greater acceptance of cohabitation before marriage, and increased openness about sexual diversity <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Fincham et al., 2024; Li et al., 2024)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Fincham, F. D., Beach, S. R. H., &amp; Davila, J. (2024). Romantic relationships and attitudes in Asian emerging adults. <em>Emerging Adulthood.</em> Advance online publication. | Li, Z., Wu, J., &amp; Zhu, H. (2024). Social media use and attitudes toward premarital sex in China: A chain-mediating analysis. <em>Sexuality &amp; Culture, 28,</em> 1–22.</span></span>.</p>
+    </section>
+  </section>
+
+  <!-- ─── SECTION 4 ─── -->
+  <section id="section4">
+    <h1><span class="section-num">1.4</span> Why Is It Important to Study Sexuality?</h1>
+
+    <p>Why study human sexuality? This may seem an odd question in a textbook devoted to the topic, but it's well worth asking, especially if you hope to get the most out of this text. As you'll read below, the scientific study of sex offers substantial benefits, not only to individuals but to whole societies.</p>
+
+    <!-- ── Personal Benefits ── -->
+    <section id="s4-personal">
+      <h2>Personal Benefits: Health, Pleasure, and Self-Knowledge</h2>
+
+      <p>The most immediate benefit of <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">sexual literacy<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Sexual Literacy</strong>A working knowledge of one's own and others' sexuality, encompassing anatomy, physiology, psychology, social context, and communication skills, enabling informed decisions about sexual health and relationships.<a class="glossary-link" href="#term-sexual-literacy" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span> — defined as a working knowledge of one's own and others' sexuality, including anatomy, physiology, psychology, and social context — is better health. Individuals who understand how their bodies work, how sexual transmission of infection occurs, and how to use contraceptives are better equipped to make decisions that protect their physical well-being. The relationship between sexual knowledge and sexual health outcomes is well established: comprehensive sex education that includes accurate information about contraception is associated with lower rates of unintended pregnancy and sexually transmitted infections <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Santelli et al., 2006)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Santelli, J., Ott, M. A., Lyon, M., Rogers, J., Summers, D., &amp; Schleifer, R. (2006). Abstinence and abstinence-only education: A review of U.S. policies and programs. <em>Journal of Adolescent Health, 38</em>(1), 72–81.</span></span>.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Breast%20Self%20Exam.jpg" alt="Instructional infographic titled 'Breast Self-Exam' with a line drawing of a person lying on their back and six numbered steps: (1) Lie on your back and put your right hand behind your head; (2) Use your left hand to press down to examine the right breast; (3) Apply light, medium, and firm pressure to check all layers of breast tissue; (4) Sit up and press into your right armpit to check for lumps; (5) Squeeze your nipples to check for any discharge; (6) Lie back down, switch arms, and repeat." width="500">
+        <figcaption><strong>Figure 1.13.</strong> Knowing about your body and sexuality can even save your life, such as with knowing how to do self-exams for breast cancer.</figcaption>
+      </figure>
+
+      <p>Beyond health in the narrow sense, sexual literacy contributes to the capacity for pleasure and intimacy. Understanding one's own body — including how arousal works, what kinds of touch feel good, and what conditions support sexual growth — enables both greater personal satisfaction and more authentic sexual relationships with partners. A significant portion of sexual dissatisfaction in relationships stems not from incompatibility but from poor communication: partners who have not developed the language or the comfort to talk openly about what they want, need, or enjoy. Courses in human sexuality can provide both the vocabulary and the psychological permission for these conversations to happen.</p>
+
+      <p>Sexual self-knowledge also includes understanding one's own identity — sexual orientation, gender identity, and how these interact with broader aspects of who we are. For individuals who are lesbian, gay, bisexual, transgender, or otherwise queer, developing an accurate and affirming understanding of their sexuality in a world that has often pathologized or condemned it can be a genuinely life-saving process. Research consistently demonstrates that LGBTQ+ youth who have access to accurate and affirming information about sexuality show significantly better mental health outcomes than those who do not <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(CDC, 2011)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Reference</strong>Centers for Disease Control and Prevention. (2011). Lesbian, gay, bisexual, and transgender health. Retrieved from http://www.cdc.gov/lgbthealth/youth.htm</span></span>. Gaining this knowledge is not a luxury but a matter of genuine urgency for many people.</p>
+    </section>
+
+    <!-- ── Social / Public Health ── -->
+    <section id="s4-social">
+      <h2>Social and Public Health Imperatives</h2>
+
+      <p>At the societal level, the importance of systematic knowledge about human sexuality can hardly be overstated. Decisions about sex education curricula, public health campaigns, reproductive health policy, and the legal treatment of sexual minorities are made continuously at every level of government. When those decisions are based on accurate knowledge, their outcomes tend to be better — for individuals and for communities. When they are based on ideology, moral panic, or misinformation, the consequences can be severe.</p>
+
+      <p>The history of HIV/AIDS provides a stark illustration. In the early years of the epidemic, a combination of political reluctance to discuss homosexuality, religious opposition to condom use, and stigma surrounding LGBTQ+ populations led to delayed and inadequate public health responses that cost many lives <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Shilts, 1987; CDC, 2001)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Shilts, R. (1987). <em>And the band played on: Politics, people, and the AIDS epidemic.</em> St. Martin's Press. | Centers for Disease Control and Prevention. (2001). HIV and AIDS — United States, 1981–2000. <em>Morbidity and Mortality Weekly Report, 50</em>(21), 430–434.</span></span>. Communities that overcame this reluctance and provided accurate, non-judgmental information about transmission and prevention were able to slow the epidemic's spread significantly. The lesson — that accurate sexual knowledge saves lives — was bought at enormous cost.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/AIDS-HIV%20Protest.png" alt="Black-and-white photograph of a group of protesters in an outdoor public space holding a large hand-painted banner that reads 'A.I.D.S.: WE NEED RESEARCH, NOT HYSTERIA!'" width="620">
+        <figcaption><strong>Figure 1.14.</strong> The HIV/AIDS epidemic of the 1980s was a stark reminder that sexual bigotry can have serious consequences, especially for marginalized groups.</figcaption>
+      </figure>
+
+      <p>Debates about contraception, abortion, and fertility treatment are often conducted with limited attention to the real-life evidence about what happens when different policies are implemented. Access to effective contraception reduces unintended pregnancy, abortion rates, and maternal mortality; this is not a matter of opinion but of well-established evidence from decades of research <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Guttmacher Institute, 2010; Cleland et al., 2012)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>References</strong>Guttmacher Institute. (2010). <em>Facts on American teens' sources of information about sex.</em> Guttmacher Institute. | Cleland, J., Conde-Agudelo, A., Peterson, H., Ross, J., &amp; Tsui, A. (2012). Contraception and health. <em>The Lancet, 380</em>(9837), 149–156.</span></span>. Understanding this evidence does not resolve the underlying ethical disagreements about reproductive rights, but it does establish a foundation of fact from which those disagreements can be more honestly debated.</p>
+    </section>
+
+    <!-- ── Sexual Literacy ── -->
+    <section id="s4-literacy">
+      <h2>Toward Sexual Literacy</h2>
+
+      <p>The concept of sexual literacy captures much of what a course in human sexuality aims to cultivate. Sexual literacy encompasses knowledge of anatomy and physiology, understanding of sexual response and diversity, familiarity with the social and cultural forces that shape sexual experience, skills in communication and consent, and awareness of the rights and resources available to support sexual health and well-being.</p>
+
+      <figure class="textbook-figure">
+        <img src="img/Sexual%20Literacy.png" alt="Colorful infographic titled 'Sexual Literacy: The knowledge, skills, and awareness we all need for healthy, respectful, and fulfilling sexual lives.' An illustration shows students reading books together. Five numbered components: (1) Knowledge of Anatomy and Physiology — understand how our bodies work; (2) Understanding of Sexual Response and Diversity — learn about the sexual response cycle and the range of sexual orientations and gender identities; (3) Awareness of Social and Cultural Influences — recognize how culture, media, family, and religion shape beliefs and experiences; (4) Skills in Communication and Consent — communicate openly, set boundaries, and give enthusiastic consent; (5) Awareness of Rights and Resources — know your rights and where to find accurate information and health care. Text reads: 'Knowledge empowers. Respect connects. Choice matters.'" width="620">
+        <figcaption><strong>Figure 1.15.</strong> Sexual literacy involves understanding the biological, psychological, social, and cultural aspects of sexuality, along with the communication and consent skills needed to support healthy relationships and well-being.</figcaption>
+      </figure>
+
+      <p>This kind of literacy is not simply academic. It has direct and practical consequences for the quality of people's lives, the health of their relationships, and the well-being of the communities in which they live. A person who understands how sexually transmitted infections are transmitted and prevented is better positioned to protect themselves and their partners. A person who can communicate clearly about their desires, limits, and needs is better positioned to have satisfying sexual relationships. A person who understands the social construction of sexual norms is better positioned to critically evaluate the pressures placed on their sexuality by culture, religion, or peer groups.</p>
+
+      <p>The chapters that follow approach human sexuality with the seriousness and rigor it deserves — drawing on biology, psychology, sociology, anthropology, and history to build as complete and accurate a picture as current knowledge allows. This book also approaches these topics with humility. The field of human sexuality is one in which our understanding continues to evolve, in which previous certainties have repeatedly been overturned. Facts and figures in this book may later be proven to be inaccurate. As such, this text will be regularly updated to ensure the most up-to-date information we have available.</p>
+
+      <p>To get the most out of this book (and class), it's best to approach this material with a sense of openness and curiosity. There may be certain findings or perspectives that rub you the wrong way, and that's totally fine! This book doesn't aim to change your opinions about strongly held beliefs and values. However, by presenting evidence about sex as it truly is, perhaps you will come to view your beliefs and values in more complex and nuanced ways.</p>
+
+      <p>Learning about things you do not yet know much about, building your sexual literacy, and approaching the sexuality of others with curiosity and respect are practices that will serve you well — not just in this course, but throughout your life.</p>
+
+      <div class="question-block" role="region" aria-label="Practice question 10">
+        <div class="question-type-label">Multiple Choice</div>
+        <p class="question-text">How does the concept of sexual literacy enhance individuals' sexual well-being and relationship quality?</p>
+        <div class="mcq-options" id="q10">
+          <div class="answer-option" onclick="selectMCQ(this,'q10')" role="button" tabindex="0"><span class="answer-letter">A</span><span>By strictly focusing on biological aspects of sexuality.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q10')" role="button" tabindex="0"><span class="answer-letter">B</span><span>By promoting cultural norms and religious views about sexuality.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q10')" role="button" tabindex="0"><span class="answer-letter">C</span><span>By integrating knowledge, communication skills, and awareness of social influences.</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q10')" role="button" tabindex="0"><span class="answer-letter">D</span><span>By prioritizing academic distinctions over practical applications.</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q10','C','Sexual literacy involves a comprehensive understanding that includes biological, psychological, social, and cultural factors, along with effective communication and consent skills. This integration supports healthy relationships and personal well-being. Other options are incorrect because they either focus too narrowly or emphasize less practical aspects.')">Submit</button>
+        <div class="explanation-box" id="q10-exp"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ─── STUDY GUIDE ─── -->
+  <section class="study-guide-section" id="study-guide">
+    <h2 class="study-guide-title">Study Guide</h2>
+    <p class="study-guide-intro">After reading Chapter 1, you should be able to answer each of the questions below. Use your own words where possible, and support your answers with examples or evidence from the text.</p>
+
+    <h3><span class="section-num">1.1</span> What Is Human Sexuality?</h3>
+    <ol class="study-guide-list">
+      <li>In your own words, define human sexuality as an academic field. Why is it considered an interdisciplinary discipline, and which fields of study does it draw from?</li>
+      <li>What does it mean to say that human sexuality "resists being reduced to any single discipline's framework"? Give an example of a question about sexuality that would require insights from at least two different academic disciplines to answer fully.</li>
+    </ol>
+
+    <h3><span class="section-num">1.2</span> The Development of Human Sexuality as a Scientific Field</h3>
+    <ol class="study-guide-list" start="3">
+      <li>Before the nineteenth century, what institutions primarily governed attitudes about sex, and how did they frame sexual behavior? How did this change with the emergence of a scientific approach to sexuality?</li>
+      <li>Describe Freud's theory of psychosexual development, including the five stages and the Oedipus/Electra complex. Then identify at least two major criticisms of Freud's sexual theories, explaining why these claims have been rejected by modern researchers.</li>
+      <li>How did Karen Horney challenge Freud's concept of penis envy, and what alternative explanation did she offer for any observed differences between men and women? How did her work influence the broader study of female sexuality?</li>
+      <li>Describe Evelyn Hooker's landmark 1957 study. What was her research design, what did she find, and what were the long-term consequences of her findings for how psychology classified homosexuality?</li>
+      <li>Explain Alfred Kinsey's major contributions to sex research, including the Kinsey Scale. What were some of his most controversial findings, and what methodological criticisms have been raised about his work?</li>
+      <li>What were the two most significant empirical findings from Masters and Johnson's laboratory research on the human sexual response cycle, and why were these findings considered landmark corrections to earlier scientific and cultural assumptions? Include the four phases of the sexual response cycle in your answer.</li>
+    </ol>
+
+    <h3><span class="section-num">1.3</span> Sexual Attitudes and Practices: A Cross-Cultural Perspective</h3>
+    <ol class="study-guide-list" start="9">
+      <li>How have Judeo-Christian traditions shaped Western attitudes toward sexuality? What specific types of sexual behavior were condemned, and what emotional associations with sexuality did this tradition cultivate that persist even today?</li>
+      <li>Compare and contrast Swedish and American approaches to sex education. What outcomes are associated with each approach, and what does this comparison suggest about the relationship between ideology and public health policy?</li>
+      <li>Define the sexual double standard and describe the evidence supporting its existence in American culture, including specific language examples from the chapter. Under what cultural conditions does this double standard appear to weaken?</li>
+      <li>How do Confucian ethics shape attitudes toward sexuality in many East Asian societies, and how do these differ from the Christian framework that shaped Western sexual culture? What evidence does the chapter provide that these attitudes are shifting in countries like China?</li>
+    </ol>
+
+    <h3><span class="section-num">1.4</span> Why Is It Important to Study Sexuality?</h3>
+    <ol class="study-guide-list" start="13">
+      <li>Define sexual literacy as the chapter uses the term. What broad domains does it encompass, and why is it described as having "direct and practical consequences" rather than being merely academic?</li>
+      <li>Using the HIV/AIDS epidemic as a case study, explain how incomplete sexual knowledge and political or moral reluctance to discuss sexuality can have serious public health consequences. What lesson does this example illustrate?</li>
+      <li>The chapter argues that studying human sexuality requires approaching the material with "openness and curiosity." Why might this be especially important in a field where personal values and scientific evidence sometimes come into tension? Do you think it is possible to learn about sexuality objectively while still holding strong personal values? Explain your reasoning.</li>
+    </ol>
+  </section>
+
+  <!-- ─── GLOSSARY ─── -->
+  <section class="glossary-section" id="glossary">
+    <h2 class="glossary-title">Key Terms</h2>
+    <dl class="glossary-list">
+      <div class="g-term"><dt id="term-human-sexual-response-cycle">Human Sexual Response Cycle</dt><dd>Masters and Johnson's model of the physiological changes that occur during sexual activity, organized into four phases: excitement, plateau, orgasm, and resolution.</dd></div>
+      <div class="g-term"><dt id="term-human-sexuality">Human Sexuality</dt><dd>The academic field of inquiry concerned with understanding how human beings experience, express, and make meaning of themselves as sexual beings; inherently interdisciplinary, drawing from biology, psychology, sociology, anthropology, history, and more.</dd></div>
+      <div class="g-term"><dt id="term-kinsey-scale">Kinsey Scale</dt><dd>Alfred Kinsey's seven-point continuum of sexual orientation, ranging from 0 (exclusively heterosexual) to 6 (exclusively homosexual), introduced to capture the spectrum of human sexual attraction rather than treating it as a binary.</dd></div>
+      <div class="g-term"><dt id="term-libido">Libido</dt><dd>Freud's term for the reservoir of sexual energy he believed drove much of human motivation, creativity, and neurotic conflict.</dd></div>
+      <div class="g-term"><dt id="term-oedipus-complex">Oedipus Complex</dt><dd>In Freudian theory, a child's unconscious desire for the opposite-sex parent and rivalry with the same-sex parent during the phallic stage of psychosexual development.</dd></div>
+      <div class="g-term"><dt id="term-sexual-double-standard">Sexual Double Standard</dt><dd>The differential application of sexual norms to men versus women, by which sexual behavior that is tolerated or praised in men is condemned in women.</dd></div>
+      <div class="g-term"><dt id="term-sexual-literacy">Sexual Literacy</dt><dd>A working knowledge of one's own and others' sexuality, encompassing anatomy, physiology, psychology, social context, and communication skills, enabling informed decisions about sexual health and relationships.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ─── REFERENCES ─── -->
+  <div class="references-section">
+    <h2 class="references-title">References</h2>
+    <ul class="references-list">
+      <li>American Psychiatric Association. (1973). Homosexuality and sexual orientation disturbance: Proposed change in DSM-II, 6th printing, page 44. APA Document Reference No. 730008.</li>
+      <li>Barber, N. (2018). Cross-national variation in attitudes to premarital sex: Economic development, disease risk, and marriage strength. <em>Cross-Cultural Research, 52</em>(3), 259–275.</li>
+      <li>Buss, D. M. (1989). Sex differences in human mate preferences: Evolutionary hypothesis tested in 37 cultures. <em>Behavioral and Brain Sciences, 12</em>(1), 1–49.</li>
+      <li>Buss, D. M., Durkee, P. K., Shackelford, T. K., Schmitt, D. P., Bowdle, B. F., Troisi, A., … &amp; Barr, A. B. (2020). Human status criteria: Sex differences and similarities across 14 nations. <em>Journal of Personality and Social Psychology, 119</em>(5), 979–998.</li>
+      <li>Centers for Disease Control and Prevention. (2011). Lesbian, gay, bisexual, and transgender health. Retrieved from http://www.cdc.gov/lgbthealth/youth.htm</li>
+      <li>Cleland, J., Conde-Agudelo, A., Peterson, H., Ross, J., &amp; Tsui, A. (2012). Contraception and health. <em>The Lancet, 380</em>(9837), 149–156.</li>
+      <li>Cochran, W. G., Mosteller, F., &amp; Tukey, J. W. (1954). Statistical problems of the Kinsey report on sexual behavior in the human male. <em>Journal of the American Statistical Association, 49</em>(267), 673–716.</li>
+      <li>Drescher, J. (2015). Out of DSM: Depathologizing homosexuality. <em>Behavioral Sciences, 5</em>(4), 565–575.</li>
+      <li>Ellis, H. (1897–1928). <em>Studies in the psychology of sex</em> (Vols. 1–7). F. A. Davis.</li>
+      <li>Fincham, F. D., Beach, S. R. H., &amp; Davila, J. (2024). Romantic relationships and attitudes in Asian emerging adults. <em>Emerging Adulthood.</em> Advance online publication.</li>
+      <li>Freud, S. (1905). <em>Three essays on the theory of sexuality</em> (J. Strachey, Trans.). Basic Books.</li>
+      <li>Freud, S. (1924). The dissolution of the Oedipus complex. In J. Strachey (Ed. &amp; Trans.), <em>The standard edition of the complete psychological works of Sigmund Freud</em> (Vol. 19, pp. 173–179). Hogarth Press.</li>
+      <li>Gao, E., Lou, C., Cheng, Y., Emerson, M. R., &amp; Zabin, L. S. (2012). The association between age at sexual debut and sexual risk behaviors in three Asian cities. <em>Journal of Adolescent Health, 50</em>(3), S87–S95.</li>
+      <li>Gebhard, P. H., &amp; Johnson, A. B. (1979). <em>The Kinsey data: Marginal tabulations of the 1938–1963 interviews conducted by the Institute for Sex Research.</em> Saunders.</li>
+      <li>Gerhard, J. (2000). Revisiting "The Myth of the Vaginal Orgasm": The female orgasm in American sexual thought and second wave feminism. <em>Feminist Studies, 26</em>(2), 449–476.</li>
+      <li>Grose, T. K. (2007, March 18). Straight facts about the birds and bees. <em>U.S. News and World Report.</em></li>
+      <li>Guttmacher Institute. (2010). <em>Facts on American teens' sources of information about sex.</em> Guttmacher Institute.</li>
+      <li>Hooker, E. (1957). The adjustment of the male overt homosexual. <em>Journal of Projective Techniques, 21</em>(1), 18–31.</li>
+      <li>Horney, K. (1926). The flight from womanhood: The masculinity complex in women as viewed by men and women. <em>International Journal of Psychoanalysis, 7,</em> 324–339.</li>
+      <li>Horney, K. (1939). <em>New ways in psychoanalysis.</em> W. W. Norton.</li>
+      <li>Kennair, L. E. O., Thomas, A. G., Buss, D. M., &amp; Bendixen, M. (2023). Examining the sexual double standards and hypocrisy in partner suitability appraisals within a Norwegian sample. <em>Evolutionary Psychology, 21</em>(1).</li>
+      <li>Kinsey, A. C., Pomeroy, W. B., &amp; Martin, C. E. (1948). <em>Sexual behavior in the human male.</em> W. B. Saunders.</li>
+      <li>Kinsey, A. C., Pomeroy, W. B., Martin, C. E., &amp; Gebhard, P. H. (1953). <em>Sexual behavior in the human female.</em> W. B. Saunders.</li>
+      <li>Krafft-Ebing, R. von (1886). <em>Psychopathia sexualis.</em> Enke.</li>
+      <li>Li, Z., Wu, J., &amp; Zhu, H. (2024). Social media use and attitudes toward premarital sex in China: A chain-mediating analysis. <em>Sexuality &amp; Culture, 28,</em> 1–22.</li>
+      <li>Lindberg, L. D., Santelli, J. S., &amp; Desai, S. (2016). Understanding the decline in adolescent fertility in the United States, 2007–2012. <em>Journal of Adolescent Health, 59</em>(5), 577–583.</li>
+      <li>Masters, W. H., &amp; Johnson, V. E. (1966). <em>Human sexual response.</em> Little, Brown.</li>
+      <li>Masters, W. H., &amp; Johnson, V. E. (1970). <em>Human sexual inadequacy.</em> Little, Brown.</li>
+      <li>McBride, D. L., &amp; Meltzer, A. L. (2023). Freud's developmental theory. <em>StatPearls.</em> NCBI Bookshelf.</li>
+      <li>Reiss, I. L. (1960). <em>Premarital sexual standards in America.</em> Free Press.</li>
+      <li>Santelli, J., Ott, M. A., Lyon, M., Rogers, J., Summers, D., &amp; Schleifer, R. (2006). Abstinence and abstinence-only education: A review of U.S. policies and programs. <em>Journal of Adolescent Health, 38</em>(1), 72–81.</li>
+      <li>Santelli, J. S., Kantor, L. M., Grilo, S. A., Speizer, I. S., Lindberg, L. D., Heitel, J., … &amp; Ott, M. A. (2017). Abstinence-only-until-marriage: An updated review of U.S. policies and programs and their impact. <em>Journal of Adolescent Health, 61</em>(3), 273–280.</li>
+      <li>Shilts, R. (1987). <em>And the band played on: Politics, people, and the AIDS epidemic.</em> St. Martin's Press.</li>
+      <li>Widmer, E. D., Treas, J., &amp; Newcomb, R. (1998). Attitudes toward nonmarital sex in 24 countries. <em>Journal of Sex Research, 35</em>(4), 349–358.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons BY-NC-SA 4.0" class="cc-badge">
+    </a>
+    <p class="cc-text"><strong>Human Sexuality</strong> by Dr. Ross Avilla is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Free to share and adapt for non-commercial purposes with attribution.</p>
+  </div>
+</footer>
+
+<script src="../assets/textbook.js"></script>
+</body>
+</html>

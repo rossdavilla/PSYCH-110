@@ -1,0 +1,9 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Claude Code local machine settings (paths/permissions specific to this Mac)
+.claude/settings.local.json
+
+# Local editor backups of syllabus.html
+*.bak

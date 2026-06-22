@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Sexuality — Course Syllabus</title>
+<link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/img/favicon/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple:        #6D28D9;
+  --purple-dark:   #5B21B6;
+  --purple-darker: #4C1D95;
+  --purple-light:  #F5F3FF;
+  --orange:        #f37d26;
+  --yellow:        #f3f126;
+  --indigo:        #1E1B4B;
+  --text:          #111827;
+  --text-muted:    #6B7280;
+  --border:        #E5E7EB;
+  --bg:            #F9FAFB;
+  --white:         #FFFFFF;
+  --green:         #059669;
+  --red:           #DC2626;
+  --radius:        12px;
+  --shadow:        0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg:     0 4px 24px rgba(0,0,0,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── NAME MODAL ────────────────────────────────────────── */
+#nameModal {
+  position: fixed;
+  inset: 0;
+  background: var(--indigo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.modal-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.modal-logo {
+  width: 64px;
+  height: 64px;
+  background: var(--purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 30px;
+}
+.modal-card h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--purple);
+  margin-bottom: 6px;
+}
+.modal-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.modal-card select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  appearance: none;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B7280' d='M6 8L0 0h12z'/%3E%3C/svg%3E") no-repeat right 16px center;
+  cursor: pointer;
+  color: var(--text);
+}
+.modal-card select:focus { outline: none; border-color: var(--purple); }
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--purple);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-primary:hover  { background: var(--purple-dark); }
+.btn-primary:active { background: var(--purple-darker); }
+.btn-primary:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+.modal-error { color: var(--red); font-size: 14px; margin-top: 12px; display: none; }
+
+/* ── STICKY HEADER ─────────────────────────────────────── */
+#stickyHeader {
+  position: sticky;
+  top: 0;
+  background: var(--indigo);
+  z-index: 100;
+  display: none;
+}
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  max-width: 700px;
+  margin: 0 auto;
+  gap: 12px;
+}
+.header-left { min-width: 0; }
+.header-course {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header-student { font-size: 14px; color: var(--orange); font-weight: 700; }
+.header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.progress-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: var(--white);
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.header-logout {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.75);
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s, color 0.15s;
+}
+.header-logout:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+
+/* ── PROGRESS PANEL ────────────────────────────────────── */
+#progressPanel {
+  background: var(--purple-darker);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+#progressPanel.open { max-height: 400px; }
+.progress-inner {
+  padding: 16px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.progress-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.progress-bar-wrap {
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
+  height: 6px;
+  margin-bottom: 14px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--orange);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.checklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+.checklist-item.done { color: var(--white); }
+.check-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: transparent;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.checklist-item.done .check-circle {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
+
+/* ── MAIN CONTENT ──────────────────────────────────────── */
+#mainContent {
+  display: none;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+
+/* Print header (screen: hidden) */
+.print-header { display: none; }
+
+/* ── HERO ──────────────────────────────────────────────── */
+.hero {
+  background: var(--purple);
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  padding: 40px 24px 80px;
+  margin: 0 -16px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 8px;
+  background: var(--orange);
+}
+.hero-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.hero-meta {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.9;
+}
+.hero-meta strong { color: var(--white); }
+
+/* ── SECTION CARDS ─────────────────────────────────────── */
+.syllabus-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.section-header {
+  background: var(--purple);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-header.dark    { background: var(--purple-dark); }
+.section-header.darker  { background: var(--purple-darker); }
+.section-header.indigo  { background: var(--indigo); }
+.section-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  flex: 1;
+}
+.section-done-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: transparent;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.section-done-badge.done {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
+.section-body { padding: 20px; }
+
+/* ── ABOUT COURSE ──────────────────────────────────────── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.info-cell {
+  background: var(--purple-light);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.info-cell label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--purple);
+  display: block;
+  margin-bottom: 3px;
+}
+.info-cell span { font-size: 14px; font-weight: 600; }
+.policy-text {
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+.policy-text:last-child { margin-bottom: 0; }
+
+.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.grade-table th {
+  background: var(--purple);
+  color: #fff;
+  text-align: left;
+  padding: 8px 12px;
+  font-weight: 600;
+}
+.grade-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.grade-table tr:last-child td { border-bottom: none; }
+.grade-table tr:nth-child(even) td { background: #f8f5ff; }
+
+/* ── SHARED CONTENT (welcome, tips, pact, contact, support) ── */
+.section-body a {
+  color: var(--purple);
+  font-weight: 600;
+  text-decoration: underline;
+  word-break: break-word;
+}
+.section-body a:hover { color: var(--purple-dark); }
+.sy-list { margin: 0 0 16px; padding-left: 22px; }
+.sy-list li { font-size: 15px; line-height: 1.7; color: var(--text); margin-bottom: 10px; }
+.sy-list li:last-child { margin-bottom: 0; }
+.subhead {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--purple);
+  margin: 20px 0 10px;
+}
+.subhead:first-child { margin-top: 0; }
+.signature { font-weight: 700; color: var(--purple); margin-top: 2px; }
+
+/* ── MATCHING GAME ─────────────────────────────────────── */
+.match-intro { font-size: 15px; color: var(--text); margin-bottom: 20px; line-height: 1.6; }
+.match-statements { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.match-card { border: 2px solid var(--border); border-radius: 10px; overflow: hidden; }
+.match-statement {
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  background: var(--bg);
+  line-height: 1.5;
+}
+.match-buttons { display: flex; border-top: 2px solid var(--border); }
+.match-btn {
+  flex: 1;
+  padding: 13px;
+  border: none;
+  background: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.match-btn:first-child { border-right: 1px solid var(--border); }
+.match-btn:hover:not(:disabled) { background: #F5F3FF; }
+@keyframes ring-pop {
+  0%   { box-shadow: 0 0 0 0px var(--purple); }
+  55%  { box-shadow: 0 0 0 5px var(--purple); }
+  100% { box-shadow: 0 0 0 3px var(--purple); }
+}
+.match-btn.selected {
+  animation: ring-pop 0.4s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+  box-shadow: 0 0 0 3px var(--purple);
+}
+.match-btn:disabled { cursor: default; }
+.match-reveal {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  padding: 0 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  border-top: 0px solid var(--border);
+  background: var(--white);
+  line-height: 1.5;
+  transition: max-height 0.45s ease, opacity 0.35s ease 0.12s,
+              padding 0.3s ease, border-top-width 0.3s ease;
+}
+.match-reveal.visible {
+  max-height: 400px;
+  opacity: 1;
+  padding: 12px 16px;
+  border-top-width: 1px;
+}
+
+/* ── DID YOU KNOW ──────────────────────────────────────── */
+.fact-intro { font-size: 15px; margin-bottom: 18px; line-height: 1.6; }
+.fact-card {
+  background: var(--indigo);
+  border-radius: 10px;
+  padding: 26px 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.fact-card::before {
+  content: '"';
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  font-size: 110px;
+  color: rgba(255,255,255,0.04);
+  font-family: Georgia, serif;
+  line-height: 1;
+  pointer-events: none;
+}
+.fact-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+.fact-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+.fact-note { font-size: 13px; color: rgba(255,255,255,0.45); font-style: italic; }
+
+/* ── SHARED TEXTAREA / SAVE ────────────────────────────── */
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 100px;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--purple); }
+.save-indicator {
+  font-size: 12px;
+  color: var(--green);
+  text-align: right;
+  margin-top: 6px;
+  min-height: 18px;
+}
+
+/* ── SKILLS RANKING ────────────────────────────────────── */
+.skills-intro { font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
+.skill-rows { display: flex; flex-direction: column; gap: 10px; }
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.skill-row.ranked { border-color: var(--purple); background: var(--purple-light); }
+.skill-icon  { font-size: 22px; flex-shrink: 0; }
+.skill-name  { flex: 1; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.skill-select {
+  width: 60px;
+  padding: 8px 4px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  appearance: none;
+  background: var(--white);
+  flex-shrink: 0;
+}
+.skill-select:focus { outline: none; border-color: var(--purple); }
+.rank-error { font-size: 13px; color: var(--red); margin-top: 8px; display: none; }
+
+/* ── QUIZ ──────────────────────────────────────────────── */
+.quiz-intro { font-size: 15px; margin-bottom: 18px; line-height: 1.6; }
+.quiz-score-bar {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--purple);
+  text-align: center;
+  padding: 10px;
+  background: var(--purple-light);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.quiz-question {
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.question-text {
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--bg);
+  line-height: 1.5;
+  border-bottom: 2px solid var(--border);
+}
+.q-number { color: var(--purple); font-weight: 800; }
+.answer-options { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.answer-btn {
+  padding: 13px 14px;
+  text-align: left;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.4;
+  min-height: 48px;
+}
+.answer-btn:hover   { border-color: var(--purple); background: var(--purple-light); }
+.answer-btn.correct   { border-color: var(--green); background: #D1FAE5; color: #065F46; }
+.answer-btn.incorrect { border-color: var(--red);   background: #FEE2E2; color: #991B1B; }
+.answer-btn:disabled  { cursor: default; }
+.quiz-feedback {
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-top: 2px solid var(--border);
+  display: none;
+}
+.quiz-feedback.correct   { background: #D1FAE5; color: #065F46; display: block; }
+.quiz-feedback.incorrect { background: #FEE2E2; color: #991B1B; display: block; }
+
+/* ── ASK ME ANYTHING ───────────────────────────────────── */
+.anon-intro { font-size: 15px; margin-bottom: 10px; line-height: 1.6; }
+.anon-note  { font-size: 13px; color: var(--text-muted); font-style: italic; margin-bottom: 14px; }
+.btn-submit {
+  padding: 13px 28px;
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
+}
+.btn-submit:hover    { background: #e06b18; }
+.btn-submit:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+.anon-success { font-size: 14px; color: var(--green); font-weight: 600; display: none; margin-top: 10px; }
+
+/* ── PRINT BUTTON ──────────────────────────────────────── */
+.print-section { text-align: center; padding: 36px 0 8px; }
+.btn-print {
+  padding: 16px 44px;
+  background: var(--indigo);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-print:hover { background: #2a2668; }
+.print-note { font-size: 13px; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+
+/* ── UTILITIES ─────────────────────────────────────────── */
+.hidden { display: none !important; }
+
+/* ── PRINT STYLES ──────────────────────────────────────── */
+@media print {
+  #nameModal, #stickyHeader, .btn-print, .print-section,
+  .match-buttons, .btn-reveal, .skill-select, .answer-btn, .btn-submit,
+  .anon-intro, .anon-note, #anonTextarea, .anon-success,
+  .progress-toggle { display: none !important; }
+
+  body { background: white; font-size: 12pt; color: #111; }
+
+  .print-header {
+    display: block;
+    text-align: center;
+    padding-bottom: 12pt;
+    border-bottom: 2pt solid #6D28D9;
+    margin-bottom: 20pt;
+    font-size: 13pt;
+    line-height: 1.8;
+  }
+  .hero {
+    clip-path: none !important;
+    padding: 20pt 16pt;
+    margin: 0 0 16pt;
+    background: #6D28D9 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .hero h1 { font-size: 20pt; }
+  .hero-meta { font-size: 10pt; }
+
+  .syllabus-section { box-shadow: none !important; border: 1pt solid #ddd; margin-bottom: 12pt; break-inside: avoid; }
+  .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section-body { padding: 12pt 16pt; }
+
+  .print-coins, .print-skills, .print-quiz { display: block !important; }
+  .fact-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .quiz-score-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .quiz-feedback.correct, .quiz-feedback.incorrect {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+.print-coins, .print-skills, .print-quiz { display: none; }
+
+/* ── RESPONSIVE ────────────────────────────────────────── */
+@media (max-width: 420px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .checklist { grid-template-columns: 1fr; }
+  .hero h1  { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     NAME MODAL
+═══════════════════════════════════════════════════════ -->
+<div id="nameModal">
+  <div class="modal-card">
+    <div class="modal-logo">📚</div>
+    <h1>Welcome!</h1>
+    <p class="modal-subtitle">PSYCH-110 — Human Sexualities<br>Summer 2026</p>
+    <select id="studentSelect" onchange="clearLoadError()">
+      <option value="">— Select Your Name —</option>
+      <!-- Populated by JS from STUDENT_ROSTER below -->
+    </select>
+    <button class="btn-primary" id="loadBtn" onclick="loadStudent()">
+      Load My Syllabus →
+    </button>
+    <p class="modal-error" id="modalError"></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     STICKY HEADER
+═══════════════════════════════════════════════════════ -->
+<div id="stickyHeader">
+  <div class="header-bar">
+    <div class="header-left">
+      <div class="header-course">PSYCH-110 · Human Sexualities</div>
+      <div class="header-student" id="headerStudentName"></div>
+    </div>
+    <div class="header-right">
+      <button class="progress-toggle" onclick="toggleProgress()">
+        Progress <span id="progressCount">0/4</span>
+      </button>
+      <button class="header-logout" onclick="logout()"
+              title="Not you? Log out and choose a different name">
+        ⇄ Log out
+      </button>
+    </div>
+  </div>
+  <div id="progressPanel">
+    <div class="progress-inner">
+      <div class="progress-title">Your Progress</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+      <div class="checklist">
+        <div class="checklist-item" id="cl-matching">
+          <div class="check-circle">✓</div><span>Know Your Professor</span>
+        </div>
+        <div class="checklist-item" id="cl-skills">
+          <div class="check-circle">✓</div><span>Skills Ranking</span>
+        </div>
+        <div class="checklist-item" id="cl-aboutyou">
+          <div class="check-circle">✓</div><span>About You</span>
+        </div>
+        <div class="checklist-item" id="cl-quiz">
+          <div class="check-circle">✓</div><span>Syllabus Quiz</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════════ -->
+<div id="mainContent">
+
+  <!-- Print-only header (hidden on screen) -->
+  <div class="print-header">
+    <strong>PSYCH-110 — Human Sexualities</strong> · Summer 2026<br>
+    Student: <span id="printStudentName"></span> &nbsp;·&nbsp;
+    Printed: <span id="printDate"></span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Course Syllabus · Summer 2026</div>
+    <h1>Human Sexualities</h1>
+    <div class="hero-meta">
+      <strong>PSYCH-110</strong> · TWTh 10:55am – 12:45pm<br>
+      MCAT 110, East Campus<br><br>
+      <strong>Instructor:</strong> Dr. Ross Avilla<br>
+      <strong>Email:</strong> AvillaR@yosemite.edu<br>
+      <strong>Office Hours:</strong> Tuesdays &amp; Thursdays, 1:00 – 2:00pm (after class)
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── WELCOME ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-welcome">
+    <div class="section-header">
+      <h2>👋 Welcome</h2>
+    </div>
+    <div class="section-body">
+      <p class="policy-text">Dear Students,</p>
+      <p class="policy-text">
+        Welcome to PSYCH-110: Human Sexualities! I'm <strong>Dr. Ross Avilla</strong>, your instructor for this course. This syllabus will help you get started and answer many of the questions you'll have along the way — please refer to it often, and don't hesitate to reach out if I can be of help. I would love to hear from you.
+      </p>
+      <p class="policy-text">
+        This is a subject that is not only fascinating but also deeply relevant to your everyday life. Approach it with curiosity, an open mind, and respect for one another, and you'll get a great deal out of our time together.
+      </p>
+      <p class="policy-text">Let's begin our journey into the study of human sexuality!</p>
+      <p class="policy-text signature">— Dr. Avilla</p>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── YOUR SEX FACT ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-fact">
+    <div class="section-header darker">
+      <h2>💡 Your Sex Fact</h2>
+    </div>
+    <div class="section-body">
+      <p class="fact-intro">
+        Every student in this course receives a <strong>unique fact</strong> about human sexuality — something that often surprises people. No two students in this class were assigned the same fact. We'll use these on Day 1, so keep yours in mind!
+      </p>
+      <div class="fact-card">
+        <div class="fact-label">Your Unique Fact</div>
+        <div class="fact-text" id="factText">Loading your fact…</div>
+        <div class="fact-note">Assigned only to you · Remember it for Day 1!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── ABOUT THIS COURSE ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-about">
+    <div class="section-header">
+      <h2>📖 About This Course</h2>
+    </div>
+    <div class="section-body">
+      <div class="info-grid">
+        <div class="info-cell">
+          <label>Credits</label><span>3</span>
+        </div>
+        <div class="info-cell">
+          <label>Meets</label><span>TWTh · 10:55am – 12:45pm</span>
+        </div>
+        <div class="info-cell">
+          <label>Location</label><span>MCAT 110, East Campus</span>
+        </div>
+        <div class="info-cell">
+          <label>Prerequisites</label><span>None</span>
+        </div>
+      </div>
+      <p class="policy-text">
+        <strong>Course Description.</strong> PSYCH-110 explores many different aspects of sex: biologically, psychologically, socially, emotionally, and ethically. This subject is not only fascinating but also highly relevant to our everyday lives. In this class we'll explore questions such as: What is the psychology behind sex and romance? How does sexual identity form and how can it be expressed? What role does communication play in healthy sexual relationships? How do you take care of yourself and your partner(s) physically and emotionally? How does a person's psychology and culture affect their sex life? And how do controversial aspects of sex — such as fetishes, porn, and sex work — affect everyday people and society as a whole?
+      </p>
+      <p class="policy-text">
+        <strong>Required Materials.</strong> This class features a <strong>free and open-source textbook</strong> written by Dr. Avilla, available on Canvas. Feel free to download the chapters. I strongly recommend keeping up with the readings: 50% of exam questions come directly from the textbook, and you'll also earn points through textbook quiz questions.
+      </p>
+      <p class="policy-text">
+        <strong>Grading.</strong> Your grade is based on <strong>1,000 points total</strong>:
+      </p>
+      <table class="grade-table">
+        <thead><tr><th>Component</th><th>Points</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Exams</td><td>500 pts</td><td>5 exams × 100 pts each; non-cumulative; drawn equally from lectures and textbook</td></tr>
+          <tr><td>Weekly Homework</td><td>250 pts</td><td>Various Canvas assignments due each week — check Canvas regularly</td></tr>
+          <tr><td>Class Participation</td><td>250 pts</td><td>In-class activities; your 5 lowest scores are dropped at semester's end</td></tr>
+        </tbody>
+      </table>
+      <p class="policy-text" style="margin-top:12px;">
+        <strong>Grading Scale.</strong> Final grades are rounded up from .5 or above (e.g., 89.5% → 90% → A−).
+      </p>
+      <table class="grade-table">
+        <thead><tr><th>Percentage</th><th>Grade</th><th>Percentage</th><th>Grade</th></tr></thead>
+        <tbody>
+          <tr><td>93 – 100%</td><td>A</td><td>73 – 76%</td><td>C</td></tr>
+          <tr><td>90 – 92%</td><td>A−</td><td>70 – 72%</td><td>C−</td></tr>
+          <tr><td>87 – 89%</td><td>B+</td><td>60 – 69%</td><td>D</td></tr>
+          <tr><td>83 – 86%</td><td>B</td><td>0 – 59%</td><td>F</td></tr>
+          <tr><td>80 – 82%</td><td>B−</td><td></td><td></td></tr>
+          <tr><td>77 – 79%</td><td>C+</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <p class="policy-text" style="margin-top:8px; font-size:13px; color:var(--text-muted);">
+        To contest a grade, you must meet with Dr. Avilla during office hours or a scheduled appointment within <strong>2 weeks</strong> of the assignment or exam being returned.
+      </p>
+      <p class="policy-text">
+        <strong>Late Work Policy.</strong> If you need extra time on an assignment, please contact Dr. Avilla <em>before</em> the due date to discuss an extension. Requests made after a deadline has passed are much less likely to be approved. Life happens — just communicate early.
+      </p>
+      <p class="policy-text">
+        <strong>Attendance &amp; Participation.</strong> Attendance to every class is expected — this is an interactive, highly participatory course, and 25% of your final grade depends on class participation. Participation means being fully engaged, not just present. To earn participation points for the day, you must complete both the attendance check at the beginning of class <em>and</em> the class activity. Your 5 lowest-scoring class activities will be dropped at the end of the semester.
+      </p>
+      <p class="policy-text">
+        <strong>Academic Integrity.</strong> All instances of cheating — including suspicion of cheating — may result in a grade deduction or being dropped from the course, and will be reported to the Office of Student Conduct. This includes obtaining participation or activity points when not in class, and using unauthorized materials during exams (notes, phones, smart watches, etc.). You can find the MJC Student Conduct code on the college website.
+      </p>
+      <p class="policy-text">
+        <strong>AI Policy.</strong> You may use AI tools (e.g., ChatGPT) to help brainstorm or generate ideas. However, AI-generated material may be inaccurate or incomplete, and over-reliance can stifle your own thinking. You may <em>not</em> submit AI-generated work as your own. Any AI-generated content must be cited, with appropriate consideration for the quality of that source. Violations are subject to the academic integrity policy above.
+      </p>
+      <p class="policy-text">
+        <strong>Classroom Conduct.</strong> I strive to create an engaging, inclusive space where students feel comfortable sharing ideas and questions. Students are expected to maintain dignity and mutual respect at all times. Disruptive behavior — including talking over others, arriving late repeatedly, using phones inappropriately, or displaying disrespect — may result in being asked to leave and/or disciplinary action. Children under 18 who are not enrolled may not attend class without prior written permission from Dr. Avilla.
+      </p>
+      <p class="policy-text">
+        <strong>Accessibility &amp; Accommodations.</strong> Students with disabilities who require academic accommodations should contact MJC's <strong>Disability Support Programs &amp; Services (DSPS)</strong> office. Once accommodations are established, please provide Dr. Avilla with your accommodation letter as early in the semester as possible so we can work together effectively. Visit <a href="https://www.mjc.edu/dsp" target="_blank" rel="noopener">mjc.edu/dsp</a> for more information.
+      </p>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── TIPS FOR SUCCESS ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-tips">
+    <div class="section-header dark">
+      <h2>🌟 Tips for Success</h2>
+    </div>
+    <div class="section-body">
+      <ul class="sy-list">
+        <li>Check Canvas at the start of each week to view upcoming assignments and due dates; then, plan your study schedule for the week.</li>
+        <li>Plan to log in to our Canvas course 3–4 times during the week.</li>
+        <li>Read <strong>every page</strong> of each Canvas module rather than simply jumping to assignments via the "To Do" list. Otherwise, you will miss important information that will help you succeed.</li>
+        <li>Check your MJC email <strong>daily</strong> for course announcements and updates.</li>
+        <li>Ask questions. Reach out for help. Take advantage of resources (e.g., tutoring). Be an advocate for your own learning journey.</li>
+        <li>Stay in touch with me and your classmates. Research indicates that connection is a key to success in college courses.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── OUR PACT ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-pact">
+    <div class="section-header darker">
+      <h2>🤝 Our Pact</h2>
+    </div>
+    <div class="section-body">
+      <p class="subhead">What you can expect from me:</p>
+      <ul class="sy-list">
+        <li>I will be an active participant in our course through discussions, grading comments, announcements, videos and emails.</li>
+        <li>I will provide constructive, supportive assignment feedback in a timely manner.</li>
+        <li>I will be available to help individual students via email responses and weekly Zoom office hours.</li>
+        <li>I understand that you are busy and that you have many competing priorities. Under extenuating circumstances, I will be flexible to support your successful completion of this course, when possible.</li>
+        <li>I will show respect for your individual learning style, experiences and needs and will create a positive and supportive learning environment.</li>
+      </ul>
+      <p class="subhead">What I will expect of you:</p>
+      <ul class="sy-list">
+        <li>You will devote an average of 10 hours per week to complete the reading and assignments in this course.</li>
+        <li>You will reach out via Inbox at Canvas or come to Zoom office hours if you have questions or need support in the course. I'm here to help!</li>
+        <li>You will uphold academic integrity by only submitting your own, authentic work.</li>
+        <li>You will challenge yourself to try new things and recognize that mistakes are a vital part of the learning process for all of us.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── SKILLS YOU'LL MASTER ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-skills">
+    <div class="section-header dark">
+      <div class="section-done-badge" id="badge-skills">✓</div>
+      <h2>🧠 Skills You'll Master</h2>
+    </div>
+    <div class="section-body">
+      <!-- PLACEHOLDER: Update the intro text and the SKILLS array in the JS -->
+      <p class="skills-intro">
+        By the end of this course you will have developed a meaningful set of skills. Below are the key skills we'll build together. <strong>Rank them 1 through <span id="skillCountLabel">?</span></strong>, where <strong>1 = most important to you</strong>. Your rankings help me understand what matters most to this class.
+      </p>
+      <div class="skill-rows" id="skillRows">
+        <!-- Rendered by renderSkills() -->
+      </div>
+      <div class="rank-error" id="rankError">
+        Each skill must have a unique rank — please fix the duplicates above.
+      </div>
+      <div class="save-indicator" id="skillSaveIndicator" style="text-align:right;margin-top:8px;"></div>
+
+      <!-- Print-only skill summary -->
+      <div class="print-skills" id="printSkills" style="margin-top:14px;">
+        <p><strong>My Skill Rankings (1 = most important):</strong></p>
+        <ol id="printSkillsList" style="padding-left:20px;margin-top:6px;line-height:1.8;"></ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── SUPPORT FOR YOU ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-support">
+    <div class="section-header dark">
+      <h2>🧰 Support for You</h2>
+    </div>
+    <div class="section-body">
+      <p class="policy-text">
+        College is about more than coursework. If you ever need help — academic, technical, financial, or personal — these MJC resources are here for you.
+      </p>
+      <table class="grade-table">
+        <thead><tr><th>Resource</th><th>What it offers</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Canvas Student Help</td>
+            <td>MJC Tech and Canvas Support, 24/7 Canvas Support, and MJC Zoom Support.</td>
+            <td><a href="https://support.canvaslms.com/s/?c__role=student&amp;c__accountId=001A000000AjBpMIAV" target="_blank" rel="noopener">Canvas Support</a></td>
+          </tr>
+          <tr>
+            <td>Accommodations &amp; Support Center (ASC)</td>
+            <td>Committed to ensuring digital accessibility and academic accommodations for people with disabilities.</td>
+            <td><a href="https://mjc.edu/asc/index.html" target="_blank" rel="noopener">mjc.edu/asc</a></td>
+          </tr>
+          <tr>
+            <td>Counseling</td>
+            <td>Timely, useful support services and quality information to help you realize your educational, career, and personal goals.</td>
+            <td><a href="https://mjc.edu/counseling/index.html" target="_blank" rel="noopener">mjc.edu/counseling</a></td>
+          </tr>
+          <tr>
+            <td>Tutoring Center</td>
+            <td>Peer tutors in a wide variety of subjects, from writing to math, in person or online. Appointments are required except for Math tutoring.</td>
+            <td><a href="https://libguides.mjc.edu/tutoring" target="_blank" rel="noopener">libguides.mjc.edu/tutoring</a></td>
+          </tr>
+          <tr>
+            <td>Basic Needs Program</td>
+            <td>On- and off-campus food resources, CalFresh application assistance, personal care, hygiene, and clothing.</td>
+            <td><a href="https://mjc.edu/basicneeds/index.html" target="_blank" rel="noopener">mjc.edu/basicneeds</a></td>
+          </tr>
+          <tr>
+            <td>Financial Aid</td>
+            <td>Quality support guiding you through the whole financial aid process — efficiently, friendly, and to full completion.</td>
+            <td><a href="https://mjc.edu/financialaid/" target="_blank" rel="noopener">mjc.edu/financialaid</a></td>
+          </tr>
+          <tr>
+            <td>Veteran's Resource Center (VRC)</td>
+            <td>Liaison between veterans (or their dependents) and the Department of Veterans Affairs, with services to support your educational goals.</td>
+            <td><a href="https://mjc.edu/veterans/index.html" target="_blank" rel="noopener">mjc.edu/veterans</a></td>
+          </tr>
+          <tr>
+            <td>Health Services</td>
+            <td>In-person and remote physical and mental health services by appointment; walk-ins welcome.</td>
+            <td><a href="https://mjc.edu/health/index.html" target="_blank" rel="noopener">mjc.edu/health</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── HAVE A QUESTION ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-contact">
+    <div class="section-header indigo">
+      <h2>❓ Have a Question?</h2>
+    </div>
+    <div class="section-body">
+      <p class="subhead">To Contact Me</p>
+      <p class="policy-text">
+        Use <strong>"Inbox"</strong> at Canvas to email questions to me once the semester begins. (Prior to the semester, you may email me at <a href="mailto:AvillaR@yosemite.edu">AvillaR@yosemite.edu</a>.) You're also welcome to ask me before or after class, or during office hours (Tuesdays &amp; Thursdays, 1:00–2:00pm).
+      </p>
+      <p class="policy-text">
+        Waiting for a response? I typically respond within 12 hours (or sooner) during the week and within 24 hours on the weekend. If you don't hear back from me within 24 hours, please reach out again. I'm here to help!
+      </p>
+      <p class="subhead">To Contact a Classmate</p>
+      <p class="policy-text">
+        It's 11:00 p.m. on Sunday and you need an answer to an important course question <em>now</em>, but your instructor is sound asleep. What to do? Head to the discussion forum in our Canvas course and reach out to your classmates. Let's help one another!
+      </p>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── KNOW YOUR PROFESSOR ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-matching">
+    <div class="section-header dark">
+      <div class="section-done-badge" id="badge-matching">✓</div>
+      <h2>🎯 Know Your Professor</h2>
+    </div>
+    <div class="section-body">
+      <p class="match-intro">
+        Before we dive in, let's get to know each other! Below are several statements about your professor — some are true, some are false. Select <strong>True</strong> or <strong>False</strong> for each one to find out!
+      </p>
+      <div class="match-statements" id="matchStatements">
+        <!-- Rendered by renderMatchingGame() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── ABOUT YOU ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-aboutyou">
+    <div class="section-header">
+      <div class="section-done-badge" id="badge-aboutyou">✓</div>
+      <h2>🙋 About You</h2>
+    </div>
+    <div class="section-body">
+      <p class="piggybank-intro">
+        I want to learn about you, especially what brings you to this class. Below, please type in something you're looking forward to learning in this class.
+      </p>
+      <textarea
+        id="aboutYouText"
+        placeholder="Tell me what you're looking forward to learning…"
+        rows="5"
+        oninput="debouncedSaveAboutYou()"
+      ></textarea>
+      <div class="save-indicator" id="aboutYouSaveIndicator"></div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────── SYLLABUS QUIZ ────────────────────────────── -->
+  <div class="syllabus-section" id="sec-quiz">
+    <div class="section-header darker">
+      <div class="section-done-badge" id="badge-quiz">✓</div>
+      <h2>✅ Syllabus Quiz</h2>
+    </div>
+    <div class="section-body">
+      <p class="quiz-intro">
+        Let's make sure you've read the syllabus! Answer each question below — you'll get immediate feedback and can retry as many times as you need. By the due date, all answers should be correct.
+      </p>
+      <div class="quiz-score-bar">
+        Score: <span id="quizCorrectCount">0</span> / <span id="quizTotalCount">0</span> correct
+      </div>
+      <div id="quizQuestions">
+        <!-- Rendered by renderQuiz() -->
+      </div>
+
+      <!-- Print-only quiz summary -->
+      <div class="print-quiz" id="printQuiz">
+        <p><strong>Quiz Results:</strong></p>
+        <ul id="printQuizList" style="padding-left:20px;margin-top:6px;line-height:1.8;"></ul>
+      </div>
+    </div>
+  </div>
+</div><!-- /#mainContent -->
+
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// CONFIGURATION — fill these in before going live
+// ═══════════════════════════════════════════════════════════
+
+// PLACEHOLDER: After deploying the Apps Script, paste the URL here
+const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+// PLACEHOLDER: Replace with your actual student roster (or load from Apps Script)
+const STUDENT_ROSTER = [
+  "Alex Chen", "Bailey Rodriguez", "Cameron Williams",
+  "Dana Park", "Elliott Johnson", "Finley Davis",
+  "Jordan Smith", "Keiko Tanaka", "Logan Martinez",
+  "Morgan Thompson", "Nathan Brown", "Olivia Garcia",
+  "Parker Lee", "Quinn Anderson", "Riley Jackson",
+  "Sam Wilson", "Taylor Moore", "Ursula White",
+  "Valeria Hernandez", "Wesley Clark",
+];
+
+const SKILLS = [
+  { id: 'sk_lookup',    icon: '🔍', name: 'Look up valid sexual health information online' },
+  { id: 'sk_myths',     icon: '💡', name: 'Recognize and challenge sexual myths' },
+  { id: 'sk_convo',     icon: '💬', name: 'Be comfortable having conversations about sex with others' },
+  { id: 'sk_selfaware', icon: '🪞', name: 'Explore and become self-aware of your sexual attitudes and beliefs' },
+  { id: 'sk_relation',  icon: '❤️', name: 'Recognize the signs of a healthy vs. unhealthy relationship' },
+  { id: 'sk_resources', icon: '🏥', name: 'Know what sexual health resources are available to you on campus and in your community' },
+];
+
+const QUIZ_QUESTIONS = [
+  {
+    id: 'q1',
+    question: 'If you disagree with a grade on an exam or assignment, what must you do?',
+    options: [
+      { id: 'q1a', text: 'Email Dr. Avilla within 48 hours to dispute it' },
+      { id: 'q1b', text: 'Meet with Dr. Avilla during office hours or a scheduled appointment within 2 weeks of the grade being returned' },
+      { id: 'q1c', text: 'Submit a written appeal to the department chair' },
+      { id: 'q1d', text: 'Grades cannot be contested once they are posted' },
+    ],
+    correctId: 'q1b',
+    explanation: 'To contest a grade, you must meet with Dr. Avilla in person — during office hours or a scheduled appointment — within 2 weeks of the assignment or exam being returned. Email alone is not sufficient.',
+  },
+  {
+    id: 'q2',
+    question: 'How many in-class activity scores are "dropped" at the end of the semester?',
+    options: [
+      { id: 'q2a', text: '2 lowest scores' },
+      { id: 'q2b', text: '3 lowest scores' },
+      { id: 'q2c', text: '5 lowest scores' },
+      { id: 'q2d', text: 'None — all scores count' },
+    ],
+    correctId: 'q2c',
+    explanation: 'Your 5 lowest in-class activity scores will be dropped at the end of the semester. This gives you a buffer for days when life gets in the way — but don\'t use them all up early!',
+  },
+  {
+    id: 'q3',
+    question: 'What percentage of your final grade comes from class participation?',
+    options: [
+      { id: 'q3a', text: '10%' },
+      { id: 'q3b', text: '20%' },
+      { id: 'q3c', text: '25%' },
+      { id: 'q3d', text: '50%' },
+    ],
+    correctId: 'q3c',
+    explanation: 'Class participation is worth 250 out of 1,000 total points — that\'s 25% of your final grade. Participation means being actively engaged, not just showing up. To earn points, you must complete both the attendance check AND the day\'s class activity.',
+  },
+  {
+    id: 'q4',
+    question: 'When are Dr. Avilla\'s office hours?',
+    options: [
+      { id: 'q4a', text: 'Mondays & Wednesdays, 9:00 – 10:00am' },
+      { id: 'q4b', text: 'Fridays, 12:00 – 2:00pm (by appointment only)' },
+      { id: 'q4c', text: 'Tuesdays & Thursdays, 1:00 – 2:00pm (after class)' },
+      { id: 'q4d', text: 'Office hours are online only via Zoom' },
+    ],
+    correctId: 'q4c',
+    explanation: 'Dr. Avilla holds office hours every Tuesday and Thursday from 1:00 – 2:00pm, right after class. This is a great time to ask questions, discuss your progress, or just get to know your instructor.',
+  },
+  {
+    id: 'q5',
+    question: 'What portion of exam questions comes directly from the textbook?',
+    options: [
+      { id: 'q5a', text: '25%' },
+      { id: 'q5b', text: '50%' },
+      { id: 'q5c', text: '75%' },
+      { id: 'q5d', text: '100% — exams are entirely textbook-based' },
+    ],
+    correctId: 'q5b',
+    explanation: '50% of exam questions are drawn directly from the textbook, and the other 50% from lecture. The textbook is free and available on Canvas — read it!',
+  },
+];
+
+const MATCHING_STATEMENTS = [
+  {
+    statement: 'Dr. Avilla has spent his entire life in the Central Valley.',
+    isTrue: true,
+    reveal: 'True! Dr. Avilla grew up in Merced County (Stevinson, to be exact), went to Hilmar High School, earned his BA at CSU Stanislaus, then his PhD at UC Davis — and has returned to Turlock/Modesto to live and teach. 209 for life!',
+  },
+  {
+    statement: 'Dr. Avilla knew he wanted to be a professor as soon as he started college.',
+    isTrue: false,
+    reveal: 'False! When Dr. Avilla went to college, he had no idea what he wanted to do. Graphic designer? Geologist? College dropout? He considered them all! He eventually found his love for psychology, but becoming a professor wasn\'t the plan until well into his senior year. It\'s never too late to change your mind!',
+  },
+  {
+    statement: 'Dr. Avilla loves anime.',
+    isTrue: true,
+    reveal: 'True! Dr. Avilla has been watching anime since the 90s — back when he had to download episodes over dial-up internet! He\'s also an avid manga reader. If you have a suggestion (or want one), let him know.',
+  },
+  {
+    statement: 'Dr. Avilla has been to 10 different countries (other than the United States).',
+    isTrue: false,
+    reveal: 'False! Are you kidding? In this economy?? Dr. Avilla has never even been outside of the United States. While he dreams of visiting far-off places like Japan, a $2,000, 18+ hour plane ride is not happening anytime soon.',
+  },
+  {
+    statement: 'Dr. Avilla grew up on a farm.',
+    isTrue: true,
+    reveal: 'True! Dr. Avilla grew up on a farm with 30+ cows, 5 llamas, 1 donkey, dozens of chickens, 5 dogs, and 11 cats — not to mention the wild neighbors: rabbits, foxes, raccoons, coyotes, and the occasional mountain lion.',
+  },
+];
+
+// PLACEHOLDER: Add all 50-80 facts here. In production these live in Google Sheets
+// and are assigned server-side. This array is only used in demo/offline mode.
+const FACTS_FALLBACK = [
+  "The clitoris contains about 10,000 nerve endings — about 2.5 times more than the penis.",
+  "Most of the clitoris is inside the body, wrapping around the walls of the vagina.",
+  "The clitoris can even be stimulated during anal sex.",
+  "About 35% of women clean the inside of their vagina (douche) regularly despite it increasing risk of vaginal infections.",
+  "Cleaning the inside of the vagina (douching) is associated with increased pregnancy complications and cervical cancer risk.",
+  "About 1 in 3 women experience bacterial vaginosis, which is a persistent bacterial infection inside the vagina.",
+  "Even non-pregnant women can lactate if they stimulate their nipples enough over a few weeks.",
+  "Even men can lactate!",
+  "1 in 20 people have more than two nipples.",
+  "Doctors no longer recommend breast self-exams.",
+  "There is no evidence that underarm deodorant causes breast cancer.",
+  "The penis contains no bones, but it can still \"break.\"",
+  "Nearly half of men report wanting a larger penis.",
+  "Men who watch more porn tend to be less satisfied with their penis.",
+  "Getting pregnant from pre-ejaculate (pre-cum) is nearly impossible.",
+  "Leaving semen on external skin (face, chest, thighs) for more than 5 minutes can cause skin irritation.",
+  "Circumcision in the United States became widespread largely to keep boys from masturbating.",
+  "\"Blue balls\" (pain from prolonged arousal) is real — it's caused by swelling in reproductive glands. Women can experience the same pain from prolonged arousal.",
+  "The most common cancer in men ages 15–35 is testicular cancer.",
+  "Having genitals that are neither male nor female (being intersex) is about as common as having naturally red hair.",
+  "Until at least 7 weeks gestation, male and female fetuses have the same genitals.",
+  "Lesbians tend to have more orgasms during sex than straight women.",
+  "In prehistoric times, most humans were not monogamous.",
+  "Men produce around 5,000 sperm every second.",
+  "Human sperm counts have dropped dramatically over the past 40 years.",
+  "Obesity and stress are linked to lower sperm counts.",
+  "Girls today generally reach puberty 2–5 years earlier than in past generations.",
+  "There is no clear way to tell if a woman is ovulating.",
+  "A woman is only capable of getting pregnant about 1 day per month.",
+  "Women are consistently rated as more attractive by their partners when they are ovulating.",
+  "Most women who start using menstrual cups (instead of tampons or pads) are much happier with the experience and never go back.",
+  "Having regular orgasms reduces menstrual cramping.",
+  "Most PMS symptoms are caused by stress, not a woman's period.",
+  "Pregnant women who are vegetarians are much less likely to experience morning sickness than those who eat meat.",
+  "About half of American births involve epidurals (pain relief medication).",
+  "Pregnant women in the United States are about 3 times more likely to have a C-section than those outside the U.S.",
+  "C-sections can lead to life-long health issues for newborns.",
+  "Simply seeing someone over and over again in your day-to-day life can make you more attracted to them.",
+  "Success in dating goes up significantly if you and your partner enjoy the same type of music.",
+  "Biracial people are generally seen as more attractive than average.",
+  "Alcohol impairs facial processing, which contributes to \"beer goggles\" — seeing another person as more attractive when you're drunk.",
+  "Men who are taller don't actually have larger penises.",
+  "Men evolved beards partly to protect their face when they get punched.",
+  "Worldwide, kindness is the most desired trait in a romantic partner.",
+  "The biggest predictor of romantic failure is not knowing how to flirt.",
+  "Dilated pupils make people appear more attractive.",
+  "Men noticeably lower their voice pitch when talking to attractive women.",
+  "People with vaginas are all physically capable of experiencing multiple orgasms, but only 30% report doing so regularly.",
+  "One of the leading causes of erectile dysfunction is smoking.",
+  "Men are about 50% more likely to orgasm during sex than women are.",
+  "1 in 3 men regularly experience premature ejaculation.",
+  "Even people who are paralyzed from the waist down can experience orgasm.",
+  "Around 60% of boys begin masturbating before age 6.",
+  "Gen Z is having less sex than previous generations.",
+  "Friends-with-benefits relationships often produce more positive outcomes than hookups with strangers.",
+  "1 out of 4 couples who have been married for more than a decade no longer have sex.",
+  "Couples who engage in fetishes like BDSM report longer-lasting and more satisfying relationships than average.",
+  "On average, online sex workers (escorts) make more money annually than lawyers.",
+  "People who whip and spank each other during sex actually feel no pain, because they are so sexually aroused.",
+  "The #1 fastest growing fetish in the United States is \"choking.\"",
+  "Women report masturbating less than men — unless you hook them up to a lie detector.",
+  "Most sperm produced by a man's body are so defective they cannot even swim.",
+  "Most of the sperm that enters a woman's body during sex drains back out of the vagina within 10 minutes.",
+  "1–3% of women have PMS symptoms so severe that it causes clinical levels of depression.",
+  "Home pregnancy tests bought at the supermarket give false readings about 35% of the time.",
+  "For more than 1,000 years, women used poisonous plants to darken their eyes to appear more attractive, commonly leading to blindness.",
+  "One hundred years ago, doctors treated anxiety in women by giving them orgasms — the doctor would literally masturbate their female patients.",
+  "In the early 1900s, doctors commonly believed that masturbation caused physical illness, leading to seizures, blindness, and even death.",
+  "The doggy-style position is the sex position most likely to lead to queefing (passing gas out of the vagina).",
+  "Most women rate their partner's orgasm during sex as being more important than their own orgasm.",
+  "About 1 in 3 women experience vaginismus, which is pain during vaginal penetration — most often caused by anxiety.",
+  "Researchers in the 1960s successfully made a group of young men into foot fetishists through a simple experiment.",
+  "Most \"furries\" (people who fantasize about having sex as an anthropomorphic animal) report first being attracted to cartoon animals in Disney movies.",
+  "Less than half of all parents in the United States ever discuss safe sex with their kids.",
+  "Teen pregnancy rates in the United States are higher than all other Western nations.",
+  "Declines in teen pregnancy rates in the U.S. are partly due to less alcohol consumption among young women.",
+  "Men who play video games for at least 5 hours a week are less likely to have sex than men who don't.",
+  "Teens who receive abstinence-only sex education are more likely to have accidental pregnancies than teens who receive no sex education at all!",
+  "1 in 3 college students report having sex with a friend in the past year.",
+  "1 in 6 college students report having sex with a stranger in the past year.",
+  "When women have hook-up sex with a stranger, they tend to regret it about 25% of the time.",
+  "Couples tend to have the most sex per month during their first year together, compared to every other year they are a couple.",
+  "A woman's clitoris grows in relative size when aroused more than a man's penis.",
+  "The vast majority of women cannot orgasm just from penile-vaginal (penis in vagina) sex alone.",
+  "Having an orgasm can reduce symptoms of a cold (stuffy nose, sore throat) just as well as over-the-counter cold medication.",
+  "People are more likely to have an orgasm during sex if they leave their socks on.",
+  "Condoms with ribs, bumps, or other tactile features (\"ribbed for her pleasure\") are actually less likely to result in orgasm for women.",
+  "While 75% of people have fantasized about BDSM-style sex, only 10–15% of couples have actually tried it.",
+  "People who are politically conservative are more likely than average to fantasize about cheating on their partner.",
+  "Upwards of 80% of people who currently have a sexually transmitted infection (STI) don't know it.",
+  "About 1 in 6 women report having never had an orgasm.",
+  "Using the \"pull out\" method is about as effective as using condoms when it comes to preventing pregnancy.",
+  "Sex toys should be made of silicone, steel, or glass. Toys made from vinyl, latex, or other plastics are not considered safe for skin contact.",
+  "Women are more likely to orgasm if they use lube during sex, even if they normally produce vaginal fluid.",
+  "Women who have a college degree are more likely to orgasm than women who don't.",
+  "When not aroused, the average woman's vagina is only 3 inches deep.",
+  "About 1 in 3 women who are 80 years old or older still have active sex lives.",
+  "On average, women who experience sexual pain will see 7 different doctors before receiving an accurate diagnosis.",
+  "Most women need about 20 minutes of sexual stimulation to climax, whereas most men need only 4 minutes.",
+  "Nearly 90% of women are satisfied with their partner's penis size, even though nearly 50% of men think they have a small penis.",
+  "The average male ejaculate contains 5–20 calories.",
+  "The average speed of ejaculation is 28 miles per hour.",
+  "Transgender people are about twice as likely to live in poverty compared to cisgender people.",
+  "About 1 in 100 people report feeling no sexual attraction toward anyone at any point in their lives — this is known as asexuality.",
+  "The state of Utah consumes more porn per person than any other state in the U.S. — and also has the most \"porn addiction centers.\"",
+  "Every day, PornHub logs 64 million unique visitors, with users watching more than 4 trillion hours of porn each year.",
+  "Around 16% of men admit to watching porn at work or school.",
+  "The most popular day of the week to watch porn is Sunday.",
+  "The couples who have the most sex on average (138 times per year) are Greek. The least (45 times per year) are Japanese.",
+  "Sex toys are banned in shops in Alabama and Mississippi.",
+];
+
+// ═══════════════════════════════════════════════════════════
+// APPLICATION STATE
+// ═══════════════════════════════════════════════════════════
+let currentStudent = null;
+let studentData = {
+  factId:           null,
+  fact:             null,
+  matchingGuesses:  {},
+  matchingRevealed: false,
+  skills:           {},
+  aboutYou:         '',
+  quiz:             {},
+  quizCorrect:      {},
+};
+const saveTimers = {};
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  populateStudentDropdown();
+  renderMatchingGame();
+  renderSkills();
+  renderQuiz();
+
+  // Returning student? Skip the name picker and load straight in.
+  const saved = localStorage.getItem('syllabusStudent');
+  if (saved && STUDENT_ROSTER.includes(saved)) {
+    document.getElementById('studentSelect').value = saved;
+    loadStudent();   // auto-load using the remembered name
+  }
+});
+
+function populateStudentDropdown() {
+  const select = document.getElementById('studentSelect');
+  [...STUDENT_ROSTER].sort().forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    select.appendChild(opt);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// STUDENT LOAD
+// ═══════════════════════════════════════════════════════════
+async function loadStudent() {
+  const name = document.getElementById('studentSelect').value;
+  if (!name) { showLoadError('Please select your name first.'); return; }
+
+  const btn = document.getElementById('loadBtn');
+  btn.textContent = 'Loading…';
+  btn.disabled = true;
+
+  try {
+    const data = await fetchStudentData(name);
+    currentStudent = name;
+    studentData = { ...studentData, ...data };
+    localStorage.setItem('syllabusStudent', name);
+
+    document.getElementById('nameModal').style.display     = 'none';
+    document.getElementById('stickyHeader').style.display  = 'block';
+    document.getElementById('mainContent').style.display   = 'block';
+    document.getElementById('headerStudentName').textContent = name;
+
+    populateFromSavedData();
+    updateProgress();
+
+  } catch (err) {
+    console.error(err);
+    showLoadError('Could not load your data — please try again.');
+    btn.textContent = 'Load My Syllabus →';
+    btn.disabled = false;
+  }
+}
+
+// Forget the remembered student and return to the name picker.
+function logout() {
+  if (!confirm('Switch to a different name?\n\nYour work is saved and will be here when you sign back in.')) return;
+  localStorage.removeItem('syllabusStudent');
+  location.reload();
+}
+
+async function fetchStudentData(name) {
+  if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    // ── Demo / offline mode ──
+    return {
+      factId: 0,
+      fact: FACTS_FALLBACK[Math.floor(Math.random() * FACTS_FALLBACK.length)],
+    };
+  }
+  const resp = await fetch(
+    `${SCRIPT_URL}?action=getStudent&name=${encodeURIComponent(name)}`
+  );
+  const json = await resp.json();
+  if (!json.success) throw new Error(json.error || 'Server error');
+  return json.student;
+}
+
+function populateFromSavedData() {
+  // Fact
+  document.getElementById('factText').textContent =
+    studentData.fact || FACTS_FALLBACK[0];
+
+  // Matching game (restore per-card guesses)
+  if (studentData.matchingGuesses && Object.keys(studentData.matchingGuesses).length)
+    revealMatching(true);
+
+  // Skills
+  Object.entries(studentData.skills || {}).forEach(([id, rank]) => {
+    const sel = document.getElementById(`sk-select-${id}`);
+    if (sel) {
+      sel.value = rank;
+      sel.closest('.skill-row').classList.add('ranked');
+    }
+  });
+
+  // About You
+  if (studentData.aboutYou)
+    document.getElementById('aboutYouText').value = studentData.aboutYou;
+
+  // Quiz (restore correct answers)
+  Object.entries(studentData.quizCorrect || {}).forEach(([qId, correct]) => {
+    if (correct) restoreCorrectAnswer(qId, studentData.quiz[qId]);
+  });
+
+  updateQuizScore();
+  validateSkillRanks();
+}
+
+// ═══════════════════════════════════════════════════════════
+// SAVE TO APPS SCRIPT
+// ═══════════════════════════════════════════════════════════
+async function saveToScript(payload) {
+  if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    console.log('[Demo] Would save:', payload);
+    return;
+  }
+  // Using no-cors POST so no preflight CORS issues with Apps Script
+  await fetch(SCRIPT_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body:    JSON.stringify({ name: currentStudent, ...payload }),
+  });
+}
+
+function showSaveIndicator(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = 'Saved ✓';
+  clearTimeout(saveTimers[id]);
+  saveTimers[id] = setTimeout(() => { el.textContent = ''; }, 3000);
+}
+
+function debounce(fn, ms) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
+// ═══════════════════════════════════════════════════════════
+// MATCHING GAME
+// ═══════════════════════════════════════════════════════════
+
+function renderMatchingGame() {
+  const container = document.getElementById('matchStatements');
+  MATCHING_STATEMENTS.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'match-card';
+    card.id = `match-card-${i}`;
+    card.innerHTML = `
+      <div class="match-statement">${item.statement}</div>
+      <div class="match-buttons">
+        <button class="match-btn" id="match-${i}-true"
+          onclick="guessMatch(${i}, true)">True</button>
+        <button class="match-btn" id="match-${i}-false"
+          onclick="guessMatch(${i}, false)">False</button>
+      </div>
+      <div class="match-reveal" id="match-reveal-${i}">${item.reveal}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function guessMatch(i, guess) {
+  if (studentData.matchingGuesses && studentData.matchingGuesses[i] !== undefined) return;
+
+  const trueBtn  = document.getElementById(`match-${i}-true`);
+  const falseBtn = document.getElementById(`match-${i}-false`);
+  const revealEl = document.getElementById(`match-reveal-${i}`);
+
+  trueBtn.disabled  = falseBtn.disabled = true;
+  (guess ? trueBtn : falseBtn).classList.add('selected');
+
+  requestAnimationFrame(() => revealEl.classList.add('visible'));
+
+  if (!studentData.matchingGuesses) studentData.matchingGuesses = {};
+  studentData.matchingGuesses[i] = guess;
+
+  const allAnswered = MATCHING_STATEMENTS.every((_, idx) =>
+    studentData.matchingGuesses[idx] !== undefined);
+
+  if (allAnswered) {
+    studentData.matchingRevealed = true;
+    document.getElementById('badge-matching').classList.add('done');
+    saveToScript({ action: 'saveStudent',
+      data: { matchingGuesses: studentData.matchingGuesses, matchingRevealed: true } });
+    updateProgress();
+  } else {
+    saveToScript({ action: 'saveStudent',
+      data: { matchingGuesses: studentData.matchingGuesses } });
+  }
+}
+
+function revealMatching(silent = false) {
+  const guesses = studentData.matchingGuesses || {};
+  MATCHING_STATEMENTS.forEach((item, i) => {
+    const trueBtn  = document.getElementById(`match-${i}-true`);
+    const falseBtn = document.getElementById(`match-${i}-false`);
+    const revealEl = document.getElementById(`match-reveal-${i}`);
+    if (!trueBtn || guesses[i] === undefined) return;
+    trueBtn.disabled = falseBtn.disabled = true;
+    (guesses[i] ? trueBtn : falseBtn).classList.add('selected');
+    revealEl.classList.add('visible');
+  });
+  if (!silent && studentData.matchingRevealed) {
+    document.getElementById('badge-matching').classList.add('done');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// SKILLS RANKING
+// ═══════════════════════════════════════════════════════════
+function renderSkills() {
+  const container = document.getElementById('skillRows');
+  const total = SKILLS.length;
+  document.getElementById('skillCountLabel').textContent = total;
+  SKILLS.forEach(skill => {
+    const row = document.createElement('div');
+    row.className = 'skill-row';
+    row.id = `skill-row-${skill.id}`;
+    let opts = '<option value="">—</option>';
+    for (let i = 1; i <= total; i++) opts += `<option value="${i}">${i}</option>`;
+    row.innerHTML = `
+      <span class="skill-icon">${skill.icon}</span>
+      <span class="skill-name">${skill.name}</span>
+      <select class="skill-select" id="sk-select-${skill.id}"
+        onchange="onSkillChange('${skill.id}')">
+        ${opts}
+      </select>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function onSkillChange(skillId) {
+  const val = document.getElementById(`sk-select-${skillId}`).value;
+  if (val) {
+    studentData.skills[skillId] = parseInt(val);
+    document.getElementById(`skill-row-${skillId}`).classList.add('ranked');
+  } else {
+    delete studentData.skills[skillId];
+    document.getElementById(`skill-row-${skillId}`).classList.remove('ranked');
+  }
+  if (validateSkillRanks()) debouncedSaveSkills();
+}
+
+function validateSkillRanks() {
+  const vals = Object.values(studentData.skills);
+  const dupes = vals.length !== new Set(vals).size;
+  document.getElementById('rankError').style.display = dupes ? 'block' : 'none';
+  const allDone = vals.length === SKILLS.length && !dupes;
+  document.getElementById('badge-skills').classList.toggle('done', allDone);
+  updateProgress();
+  return allDone;
+}
+
+const debouncedSaveSkills = debounce(saveSkills, 800);
+
+function saveSkills() {
+  saveToScript({ action: 'saveStudent', data: { skills: studentData.skills } });
+  showSaveIndicator('skillSaveIndicator');
+}
+
+// ═══════════════════════════════════════════════════════════
+// ABOUT YOU
+// ═══════════════════════════════════════════════════════════
+const debouncedSaveAboutYou = debounce(saveAboutYou, 800);
+
+function saveAboutYou() {
+  studentData.aboutYou = document.getElementById('aboutYouText').value;
+  const done = studentData.aboutYou.trim().length >= 20;
+  document.getElementById('badge-aboutyou').classList.toggle('done', done);
+  updateProgress();
+  if (done) {
+    saveToScript({ action: 'saveStudent', data: { aboutYou: studentData.aboutYou } });
+    showSaveIndicator('aboutYouSaveIndicator');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════════════════
+function renderQuiz() {
+  const container = document.getElementById('quizQuestions');
+  document.getElementById('quizTotalCount').textContent = QUIZ_QUESTIONS.length;
+  QUIZ_QUESTIONS.forEach((q, qi) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'quiz-question';
+    qDiv.id = `quiz-${q.id}`;
+    const letters = 'ABCD';
+    const optHtml = q.options.map((opt, oi) => `
+      <button class="answer-btn" id="ans-${opt.id}"
+        onclick="submitQuizAnswer('${q.id}','${opt.id}')">
+        <strong>${letters[oi]}.</strong> ${opt.text}
+      </button>
+    `).join('');
+    qDiv.innerHTML = `
+      <div class="question-text">
+        <span class="q-number">Q${qi + 1}.</span> ${q.question}
+      </div>
+      <div class="answer-options" id="opts-${q.id}">${optHtml}</div>
+      <div class="quiz-feedback" id="fb-${q.id}"></div>
+    `;
+    container.appendChild(qDiv);
+  });
+  updateQuizScore();
+}
+
+function submitQuizAnswer(qId, answerId) {
+  if (studentData.quizCorrect[qId]) return;
+  const q = QUIZ_QUESTIONS.find(x => x.id === qId);
+  if (!q) return;
+  const isCorrect = answerId === q.correctId;
+  const fbEl   = document.getElementById(`fb-${qId}`);
+  const optsEl = document.getElementById(`opts-${qId}`);
+
+  optsEl.querySelectorAll('.answer-btn').forEach(b =>
+    b.classList.remove('correct', 'incorrect'));
+
+  document.getElementById(`ans-${answerId}`).classList.add(
+    isCorrect ? 'correct' : 'incorrect');
+
+  if (isCorrect) {
+    document.getElementById(`ans-${q.correctId}`).classList.add('correct');
+    fbEl.className = 'quiz-feedback correct';
+    fbEl.innerHTML = `✓ Correct! ${q.explanation}`;
+    optsEl.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+    studentData.quizCorrect[qId] = true;
+  } else {
+    fbEl.className = 'quiz-feedback incorrect';
+    fbEl.textContent = '✗ Not quite — try again!';
+  }
+  studentData.quiz[qId] = answerId;
+  updateQuizScore();
+  saveToScript({ action: 'saveStudent',
+    data: { quiz: studentData.quiz, quizCorrect: studentData.quizCorrect } });
+}
+
+function restoreCorrectAnswer(qId, answerId) {
+  const q = QUIZ_QUESTIONS.find(x => x.id === qId);
+  if (!q || !answerId) return;
+  const btn = document.getElementById(`ans-${answerId}`);
+  if (btn) btn.classList.add('correct');
+  document.getElementById(`opts-${qId}`)
+    ?.querySelectorAll('.answer-btn')
+    .forEach(b => b.disabled = true);
+  const fbEl = document.getElementById(`fb-${qId}`);
+  if (fbEl) {
+    fbEl.className = 'quiz-feedback correct';
+    fbEl.innerHTML = `✓ Correct! ${q.explanation}`;
+  }
+}
+
+function updateQuizScore() {
+  const correct = Object.values(studentData.quizCorrect).filter(Boolean).length;
+  const total   = QUIZ_QUESTIONS.length;
+  document.getElementById('quizCorrectCount').textContent = correct;
+  document.getElementById('quizTotalCount').textContent   = total;
+  const done = total > 0 && correct === total;
+  document.getElementById('badge-quiz').classList.toggle('done', done);
+  updateProgress();
+}
+
+// ═══════════════════════════════════════════════════════════
+// PROGRESS
+// ═══════════════════════════════════════════════════════════
+function updateProgress() {
+  const skillsAllRanked =
+    Object.keys(studentData.skills).length === SKILLS.length &&
+    new Set(Object.values(studentData.skills)).size === SKILLS.length;
+
+  const sections = [
+    { id: 'cl-matching', done: studentData.matchingRevealed },
+    { id: 'cl-skills',  done: skillsAllRanked },
+    { id: 'cl-aboutyou',done: studentData.aboutYou.trim().length >= 20 },
+    { id: 'cl-quiz',
+      done: QUIZ_QUESTIONS.length > 0 &&
+            Object.values(studentData.quizCorrect).filter(Boolean).length ===
+            QUIZ_QUESTIONS.length },
+  ];
+
+  let doneCount = 0;
+  sections.forEach(s => {
+    const el = document.getElementById(s.id);
+    if (!el) return;
+    el.classList.toggle('done', s.done);
+    if (s.done) doneCount++;
+  });
+
+  const pct = sections.length ? (doneCount / sections.length) * 100 : 0;
+  document.getElementById('progressCount').textContent  = `${doneCount}/${sections.length}`;
+  document.getElementById('progressBarFill').style.width = `${pct}%`;
+}
+
+function toggleProgress() {
+  document.getElementById('progressPanel').classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════════════
+// PRINT
+// ═══════════════════════════════════════════════════════════
+function printSyllabus() {
+  document.getElementById('printStudentName').textContent = currentStudent || '';
+  document.getElementById('printDate').textContent = new Date().toLocaleDateString();
+  buildPrintSkills();
+  buildPrintQuiz();
+  window.print();
+}
+
+function buildPrintSkills() {
+  const list = document.getElementById('printSkillsList');
+  list.innerHTML = '';
+  const sorted = Object.entries(studentData.skills)
+    .sort(([,a],[,b]) => a - b)
+    .map(([id]) => SKILLS.find(s => s.id === id)?.name || id);
+  sorted.forEach(name => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    list.appendChild(li);
+  });
+}
+
+function buildPrintQuiz() {
+  const list = document.getElementById('printQuizList');
+  list.innerHTML = '';
+  QUIZ_QUESTIONS.forEach((q, i) => {
+    const li = document.createElement('li');
+    li.textContent = `Q${i + 1}: ${studentData.quizCorrect[q.id] ? '✓ Correct' : '○ Not yet answered'}`;
+    list.appendChild(li);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════════════
+function showLoadError(msg) {
+  const el = document.getElementById('modalError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function clearLoadError() {
+  document.getElementById('modalError').style.display = 'none';
+}
+</script>
+</body>
+</html>

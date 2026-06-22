@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!--
+=============================================================================
+TABLE OF CONTENTS (toc.html)
+- Textbook title: update .toc-hero-title and .toc-title-bar text
+- To add a chapter: copy one .toc-chapter block and update number, title, href, sections
+- To add a section: add an <a> inside .toc-sections with href pointing to section anchor
+=============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table of Contents · Human Sexuality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+  <style>
+    body { background: #F5F3FF; }
+
+    /* ── HERO ── */
+    .toc-hero {
+      background: var(--primary);
+      padding: 56px 40px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+    }
+    .toc-accent-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 7px;
+      background: var(--accent);
+    }
+    .toc-hero::before {
+      content: '';
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,0.06);
+      pointer-events: none;
+    }
+    .toc-hero::after {
+      content: '';
+      position: absolute;
+      left: -60px; bottom: -40px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 50px solid rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+    .toc-book-title {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 14px;
+      position: relative; z-index: 1;
+    }
+    .toc-hero-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+      position: relative; z-index: 1;
+      text-shadow: 2px 4px 16px rgba(0,0,0,0.2);
+    }
+    .toc-divider {
+      width: 56px; height: 4px;
+      background: #f3f126;
+      margin: 0 auto 28px;
+      position: relative; z-index: 1;
+    }
+    .toc-home-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.3px;
+      position: relative; z-index: 1;
+      transition: color 0.2s;
+    }
+    .toc-home-link:hover { color: #f3f126; }
+
+    /* ── CHAPTER LIST ── */
+    .toc-list-section {
+      max-width: 780px;
+      margin: -24px auto 64px;
+      padding: 0 24px;
+      position: relative; z-index: 10;
+    }
+    .toc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* ── CHAPTER CARD ── */
+    .toc-chapter {
+      background: #FFFFFF;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(109,40,217,0.1);
+      border: 1px solid rgba(109,40,217,0.1);
+      overflow: hidden;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    .toc-chapter.open {
+      box-shadow: 0 4px 16px rgba(109,40,217,0.18);
+      border-color: var(--primary);
+    }
+
+    /* Chapter header row — clickable */
+    .toc-chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .toc-chapter-num {
+      background: var(--primary);
+      color: var(--accent);
+      font-size: 13px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 0 20px;
+      min-width: 110px;
+      align-self: stretch;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .toc-chapter.open .toc-chapter-num,
+    .toc-chapter-header:hover .toc-chapter-num { background: var(--primary-dark); }
+
+    .toc-chapter-title {
+      font-size: 16px; font-weight: 600;
+      color: #000000;
+      flex: 1;
+      padding: 18px 20px;
+    }
+
+    .toc-chapter-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 18px 16px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      border-left: 1px solid rgba(109,40,217,0.08);
+      transition: background 0.15s, color 0.15s;
+    }
+    .toc-chapter-link:hover {
+      background: rgba(109,40,217,0.05);
+      color: var(--primary);
+    }
+
+    .toc-chevron {
+      color: #9CA3AF;
+      font-size: 18px;
+      padding: 18px 18px 18px 4px;
+      flex-shrink: 0;
+      transition: transform 0.25s, color 0.15s;
+      line-height: 1;
+    }
+    .toc-chapter.open .toc-chevron { transform: rotate(90deg); color: var(--primary); }
+
+    /* ── SECTION LIST ── */
+    .toc-sections {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      border-top: 0px solid rgba(109,40,217,0.1);
+    }
+    .toc-chapter.open .toc-sections {
+      max-height: 600px;
+      border-top-width: 1px;
+    }
+    .toc-sections-inner {
+      padding: 8px 0 12px 130px;
+    }
+    .toc-section-link {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 7px 20px 7px 0;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+    .toc-section-link:hover { color: var(--primary); }
+    .toc-section-num {
+      font-size: 11px; font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+      min-width: 28px;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .toc-hero { padding: 44px 20px 60px; }
+      .toc-list-section { padding: 0 12px; margin-top: -16px; }
+      .toc-chapter-num { min-width: 80px; font-size: 11px; padding: 0 12px; }
+      .toc-chapter-title { font-size: 14px; padding: 14px 12px; }
+      .toc-chapter-link { padding: 14px 12px; font-size: 11px; }
+      .toc-chevron { padding: 14px 12px 14px 4px; }
+      .toc-sections-inner { padding-left: 92px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="toc-hero">
+  <div class="toc-accent-bar"></div>
+  <span class="toc-book-title">Human Sexuality</span>
+  <div class="toc-hero-title">Table of Contents</div>
+  <div class="toc-divider"></div>
+  <a href="index.html" class="toc-home-link">← Back to Home</a>
+</header>
+
+<section class="toc-list-section" aria-label="Table of contents">
+  <nav class="toc-list">
+
+    <!-- ── CHAPTER 1 ── -->
+    <div class="toc-chapter open" id="ch1">
+      <div class="toc-chapter-header" onclick="toggleChapter('ch1')" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter'||event.key===' ')toggleChapter('ch1')">
+        <span class="toc-chapter-num">Chapter 1</span>
+        <span class="toc-chapter-title">Exploring Human Sexuality</span>
+        <a href="Chapter1-Intro/chapter01.html" class="toc-chapter-link" onclick="event.stopPropagation()">Read →</a>
+        <span class="toc-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="toc-sections" id="ch1-sections">
+        <div class="toc-sections-inner">
+          <a href="Chapter1-Intro/chapter01.html#section1" class="toc-section-link"><span class="toc-section-num">1.1</span>What Is Human Sexuality?</a>
+          <a href="Chapter1-Intro/chapter01.html#section2" class="toc-section-link"><span class="toc-section-num">1.2</span>Development as a Scientific Field</a>
+          <a href="Chapter1-Intro/chapter01.html#section3" class="toc-section-link"><span class="toc-section-num">1.3</span>Cross-Cultural Perspectives</a>
+          <a href="Chapter1-Intro/chapter01.html#section4" class="toc-section-link"><span class="toc-section-num">1.4</span>Why Study Sexuality?</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CHAPTER 2 ── -->
+    <div class="toc-chapter open" id="ch2">
+      <div class="toc-chapter-header" onclick="toggleChapter('ch2')" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter'||event.key===' ')toggleChapter('ch2')">
+        <span class="toc-chapter-num">Chapter 2</span>
+        <span class="toc-chapter-title">Female Sexual Anatomy and Physiology</span>
+        <a href="Chapter2-Female/chapter02.html" class="toc-chapter-link" onclick="event.stopPropagation()">Read →</a>
+        <span class="toc-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="toc-sections" id="ch2-sections">
+        <div class="toc-sections-inner">
+          <a href="Chapter2-Female/chapter02.html#section1" class="toc-section-link"><span class="toc-section-num">2.1</span>External Anatomy</a>
+          <a href="Chapter2-Female/chapter02.html#section2" class="toc-section-link"><span class="toc-section-num">2.2</span>Internal Anatomy</a>
+          <a href="Chapter2-Female/chapter02.html#section3" class="toc-section-link"><span class="toc-section-num">2.3</span>The Breasts</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CHAPTER 3 ── -->
+    <div class="toc-chapter open" id="ch3">
+      <div class="toc-chapter-header" onclick="toggleChapter('ch3')" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter'||event.key===' ')toggleChapter('ch3')">
+        <span class="toc-chapter-num">Chapter 3</span>
+        <span class="toc-chapter-title">Male Sexual Anatomy</span>
+        <a href="Chapter3-Male/chapter03.html" class="toc-chapter-link" onclick="event.stopPropagation()">Read →</a>
+        <span class="toc-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="toc-sections" id="ch3-sections">
+        <div class="toc-sections-inner">
+          <a href="Chapter3-Male/chapter03.html#section1" class="toc-section-link"><span class="toc-section-num">3.1</span>The Penis</a>
+          <a href="Chapter3-Male/chapter03.html#section2" class="toc-section-link"><span class="toc-section-num">3.2</span>The Mechanics of Erection</a>
+          <a href="Chapter3-Male/chapter03.html#section3" class="toc-section-link"><span class="toc-section-num">3.3</span>The Scrotum &amp; Testes</a>
+          <a href="Chapter3-Male/chapter03.html#section4" class="toc-section-link"><span class="toc-section-num">3.4</span>The Pathway &amp; Accessory Glands</a>
+          <a href="Chapter3-Male/chapter03.html#section5" class="toc-section-link"><span class="toc-section-num">3.5</span>Sexual Health Concerns</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="toc-chapter open" id="ch4">
+      <div class="toc-chapter-header" onclick="toggleChapter('ch4')" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter'||event.key===' ')toggleChapter('ch4')">
+        <span class="toc-chapter-num">Chapter 4</span>
+        <span class="toc-chapter-title">Sex and Gender</span>
+        <a href="Chapter4-Gender/chapter04.html" class="toc-chapter-link" onclick="event.stopPropagation()">Read →</a>
+        <span class="toc-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="toc-sections" id="ch4-sections">
+        <div class="toc-sections-inner">
+          <a href="Chapter4-Gender/chapter04.html#section1" class="toc-section-link"><span class="toc-section-num">4.1</span>Understanding Sex and Gender</a>
+          <a href="Chapter4-Gender/chapter04.html#section2" class="toc-section-link"><span class="toc-section-num">4.2</span>Prenatal Sex Differentiation</a>
+          <a href="Chapter4-Gender/chapter04.html#section3" class="toc-section-link"><span class="toc-section-num">4.3</span>Puberty as a Second Differentiation</a>
+          <a href="Chapter4-Gender/chapter04.html#section4" class="toc-section-link"><span class="toc-section-num">4.4</span>Intersex Variations</a>
+          <a href="Chapter4-Gender/chapter04.html#section5" class="toc-section-link"><span class="toc-section-num">4.5</span>Gender Differences and Similarities</a>
+          <a href="Chapter4-Gender/chapter04.html#section6" class="toc-section-link"><span class="toc-section-num">4.6</span>Where Do Gender Differences Come From?</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CHAPTER 5 ── -->
+    <div class="toc-chapter open" id="ch5">
+      <div class="toc-chapter-header" onclick="toggleChapter('ch5')" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter'||event.key===' ')toggleChapter('ch5')">
+        <span class="toc-chapter-num">Chapter 5</span>
+        <span class="toc-chapter-title">Fertility &amp; Contraception</span>
+        <a href="Chapter5-Fertility&amp;Contraception/chapter05.html" class="toc-chapter-link" onclick="event.stopPropagation()">Read →</a>
+        <span class="toc-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="toc-sections" id="ch5-sections">
+        <div class="toc-sections-inner">
+          <a href="Chapter5-Fertility&amp;Contraception/chapter05.html#section1" class="toc-section-link"><span class="toc-section-num">5.1</span>Female Fertility</a>
+          <a href="Chapter5-Fertility&amp;Contraception/chapter05.html#section2" class="toc-section-link"><span class="toc-section-num">5.2</span>Male Fertility</a>
+          <a href="Chapter5-Fertility&amp;Contraception/chapter05.html#section3" class="toc-section-link"><span class="toc-section-num">5.3</span>Contraception</a>
+          <a href="Chapter5-Fertility&amp;Contraception/chapter05.html#section4" class="toc-section-link"><span class="toc-section-num">5.4</span>Infertility</a>
+          <a href="Chapter5-Fertility&amp;Contraception/chapter05.html#section5" class="toc-section-link"><span class="toc-section-num">5.5</span>Fertility in Aging</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CHAPTER 7 ── -->
+    <div class="toc-chapter open" id="ch7">
+      <div class="toc-chapter-header" onclick="toggleChapter('ch7')" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter'||event.key===' ')toggleChapter('ch7')">
+        <span class="toc-chapter-num">Chapter 7</span>
+        <span class="toc-chapter-title">Sexual Attraction, Arousal, and Response</span>
+        <a href="Chapter7-SexualArousal/chapter07.html" class="toc-chapter-link" onclick="event.stopPropagation()">Read →</a>
+        <span class="toc-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="toc-sections" id="ch7-sections">
+        <div class="toc-sections-inner">
+          <a href="Chapter7-SexualArousal/chapter07.html#section1" class="toc-section-link"><span class="toc-section-num">7.1</span>What Draws Us Together?</a>
+          <a href="Chapter7-SexualArousal/chapter07.html#section2" class="toc-section-link"><span class="toc-section-num">7.2</span>The Body Responds: The Physiology of Arousal</a>
+          <a href="Chapter7-SexualArousal/chapter07.html#section3" class="toc-section-link"><span class="toc-section-num">7.3</span>Models of the Sexual Response Cycle</a>
+          <a href="Chapter7-SexualArousal/chapter07.html#section4" class="toc-section-link"><span class="toc-section-num">7.4</span>Asexuality</a>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons BY-NC-SA 4.0" class="cc-badge">
+    </a>
+    <p class="cc-text"><strong>Human Sexuality</strong> by Dr. Ross Avilla is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Free to share and adapt for non-commercial purposes with attribution.</p>
+  </div>
+</footer>
+
+<script>
+function toggleChapter(id) {
+  const card = document.getElementById(id);
+  const header = card.querySelector('.toc-chapter-header');
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  header.setAttribute('aria-expanded', String(!isOpen));
+}
+</script>
+</body>
+</html>

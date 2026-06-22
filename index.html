@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--
+=============================================================================
+SPLASH PAGE (index.html)
+- Textbook title: update .splash-title text and href (links to toc.html)
+- Author: update .splash-author text and href (links to author.html)
+- Chapter list: add/remove .chapter-item rows; update href to chapter file paths
+- To add a chapter: copy one .chapter-item <a> block and update number, title, href
+=============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Sexuality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+  <style>
+    /* ── SPLASH-SPECIFIC STYLES ── */
+
+    body { background: #F5F3FF; }
+
+    /* ── HERO ── */
+    .splash-hero {
+      background: var(--primary);
+      padding: 72px 40px 88px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+    }
+    /* Orange top bar */
+    .splash-accent-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 7px;
+      background: var(--accent);
+    }
+    /* Decorative background circles */
+    .splash-hero::before {
+      content: '';
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,0.06);
+      pointer-events: none;
+    }
+    .splash-hero::after {
+      content: '';
+      position: absolute;
+      left: -60px; bottom: -40px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 50px solid rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+
+    .splash-title {
+      font-size: clamp(42px, 7vw, 82px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: #FFFFFF;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 28px;
+      position: relative; z-index: 1;
+      transition: opacity 0.2s;
+      text-shadow: 2px 4px 16px rgba(0,0,0,0.2);
+    }
+    .splash-title:hover { opacity: 0.88; }
+
+    /* Yellow divider bar */
+    .splash-divider {
+      width: 56px; height: 4px;
+      background: #f3f126;
+      margin: 0 auto 24px;
+      position: relative; z-index: 1;
+    }
+
+    .splash-author-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+      position: relative; z-index: 1;
+    }
+
+    .splash-author {
+      font-size: 22px; font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+      display: inline-block;
+      position: relative; z-index: 1;
+      transition: color 0.2s;
+    }
+    .splash-author:hover { color: #f3f126; }
+
+    .splash-toc-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 40px;
+      background: var(--accent);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      position: relative; z-index: 1;
+      transition: background 0.2s;
+    }
+    .splash-toc-link:hover { background: #d4631a; }
+
+    /* ── CHAPTER LIST ── */
+    .chapter-list-section {
+      max-width: 780px;
+      margin: -24px auto 64px;
+      padding: 0 24px;
+      position: relative; z-index: 10;
+    }
+
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chapter-item {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: #FFFFFF;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #000000;
+      box-shadow: 0 2px 8px rgba(109,40,217,0.1);
+      border: 1px solid rgba(109,40,217,0.1);
+      overflow: hidden;
+      transition: all 0.15s;
+    }
+    .chapter-item:hover {
+      box-shadow: 0 4px 16px rgba(109,40,217,0.18);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* Colored left tab */
+    .chapter-num {
+      background: var(--primary);
+      color: var(--accent);
+      font-size: 13px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 0 20px;
+      min-width: 110px;
+      align-self: stretch;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .chapter-item:hover .chapter-num { background: var(--primary-dark); }
+
+    .chapter-title-text {
+      font-size: 16px; font-weight: 600;
+      color: #000000;
+      flex: 1;
+      padding: 18px 20px;
+    }
+
+    .chapter-arrow {
+      color: #D1D5DB;
+      font-size: 22px;
+      padding-right: 20px;
+      flex-shrink: 0;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .chapter-item:hover .chapter-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .splash-hero { padding: 52px 20px 72px; }
+      .splash-title { letter-spacing: -1px; }
+      .chapter-list-section { padding: 0 12px; margin-top: -16px; }
+      .chapter-num { min-width: 80px; font-size: 11px; padding: 0 12px; }
+      .chapter-title-text { font-size: 14px; padding: 14px 14px; }
+      .chapter-arrow { padding-right: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="splash-hero">
+  <div class="splash-accent-bar"></div>
+
+  <a href="toc.html" class="splash-title">Human<br>Sexuality</a>
+
+  <div class="splash-divider"></div>
+
+  <a href="author.html" class="splash-author">
+    <span class="splash-author-label">Author</span>
+    Dr. Ross Avilla
+  </a>
+
+  <br>
+  <a href="toc.html" class="splash-toc-link">View Full Table of Contents &nbsp;→</a>
+</header>
+
+<!-- Chapter list -->
+<section class="chapter-list-section" aria-label="Chapters">
+  <nav class="chapter-list">
+
+    <a href="Chapter1-Intro/chapter01.html" class="chapter-item">
+      <span class="chapter-num">Chapter 1</span>
+      <span class="chapter-title-text">Exploring Human Sexuality</span>
+      <span class="chapter-arrow" aria-hidden="true">›</span>
+    </a>
+
+    <a href="Chapter2-Female/chapter02.html" class="chapter-item">
+      <span class="chapter-num">Chapter 2</span>
+      <span class="chapter-title-text">Female Sexual Anatomy and Physiology</span>
+      <span class="chapter-arrow" aria-hidden="true">›</span>
+    </a>
+
+    <a href="Chapter3-Male/chapter03.html" class="chapter-item">
+      <span class="chapter-num">Chapter 3</span>
+      <span class="chapter-title-text">Male Sexual Anatomy</span>
+      <span class="chapter-arrow" aria-hidden="true">›</span>
+    </a>
+
+    <a href="Chapter4-Gender/chapter04.html" class="chapter-item">
+      <span class="chapter-num">Chapter 4</span>
+      <span class="chapter-title-text">Sex and Gender</span>
+      <span class="chapter-arrow" aria-hidden="true">›</span>
+    </a>
+
+    <a href="Chapter5-Fertility&amp;Contraception/chapter05.html" class="chapter-item">
+      <span class="chapter-num">Chapter 5</span>
+      <span class="chapter-title-text">Fertility &amp; Contraception</span>
+      <span class="chapter-arrow" aria-hidden="true">›</span>
+    </a>
+
+    <a href="Chapter7-SexualArousal/chapter07.html" class="chapter-item">
+      <span class="chapter-num">Chapter 7</span>
+      <span class="chapter-title-text">Sexual Attraction, Arousal, and Response</span>
+      <span class="chapter-arrow" aria-hidden="true">›</span>
+    </a>
+
+  </nav>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons BY-NC-SA 4.0" class="cc-badge">
+    </a>
+    <p class="cc-text"><strong>Human Sexuality</strong> by Dr. Ross Avilla is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Free to share and adapt for non-commercial purposes with attribution.</p>
+  </div>
+</footer>
+
+</body>
+</html>

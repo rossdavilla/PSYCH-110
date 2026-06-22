@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--
+=============================================================================
+CLAUDE AUTHORING INSTRUCTIONS — READ THIS BEFORE EDITING
+=============================================================================
+Shared styles:  ../assets/style.css
+Shared scripts: ../assets/textbook.js
+Images:         Img/filename.jpg  (files must be placed in the Img/ folder first)
+Videos:         YouTube embeds only
+
+── KEY TERMS ──
+Bold + dark-blue text in Word → wrap as below. End each popup with a "View in
+glossary" link whose href matches that term's <dt id="term-slug"> in the GLOSSARY:
+
+  <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">TERM<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>TERM</strong>Definition here.<a class="glossary-link" href="#term-slug" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span>
+
+── INLINE CITATIONS ──
+(Author, Year) in Word → wrap as:
+
+  <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Author, Year)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Full Reference</strong>Full APA reference here.</span></span>
+
+── SECTION HEADERS ──
+Wrap section numbers in <span class="section-num">1.1</span>
+
+── IMAGES ──
+  <figure class="textbook-figure">
+    <img src="Img/filename.jpg" alt="Descriptive alt text generated from context." width="W" height="H">
+    <figcaption><strong>Figure X.X.</strong> Caption text.</figcaption>
+  </figure>
+
+── YOUTUBE VIDEOS ──
+  <div class="video-wrapper" role="region" aria-label="Embedded video: DESCRIPTION">
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="TITLE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <p class="video-caption"><strong>Video X.X.</strong> Caption text.</p>
+
+── MULTIPLE CHOICE (MCQ) ──
+  <div class="question-block" role="region" aria-label="Practice question N">
+    <div class="question-type-label">Multiple Choice</div>
+    <p class="question-text">Question text here?</p>
+    <div class="mcq-options" id="qN">
+      <div class="answer-option" onclick="selectMCQ(this,'qN')" role="button" tabindex="0"><span class="answer-letter">A</span><span>Option A</span></div>
+      <div class="answer-option" onclick="selectMCQ(this,'qN')" role="button" tabindex="0"><span class="answer-letter">B</span><span>Option B</span></div>
+      <div class="answer-option" onclick="selectMCQ(this,'qN')" role="button" tabindex="0"><span class="answer-letter">C</span><span>Option C</span></div>
+      <div class="answer-option" onclick="selectMCQ(this,'qN')" role="button" tabindex="0"><span class="answer-letter">D</span><span>Option D</span></div>
+    </div>
+    <button class="submit-btn" onclick="submitMCQ('qN','B','Explanation shown after correct answer or 2 wrong attempts.')">Submit</button>
+    <div class="explanation-box" id="qN-exp"></div>
+  </div>
+
+── TRUE / FALSE ──
+Same as MCQ but only two options (A: True, B: False).
+
+── MATCHING ──
+  <div class="question-block" role="region" aria-label="Practice question N">
+    <div class="question-type-label">Matching</div>
+    <p class="question-text">Match each item to its pair.</p>
+    <div class="match-container" id="qN">
+      <div class="match-row">
+        <div class="match-term">Term A</div>
+        <select class="match-select" data-correct="Definition X" onchange="clearMatchFeedback('qN')">
+          <option value="">— Select —</option>
+          <option>Definition X</option>
+          <option>Definition Y</option>
+        </select>
+      </div>
+      (repeat match-row for each pair)
+    </div>
+    <button class="submit-btn" onclick="submitMatch('qN','Explanation text.')">Submit</button>
+    <div class="explanation-box" id="qN-exp"></div>
+  </div>
+
+── SORTING ──
+  <div class="question-block" role="region" aria-label="Practice question N">
+    <div class="question-type-label">Sorting</div>
+    <p class="question-text">Drag to arrange in the correct order.</p>
+    <ul class="sort-list" id="qN" aria-label="Drag to reorder">
+      <li class="sort-item" draggable="true" data-order="2"><span class="sort-handle" aria-hidden="true">⠿</span>Item that goes second</li>
+      <li class="sort-item" draggable="true" data-order="1"><span class="sort-handle" aria-hidden="true">⠿</span>Item that goes first</li>
+    </ul>
+    <button class="submit-btn" onclick="submitSort('qN','Explanation text.')">Submit</button>
+    <div class="explanation-box" id="qN-exp"></div>
+  </div>
+
+── FILL-IN-THE-BLANK ──
+  <div class="question-block" role="region" aria-label="Practice question N">
+    <div class="question-type-label">Fill in the Blank</div>
+    <p class="fitb-sentence">The sentence with a <input class="fitb-input" id="qN-input" type="text" aria-label="Fill in the blank" autocomplete="off" placeholder="________"> here.</p>
+    <button class="submit-btn" onclick="submitFITB('qN','correctanswer','alternate1,alternate2','Explanation text.')">Submit</button>
+    <div class="explanation-box" id="qN-exp"></div>
+  </div>
+
+── CLICK-ON-TARGET ──
+Upload TWO images to Img/: (1) the display image students see, (2) an answer-key image
+with the correct region clearly circled/marked (for your reference only — not shown to students).
+Set data-target-x and data-target-y as percentages of image width/height for the center of
+the correct region, and data-target-r as the acceptable hit radius in pixels.
+
+  <div class="question-block" role="region" aria-label="Practice question N">
+    <div class="question-type-label">Click on Target</div>
+    <p class="question-text">Click on the [TARGET] in the image below.</p>
+    <div style="text-align:center;">
+      <div class="cot-image-wrap" id="qN-wrap"
+           data-target-x="50" data-target-y="40" data-target-r="60"
+           onclick="handleCOTClick(event,'qN')"
+           role="img" aria-label="Alt text describing the image.">
+        <img src="Img/display-image.jpg" alt="Alt text describing the image." width="500" height="380" id="qN-img">
+        <div class="selection-circle" id="qN-circle"></div>
+      </div>
+    </div>
+    <button class="submit-btn" id="qN-btn" onclick="submitCOT('qN','Explanation text.')" disabled>Submit Selection</button>
+    <div class="explanation-box" id="qN-exp"></div>
+  </div>
+
+── NAV PANEL ──
+Update: nav-book-title, nav-chapter-label, tocList links, prev/next hrefs.
+
+── CHAPTER HERO ──
+Update: hero-chapter-num text, chapter-title, chapter-subtitle.
+
+── TITLE BAR ──
+Update the textbook title in the .title-bar div.
+
+── REFERENCES ──
+Add <li> entries to .references-list (hanging-indent APA format).
+
+── GLOSSARY ──
+Alphabetize terms. Add entries to the <dl class="glossary-list"> as:
+  <div class="g-term"><dt id="term-slug">TERM</dt><dd>DEFINITION.</dd></div>
+The id="term-slug" (lowercase, hyphenated) is the anchor each inline key-term's
+"View in glossary" link points to.
+=============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1 — The Science of Mind · Introduction to Psychology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/img/favicon/site.webmanifest">
+</head>
+<body>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<nav class="nav-panel" id="navPanel" aria-label="Chapter navigation">
+  <div class="nav-book-title">Introduction to Psychology</div>
+  <div class="nav-chapter-label">Ch. 1 · The Science of Mind</div>
+  <a href="../index.html" class="nav-btn home">⌂ Back to Home</a>
+  <div class="nav-btn-row">
+    <a href="../toc.html" class="nav-btn">☰ Full TOC</a>
+    <a href="../author.html" class="nav-btn">👤 Author</a>
+  </div>
+  <div class="nav-btn-row">
+    <a href="#" class="nav-btn">← Prev Chapter</a>
+    <a href="../Chapter02/chapter02.html" class="nav-btn primary">Next Chapter →</a>
+  </div>
+  <hr class="nav-divider">
+  <div class="nav-section-label">In This Chapter</div>
+  <ul class="nav-toc" id="tocList">
+    <li><a href="#section1">1.1 What Is Psychology?</a></li>
+    <li><a href="#section2">1.2 A Brief History</a></li>
+    <li><a href="#s2-early" class="sub">Early Foundations</a></li>
+    <li><a href="#s2-wundt" class="sub">Wundt's Laboratory</a></li>
+    <li><a href="#section3">1.3 Major Perspectives</a></li>
+    <li><a href="#s3-bio" class="sub">Biological</a></li>
+    <li><a href="#s3-psycho" class="sub">Psychodynamic</a></li>
+    <li><a href="#study-guide">Study Guide</a></li>
+    <li><a href="#glossary">Key Terms</a></li>
+  </ul>
+  <hr class="nav-divider">
+  <div class="nav-utility-row">
+    <button onclick="window.print()" class="nav-btn" style="flex:1">🖨 Print</button>
+    <button onclick="downloadPDF()" class="nav-btn" style="flex:1">⬇ PDF</button>
+  </div>
+</nav>
+
+<button class="menu-btn" id="menuBtn" onclick="toggleNav()" aria-label="Open navigation menu">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+
+<main class="content-wrapper">
+
+  <div class="title-bar">Introduction to Psychology</div>
+
+  <header class="chapter-hero">
+    <div class="hero-chapter-num">Chapter 1</div>
+    <h1 class="chapter-title">The Science of Mind</h1>
+    <p class="chapter-subtitle">Exploring the foundations of psychological science, its history, and its major theoretical frameworks for understanding human behavior.</p>
+  </header>
+
+  <nav class="chapter-resources" aria-label="Chapter resources">
+    <a class="resource-link" href="#study-guide">📝 Study Guide</a>
+    <a class="resource-link" href="#glossary">🔑 Key Terms</a>
+  </nav>
+
+  <!-- ─── SECTION 1 ─── -->
+  <section id="section1">
+    <h1><span class="section-num">1.1</span> What Is Psychology?</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">cognitive psychology<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Cognitive Psychology</strong>The branch of psychology concerned with mental processes such as attention, language, memory, perception, and problem-solving.<a class="glossary-link" href="#term-cognitive-psychology" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span> est laborum et dolorum fuga. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(James, 1890)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Full Reference</strong>James, W. (1890). <em>The principles of psychology.</em> Henry Holt and Company.</span></span>.</p>
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione sequi nesciunt.</p>
+
+    <figure class="textbook-figure">
+      <img src="https://placehold.co/680x360/6D28D9/ffffff?text=Figure+1.1+—+Placeholder" alt="Diagram illustrating the major subfields of psychology arranged in a circular layout, including clinical, cognitive, developmental, social, and biological psychology." width="680" height="360">
+      <figcaption><strong>Figure 1.1.</strong> The major subfields of psychology and their areas of focus.</figcaption>
+    </figure>
+
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+
+    <div class="question-block" role="region" aria-label="Practice question 1">
+      <div class="question-type-label">Multiple Choice</div>
+      <p class="question-text">Which of the following best defines psychology as a scientific discipline?</p>
+      <div class="mcq-options" id="q1">
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">A</span><span>The study of the brain's physical structure and neural pathways.</span></div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">B</span><span>The scientific study of behavior and mental processes.</span></div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">C</span><span>A philosophical analysis of the nature of consciousness and free will.</span></div>
+        <div class="answer-option" onclick="selectMCQ(this,'q1')" role="button" tabindex="0"><span class="answer-letter">D</span><span>The medical diagnosis and treatment of mental health disorders.</span></div>
+      </div>
+      <button class="submit-btn" onclick="submitMCQ('q1','B','The scientific study of behavior and mental processes is the standard definition of psychology, distinguishing it from neuroscience, philosophy, and psychiatry.')">Submit</button>
+      <div class="explanation-box" id="q1-exp"></div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2 ─── -->
+  <section id="section2">
+    <h1><span class="section-num">1.2</span> A Brief History of Psychology</h1>
+    <section id="s2-early">
+      <h2>Early Foundations</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="key-term" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">structuralism<span class="key-term-icon">i</span><span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Structuralism</strong>An early school of psychology that aimed to identify the basic elements of conscious experience through systematic introspection.<a class="glossary-link" href="#term-structuralism" onclick="event.stopPropagation()">View in glossary &rarr;</a></span></span> ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+      <div class="question-block" role="region" aria-label="Practice question 2">
+        <div class="question-type-label">True / False</div>
+        <p class="question-text">Wilhelm Wundt established the first formal psychology laboratory in Leipzig, Germany in 1879.</p>
+        <div class="mcq-options" id="q2">
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0"><span class="answer-letter">A</span><span>True</span></div>
+          <div class="answer-option" onclick="selectMCQ(this,'q2')" role="button" tabindex="0"><span class="answer-letter">B</span><span>False</span></div>
+        </div>
+        <button class="submit-btn" onclick="submitMCQ('q2','A','This is true. Wundt opened his experimental psychology laboratory at the University of Leipzig in 1879, marking the formal beginning of psychology as a scientific discipline.')">Submit</button>
+        <div class="explanation-box" id="q2-exp"></div>
+      </div>
+    </section>
+    <section id="s2-wundt">
+      <h2>Wundt's Laboratory</h2>
+      <h3>The Method of Introspection</h3>
+      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur <span class="citation" tabindex="0" onclick="togglePopup(this)" onkeydown="if(event.key==='Enter')togglePopup(this)">(Wundt, 1897)<span class="popup-box" role="tooltip"><button class="popup-close" onclick="event.stopPropagation();this.parentElement.classList.remove('active')" aria-label="Close">×</button><strong>Full Reference</strong>Wundt, W. (1897). <em>Outlines of psychology.</em> Wilhelm Engelmann.</span></span>. Lorem ipsum dolor sit amet consectetur.</p>
+      <div class="question-block" role="region" aria-label="Practice question 3">
+        <div class="question-type-label">Matching</div>
+        <p class="question-text">Match each early psychologist to their primary contribution.</p>
+        <div class="match-container" id="q3">
+          <div class="match-row"><div class="match-term">Wilhelm Wundt</div><select class="match-select" data-correct="First psychology laboratory (1879)" onchange="clearMatchFeedback('q3')"><option value="">— Select —</option><option>First psychology laboratory (1879)</option><option>Theory of psychoanalysis</option><option>Law of effect</option><option>Stream of consciousness</option></select></div>
+          <div class="match-row"><div class="match-term">William James</div><select class="match-select" data-correct="Stream of consciousness" onchange="clearMatchFeedback('q3')"><option value="">— Select —</option><option>First psychology laboratory (1879)</option><option>Theory of psychoanalysis</option><option>Law of effect</option><option>Stream of consciousness</option></select></div>
+          <div class="match-row"><div class="match-term">Sigmund Freud</div><select class="match-select" data-correct="Theory of psychoanalysis" onchange="clearMatchFeedback('q3')"><option value="">— Select —</option><option>First psychology laboratory (1879)</option><option>Theory of psychoanalysis</option><option>Law of effect</option><option>Stream of consciousness</option></select></div>
+          <div class="match-row"><div class="match-term">Edward Thorndike</div><select class="match-select" data-correct="Law of effect" onchange="clearMatchFeedback('q3')"><option value="">— Select —</option><option>First psychology laboratory (1879)</option><option>Theory of psychoanalysis</option><option>Law of effect</option><option>Stream of consciousness</option></select></div>
+        </div>
+        <button class="submit-btn" onclick="submitMatch('q3','Wundt → First psychology laboratory. James → Stream of consciousness. Freud → Theory of psychoanalysis. Thorndike → Law of effect.')">Submit</button>
+        <div class="explanation-box" id="q3-exp"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ─── SECTION 3 ─── -->
+  <section id="section3">
+    <h1><span class="section-num">1.3</span> Major Perspectives in Psychology</h1>
+    <section id="s3-bio">
+      <h2>The Biological Perspective</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecati cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div class="question-block" role="region" aria-label="Practice question 4">
+        <div class="question-type-label">Sorting</div>
+        <p class="question-text">Drag to arrange the following milestones in chronological order (earliest first).</p>
+        <ul class="sort-list" id="q4" aria-label="Drag to reorder">
+          <li class="sort-item" draggable="true" data-order="3"><span class="sort-handle" aria-hidden="true">⠿</span>Behaviorism emerges with Watson (1913)</li>
+          <li class="sort-item" draggable="true" data-order="1"><span class="sort-handle" aria-hidden="true">⠿</span>Wundt opens first psychology lab (1879)</li>
+          <li class="sort-item" draggable="true" data-order="4"><span class="sort-handle" aria-hidden="true">⠿</span>Cognitive revolution begins (1950s)</li>
+          <li class="sort-item" draggable="true" data-order="2"><span class="sort-handle" aria-hidden="true">⠿</span>Freud publishes <em>The Interpretation of Dreams</em> (1900)</li>
+        </ul>
+        <button class="submit-btn" onclick="submitSort('q4','Correct order: (1) Wundt 1879 → (2) Freud 1900 → (3) Watson 1913 → (4) Cognitive revolution 1950s.')">Submit</button>
+        <div class="explanation-box" id="q4-exp"></div>
+      </div>
+      <table aria-describedby="table1-caption">
+        <caption id="table1-caption"><strong>Table 1.1.</strong> Comparison of major psychological perspectives and their primary focus areas.</caption>
+        <thead><tr><th scope="col">Perspective</th><th scope="col">Primary Focus</th><th scope="col">Key Figure(s)</th></tr></thead>
+        <tbody>
+          <tr><td>Biological</td><td>Brain, genes, nervous system</td><td>Kandel, Hebb</td></tr>
+          <tr><td>Psychodynamic</td><td>Unconscious drives, early experience</td><td>Freud, Jung</td></tr>
+          <tr><td>Behavioral</td><td>Observable behavior, conditioning</td><td>Watson, Skinner</td></tr>
+          <tr><td>Cognitive</td><td>Mental processes, schemas</td><td>Piaget, Miller</td></tr>
+          <tr><td>Humanistic</td><td>Growth, self-actualization</td><td>Maslow, Rogers</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="s3-psycho">
+      <h2>The Psychodynamic Perspective</h2>
+      <h3>Freud's Contributions</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="question-block" role="region" aria-label="Practice question 5">
+        <div class="question-type-label">Fill in the Blank</div>
+        <p class="fitb-sentence">According to Freud, the part of the personality that operates on the "pleasure principle" is called the <input class="fitb-input" id="q5-input" type="text" aria-label="Fill in the blank" autocomplete="off" placeholder="________">.</p>
+        <button class="submit-btn" onclick="submitFITB('q5','id','ego,superego,libido','The id operates on the pleasure principle, seeking immediate satisfaction without regard for reality or morality.')">Submit</button>
+        <div class="explanation-box" id="q5-exp"></div>
+      </div>
+      <div class="video-wrapper" role="region" aria-label="Embedded video: Overview of Freud's psychodynamic theory">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Overview of Freud's Psychodynamic Theory" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="video-caption"><strong>Video 1.1.</strong> An overview of Freud's psychodynamic theory and its legacy in modern psychology.</p>
+      <div class="question-block" role="region" aria-label="Practice question 6">
+        <div class="question-type-label">Click on Target</div>
+        <p class="question-text">Click on the part of the diagram that represents the <strong>preconscious</strong> mind in Freud's iceberg model.</p>
+        <div style="text-align:center;">
+          <div class="cot-image-wrap" id="q6-wrap" data-target-x="50" data-target-y="40" data-target-r="60" onclick="handleCOTClick(event,'q6')" role="img" aria-label="Diagram of Freud's iceberg model showing conscious, preconscious, and unconscious layers.">
+            <img src="https://placehold.co/500x380/6D28D9/ffffff?text=Iceberg+Diagram+Placeholder" alt="Freud's iceberg model diagram showing conscious, preconscious, and unconscious layers." width="500" height="380" id="q6-img">
+            <div class="selection-circle" id="q6-circle"></div>
+          </div>
+        </div>
+        <button class="submit-btn" id="q6-btn" onclick="submitCOT('q6','The preconscious sits just below the waterline — above the large unconscious mass but below the small conscious tip.')" disabled>Submit Selection</button>
+        <div class="explanation-box" id="q6-exp"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ─── STUDY GUIDE ─── -->
+  <!-- Subheads group the questions. Use plain <h3>Topic</h3>, OR mirror the chapter's
+       numbered sections with <h3><span class="section-num">1.1</span> Title</h3>.
+       Number questions continuously across groups via start="N" on each <ol> after the first.
+       The <details> answer key is OPTIONAL — include it only if the study guide has answers. -->
+  <section class="study-guide-section" id="study-guide">
+    <h2 class="study-guide-title">Study Guide</h2>
+    <p class="study-guide-intro">After reading this chapter, you should be able to answer each of the questions below. Use your own words where possible, and support your answers with examples or evidence from the text.</p>
+
+    <h3>First Topic Group</h3>
+    <ol class="study-guide-list">
+      <li>First study-guide question.</li>
+      <li>Second study-guide question.</li>
+    </ol>
+
+    <h3>Second Topic Group</h3>
+    <ol class="study-guide-list" start="3">
+      <li>Third study-guide question.</li>
+    </ol>
+
+    <details class="answer-guide">
+      <summary>Key Points (Answer Guide)</summary>
+      <div class="answer-guide-inner">
+        <p class="study-guide-intro">Short model answers for self-checking. These are talking points, not the only acceptable wording.</p>
+        <ol class="study-guide-list">
+          <li>Model answer to question 1.</li>
+          <li>Model answer to question 2.</li>
+          <li>Model answer to question 3.</li>
+        </ol>
+      </div>
+    </details>
+  </section>
+
+  <!-- ─── GLOSSARY ─── -->
+  <section class="glossary-section" id="glossary">
+    <h2 class="glossary-title">Key Terms</h2>
+    <dl class="glossary-list">
+      <div class="g-term"><dt id="term-cognitive-psychology">Cognitive Psychology</dt><dd>The branch of psychology concerned with mental processes such as attention, language, memory, perception, and problem-solving.</dd></div>
+      <div class="g-term"><dt id="term-structuralism">Structuralism</dt><dd>An early school of psychology that aimed to identify the basic elements of conscious experience through introspection.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ─── REFERENCES ─── -->
+  <div class="references-section">
+    <h2 class="references-title">References</h2>
+    <ul class="references-list">
+      <li>James, W. (1890). <em>The principles of psychology.</em> Henry Holt and Company.</li>
+      <li>Wundt, W. (1897). <em>Outlines of psychology.</em> Wilhelm Engelmann.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons BY-NC-SA 4.0" class="cc-badge">
+    </a>
+    <p class="cc-text"><strong>Introduction to Psychology</strong> by Dr. Ross Avilla is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Free to share and adapt for non-commercial purposes with attribution.</p>
+  </div>
+</footer>
+
+<script src="../assets/textbook.js"></script>
+</body>
+</html>
