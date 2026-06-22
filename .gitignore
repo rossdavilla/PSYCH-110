@@ -7,3 +7,9 @@
 
 # Local editor backups of syllabus.html
 *.bak
+
+# Chapter-split working file (not committed)
+.split-progress.md
+
+# Local preview server config
+.claude/launch.json
