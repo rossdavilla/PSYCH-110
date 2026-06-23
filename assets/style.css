@@ -597,6 +597,13 @@ section h3 { clear: both; }
 .fact-box p { margin: 0; }
 .fact-box p + p { margin-top: 10px; }
 .fact-box .fact-label { color: var(--primary); }
+.fact-box a { display: block; }
+.fact-box img {
+  display: block; max-width: 100%; height: auto; margin: 14px auto 0;
+  border: 2px solid var(--img-border); border-radius: 6px;
+  box-shadow: 4px 4px 16px rgba(0,0,0,0.18); transition: box-shadow 0.15s ease;
+}
+.fact-box a:hover img, .fact-box a:focus-visible img { box-shadow: 4px 4px 22px rgba(109,40,217,0.40); }
 
 /* ── STUDY GUIDE ANSWER GUIDE (collapsible) ── */
 .answer-guide { margin: 24px 0 28px; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
