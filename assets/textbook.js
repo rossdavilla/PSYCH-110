@@ -28,6 +28,15 @@ document.addEventListener('click', e => {
     document.querySelectorAll('.popup-box.active').forEach(p => p.classList.remove('active'));
 });
 
+/* ── SENSITIVE / EXPLICIT MEDIA (blurred image, click to reveal / re-blur) ── */
+function toggleSensitive(btn) {
+  const wrap = btn.closest('.sensitive-media');
+  if (!wrap) return;
+  const revealed = wrap.classList.toggle('revealed');
+  const reveal = wrap.querySelector('.sensitive-reveal');
+  if (reveal) reveal.setAttribute('aria-pressed', revealed ? 'true' : 'false');
+}
+
 /* ── QUESTION STATE ── */
 const qState = {};
 

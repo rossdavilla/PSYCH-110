@@ -312,6 +312,40 @@ section h3 { clear: both; }
   }
 }
 
+/* ── SENSITIVE / EXPLICIT MEDIA (blur + click-to-reveal content warning) ── */
+.sensitive-media {
+  position: relative; display: block; overflow: hidden;
+  width: 100%; margin: 10px auto; border-radius: 2px;
+  border: 2px solid var(--img-border);
+  box-shadow: 4px 4px 16px rgba(0,0,0,0.22);
+}
+.sensitive-media img {
+  display: block; margin: 0; border: none; box-shadow: none; border-radius: 0;
+  transition: filter 0.25s ease;
+}
+.sensitive-media:not(.revealed) img { filter: blur(28px); }
+.sensitive-reveal {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  padding: 16px; border: none; cursor: pointer; text-align: center;
+  background: rgba(31,41,55,0.55); color: #fff;
+  font-family: inherit; -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease;
+}
+.sensitive-media.revealed .sensitive-reveal { display: none; }
+.sensitive-reveal:hover, .sensitive-reveal:focus-visible { background: rgba(31,41,55,0.68); }
+.sensitive-reveal-icon { font-size: 30px; line-height: 1; }
+.sensitive-reveal-title { font-weight: 700; font-size: 15px; letter-spacing: 0.02em; }
+.sensitive-reveal-sub { font-size: 13px; max-width: 340px; opacity: 0.95; }
+.sensitive-hide {
+  position: absolute; top: 8px; right: 8px; display: none;
+  font-family: inherit; font-size: 12px; font-weight: 600; color: #fff;
+  background: rgba(31,41,55,0.72); border: none; border-radius: 4px;
+  padding: 5px 11px; cursor: pointer; transition: background 0.15s ease;
+}
+.sensitive-media.revealed .sensitive-hide { display: inline-block; }
+.sensitive-hide:hover, .sensitive-hide:focus-visible { background: rgba(31,41,55,0.92); }
+
 /* ── FIGURE ENLARGE BUTTON ── */
 .fig-enlarge-btn {
   position: absolute;

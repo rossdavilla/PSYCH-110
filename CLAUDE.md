@@ -137,8 +137,9 @@ back-matter order is Study Guide → Key Terms → References). Group the questi
 under `<h3>` subheads — plain topic titles, or mirror the chapter's numbered
 sections with `<h3><span class="section-num">1.1</span> Title</h3>`. Number the
 questions **continuously** across groups using `start="N"` on each `<ol>` after the
-first. If the source includes an answer key, put it in a collapsible `<details
-class="answer-guide">` at the end (omit if there are no answers):
+first. **NEVER include answers, an answer key, or model answers in the study guide
+on the webpage** — list the questions only. Do not add a `<details
+class="answer-guide">` block (even if the source manuscript provides answers).
 
 ```html
 <section class="study-guide-section" id="study-guide">
@@ -148,13 +149,6 @@ class="answer-guide">` at the end (omit if there are no answers):
   <ol class="study-guide-list"><li>Question…</li></ol>
   <h3>Next Group</h3>
   <ol class="study-guide-list" start="2"><li>Question…</li></ol>
-  <details class="answer-guide">
-    <summary>Key Points (Answer Guide)</summary>
-    <div class="answer-guide-inner">
-      <p class="study-guide-intro">Short model answers for self-checking…</p>
-      <ol class="study-guide-list"><li>Model answer…</li></ol>
-    </div>
-  </details>
 </section>
 ```
 
@@ -186,6 +180,23 @@ bar goes right after `</header>` (omit a pill if that section doesn't exist yet)
   and assign the next sequential `Figure N.M.` number.
 - Confirm every referenced file exists in the chapter `img/` folder before
   finishing; flag any that are missing rather than inventing them.
+- **Explicit images** (nudity, blood, graphic clinical/surgical content) get a
+  blur + click-to-reveal content warning. Wrap the `<img>` in a `.sensitive-media`
+  div (styles live in `assets/style.css`, the toggle in `assets/textbook.js`).
+  The image stays blurred until the viewer clicks the warning button; a small
+  "Hide" button re-blurs it. Tailor the warning text to the content
+  (e.g. "nudity or sexual content", "blood or surgical content"):
+
+```html
+<figure class="textbook-figure">
+  <div class="sensitive-media">
+    <img src="img/Name.jpg" alt="Descriptive alt text.">
+    <button type="button" class="sensitive-reveal" onclick="toggleSensitive(this)" aria-pressed="false"><span class="sensitive-reveal-icon" aria-hidden="true">⚠</span><span class="sensitive-reveal-title">Explicit content</span><span class="sensitive-reveal-sub">This image contains nudity or blood. Click to reveal.</span></button>
+    <button type="button" class="sensitive-hide" onclick="toggleSensitive(this)" aria-label="Re-blur image">Hide</button>
+  </div>
+  <figcaption><strong>Figure N.M.</strong> Caption text.</figcaption>
+</figure>
+```
 
 ## Build workflow
 
