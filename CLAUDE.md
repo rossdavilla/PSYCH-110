@@ -180,12 +180,20 @@ bar goes right after `</header>` (omit a pill if that section doesn't exist yet)
   and assign the next sequential `Figure N.M.` number.
 - Confirm every referenced file exists in the chapter `img/` folder before
   finishing; flag any that are missing rather than inventing them.
-- **Explicit images** (nudity, blood, graphic clinical/surgical content) get a
-  blur + click-to-reveal content warning. Wrap the `<img>` in a `.sensitive-media`
-  div (styles live in `assets/style.css`, the toggle in `assets/textbook.js`).
-  The image stays blurred until the viewer clicks the warning button; a small
-  "Hide" button re-blurs it. Tailor the warning text to the content
-  (e.g. "nudity or sexual content", "blood or surgical content"):
+- **Explicit images** get a blur + click-to-reveal content warning — but **only
+  real-life photographs** of nudity or of blood/surgery. Do **NOT** blur
+  diagrams, drawings, illustrations, anatomical figures, charts, or other
+  non-photographic representations, even when they depict genitals, nudity, or
+  clinical detail (a drawn penis, an anatomical cutaway, a labeled clinical
+  diagram, a cartoon, or a photographed cast/model/sculpture is **not**
+  censored, no matter how explicit). The test is *photograph of a real human
+  body* (blur) vs. *any representation of one* (leave clear). Blood/surgery blurs
+  likewise apply only to real photographs, not to drawings of them. When blurring
+  is warranted, wrap the `<img>` in a `.sensitive-media` div (styles live in
+  `assets/style.css`, the toggle in `assets/textbook.js`). The image stays
+  blurred until the viewer clicks the warning button; a small "Hide" button
+  re-blurs it. Tailor the warning text to the content (e.g. "nudity or sexual
+  content", "blood or surgical content"):
 
 ```html
 <figure class="textbook-figure">
