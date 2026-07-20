@@ -11,5 +11,11 @@
 # Chapter-split working file (not committed)
 .split-progress.md
 
+# Image-rescaling progress log (working file, not committed)
+.image-rescaling-progress.md
+
+# Original (pre-optimization) images — preserved locally, kept out of the repo
+**/img/Original/
+
 # Local preview server config
 .claude/launch.json

@@ -170,6 +170,10 @@ bar goes right after `</header>` (omit a pill if that section doesn't exist yet)
 
 ## 6. Image handling
 
+- **Optimizing / renaming a chapter's images** (shrink file sizes, web-safe
+  names): follow the runbook in [`image-rescaling.md`](image-rescaling.md). It
+  covers the `sips`-only workflow, quality/format decisions, preserving originals
+  in `img/Original/`, and rewriting the HTML `src` references.
 - Reference images relative to the chapter folder: `src="img/Name.png"`.
 - Filenames with spaces MUST be URL-encoded in `src` (space → `%20`),
   e.g. `img/Hypothalamus%20and%20SDN.png`. The actual file keeps the space.

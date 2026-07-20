@@ -241,24 +241,33 @@ function downloadPDF() { window.print(); }
 /* ── FIGURE LIGHTBOX ── */
 (function () {
   // Open lightbox: show img at full natural resolution, capped by viewport
-  function openLightbox(imgSrc, captionHTML) {
+  function openLightbox(imgSrc, captionHTML, opts) {
     if (document.getElementById('lbOverlay')) return; // already open
+    opts = opts || {};
+    const titleText = opts.title || 'Image';
 
     const overlay = document.createElement('div');
     overlay.className = 'lb-overlay';
     overlay.id = 'lbOverlay';
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Enlarged image');
+    overlay.setAttribute('aria-label', titleText);
+
+    const downloadBtn = opts.download
+      ? '<a class="lb-download" href="' + imgSrc + '" download="' + opts.download + '">&#8595; Download</a>'
+      : '';
 
     overlay.innerHTML =
       '<div class="lb-modal">' +
         '<div class="lb-header">' +
-          '<span class="lb-title">Image</span>' +
-          '<button class="lb-close" aria-label="Close enlarged image">&times;</button>' +
+          '<span class="lb-title">' + titleText + '</span>' +
+          '<div class="lb-header-actions">' +
+            downloadBtn +
+            '<button class="lb-close" aria-label="Close">&times;</button>' +
+          '</div>' +
         '</div>' +
         '<div class="lb-body">' +
-          '<img src="' + imgSrc + '" alt="">' +
+          '<img src="' + imgSrc + '" alt="' + titleText + '">' +
           (captionHTML ? '<p class="lb-caption">' + captionHTML + '</p>' : '') +
         '</div>' +
       '</div>';
@@ -309,6 +318,13 @@ function downloadPDF() { window.print(); }
       figure.appendChild(btn);
     });
   }
+
+  // Global opener for standalone image "guides": a full-screen viewer with a
+  // download button, over a dimmed backdrop. Call from markup, e.g.:
+  //   openImageGuide('img/SET.png', 'A Visual Guide to SET', 'SET.png')
+  window.openImageGuide = function (src, title, downloadName) {
+    openLightbox(src, '', { title: title || 'Guide', download: downloadName || '' });
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', attachEnlargeButtons);
