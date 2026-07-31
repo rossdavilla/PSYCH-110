@@ -2,6 +2,10 @@
 .DS_Store
 **/.DS_Store
 
+# Microsoft Word lock/temp files
+~$*
+**/~$*
+
 # Claude Code local machine settings (paths/permissions specific to this Mac)
 .claude/settings.local.json
 
