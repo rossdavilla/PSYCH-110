@@ -523,6 +523,16 @@ section h3 { clear: both; }
 @media (max-width: 700px) {
   .interactive-frame.frame-fixed { height: 720px; }
 }
+/* Fixed-pixel app embeds that do NOT reflow (e.g., a 720×450 text-message sim).
+   The iframe renders at native size and is scaled to fit the container by
+   textbook.js (sets --embed-scale + the frame height); nothing is clipped. */
+.interactive-embed.embed-fixed { max-width: 720px; }
+.interactive-frame.frame-720x450 { padding-bottom: 0; height: auto; aspect-ratio: 720 / 450; }
+.interactive-frame.frame-720x450 iframe {
+  width: 720px; height: 450px;
+  transform-origin: top left;
+  transform: scale(var(--embed-scale, 1));
+}
 
 /* ── YOUTUBE FACADE (lazy-load thumbnail) ── */
 .yt-facade {

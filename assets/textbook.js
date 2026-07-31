@@ -332,3 +332,33 @@ function downloadPDF() { window.print(); }
     attachEnlargeButtons(); // DOM already ready
   }
 })();
+
+// ── FIXED-SIZE EMBED SCALER ──
+// Some interactive apps are hard-coded to a fixed pixel size and don't reflow.
+// We render their iframe at native size and scale it down (never up) to fit the
+// container, so nothing is clipped on narrow screens. Opt in with:
+//   <div class="interactive-frame frame-720x450" data-embed-w="720" data-embed-h="450">
+(function () {
+  function scaleEmbeds() {
+    document.querySelectorAll('[data-embed-w]').forEach(function (frame) {
+      var w = parseFloat(frame.getAttribute('data-embed-w')) || 0;
+      var h = parseFloat(frame.getAttribute('data-embed-h')) || 0;
+      if (!w || !h) return;
+      var avail = frame.clientWidth;
+      if (!avail) return; // hidden / not laid out yet
+      var scale = Math.min(1, avail / w);
+      frame.style.setProperty('--embed-scale', scale);
+      frame.style.height = (h * scale) + 'px';
+    });
+  }
+  var raf;
+  function onResize() { cancelAnimationFrame(raf); raf = requestAnimationFrame(scaleEmbeds); }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scaleEmbeds);
+  } else {
+    scaleEmbeds();
+  }
+  window.addEventListener('load', scaleEmbeds);   // re-run after fonts/layout settle
+  window.addEventListener('resize', onResize);
+})();
