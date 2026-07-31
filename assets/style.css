@@ -516,6 +516,13 @@ section h3 { clear: both; }
 .interactive-embed figcaption {
   font-size: 13px; color: #6B7280; font-style: italic; margin-top: 10px;
 }
+/* Fixed-height variant for self-paginating app embeds (e.g., a multi-step quiz)
+   that need a consistent vertical stage regardless of width. */
+.interactive-embed.app-embed { max-width: 680px; }
+.interactive-frame.frame-fixed { padding-bottom: 0; height: 780px; }
+@media (max-width: 700px) {
+  .interactive-frame.frame-fixed { height: 720px; }
+}
 
 /* ── YOUTUBE FACADE (lazy-load thumbnail) ── */
 .yt-facade {
