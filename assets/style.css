@@ -528,6 +528,9 @@ section h3 { clear: both; }
    textbook.js (sets --embed-scale + the frame height); nothing is clipped. */
 .interactive-embed.embed-fixed { max-width: 720px; }
 .interactive-frame.frame-720x450 { padding-bottom: 0; height: auto; aspect-ratio: 720 / 450; }
+/* Landscape H5P image-slider embeds (16:9 image + a strip of nav chrome). */
+.interactive-embed.embed-slider { max-width: 680px; }
+.interactive-frame.frame-slider { padding-bottom: 0; height: auto; aspect-ratio: 1.6; }
 .interactive-frame.frame-720x450 iframe {
   width: 720px; height: 450px;
   transform-origin: top left;
