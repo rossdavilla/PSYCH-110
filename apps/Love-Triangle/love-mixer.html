@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Mixer — Triangular Theory of Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0118;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.09);
+      --gold: #d4a855;
+      --text: #f0e6ff;
+      --muted: #8b7aa0;
+      --passion: #ff4757;
+      --intimacy: #45aaf2;
+      --commitment: #ffd32a;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-back {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .nav-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      text-align: center;
+      padding: 50px 24px 36px;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* ── LAB SCENE ── */
+    .lab {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+      overflow: visible;
+    }
+
+    /* ── BOTTLES ROW ── */
+    .bottles-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 48px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      overflow: visible;
+    }
+
+    .bottle-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      overflow: visible;
+    }
+    .bottle-col.is-pouring { z-index: 50; }
+
+    .bottle-label-text {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Bottle SVG wrapper */
+    .bottle-wrap {
+      position: relative;
+      width: 90px;
+      height: 200px;
+      transform-origin: bottom center;
+      transition: transform 0.7s cubic-bezier(0.5, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* Toggle buttons */
+    .level-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 30px;
+      overflow: hidden;
+    }
+    .level-btn {
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      transition: background .25s, color .25s;
+    }
+    .level-btn.active {
+      color: #fff;
+      border-radius: 30px;
+    }
+    .passion-btn.active  { background: var(--passion); }
+    .intimacy-btn.active { background: var(--intimacy); }
+    .commitment-btn.active { background: var(--commitment); color: #000; }
+
+    /* ── POUR ZONE ── */
+    .pour-zone {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      height: 120px;
+      margin-bottom: 0;
+      overflow: visible;
+    }
+
+    /* Fixed SVG stream overlay */
+    #streamOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 200;
+      overflow: visible;
+    }
+
+    /* ── BEAKER SECTION ── */
+    .beaker-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .beaker-wrap {
+      position: relative;
+      width: 220px;
+      height: 230px;
+    }
+
+    .beaker-glass {
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      height: 200px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top: none;
+      border-radius: 0 0 30px 30px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* Beaker spout at top left */
+    .beaker-spout {
+      position: absolute;
+      top: 28px;
+      left: 14px;
+      width: 12px;
+      height: 28px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* Measurement lines on beaker */
+    .beaker-lines {
+      position: absolute;
+      right: 22px;
+      top: 30px;
+      bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      pointer-events: none;
+    }
+    .beaker-line {
+      width: 14px;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .beaker-liquid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0%;
+      background: #636e72;
+      transition: height 1.2s cubic-bezier(.4,0,.2,1), background-color .6s ease;
+      border-radius: 0 0 28px 28px;
+    }
+    .beaker-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0%;
+      border-radius: 0 0 28px 28px;
+      filter: blur(20px);
+      opacity: 0;
+      transition: height 1.2s cubic-bezier(.4,0,.2,1), background-color .6s, opacity .6s;
+    }
+
+    /* Bubbles inside beaker */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      animation: rise 1.5s ease-in forwards;
+    }
+    @keyframes rise {
+      0%   { transform: translateY(0) scale(1); opacity: 0.7; }
+      100% { transform: translateY(-120px) scale(0.3); opacity: 0; }
+    }
+
+    /* Beaker stand */
+    .beaker-stand {
+      width: 200px;
+      height: 12px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+
+    /* ── MIX BUTTON ── */
+    .mix-btn-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 32px 0 40px;
+    }
+    .mix-btn {
+      padding: 16px 56px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #a55eea, #ff6b81);
+      color: white;
+      box-shadow: 0 8px 30px rgba(165,94,234,0.4);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .mix-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(165,94,234,0.55);
+    }
+    .mix-btn:active { transform: translateY(0); }
+    .mix-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .mix-btn:hover::after { opacity: 1; }
+
+    /* ── RESULT CARD ── */
+    .result-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.04);
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 40px 36px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .result-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .result-swatch {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      transition: background .6s;
+      box-shadow: 0 0 30px rgba(255,255,255,0.15);
+    }
+    .result-type-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      transition: color .6s;
+    }
+    .result-formula {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .result-desc {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: rgba(240,230,255,0.75);
+    }
+    .result-reset {
+      margin-top: 28px;
+      padding: 10px 28px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 30px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .result-reset:hover { border-color: rgba(255,255,255,0.35); color: var(--text); }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Home</a>
+  <span class="nav-title">Love Mixer</span>
+  <span style="width:80px"></span>
+</nav>
+
+<div class="page-header">
+  <h1>⚗️ Love Mixer</h1>
+  <p>Set each ingredient to HIGH or LOW, then click <strong>Mix</strong> to discover what type of love you've created.</p>
+</div>
+
+<div class="lab">
+
+  <!-- BOTTLES -->
+  <div class="bottles-row">
+
+    <!-- PASSION -->
+    <div class="bottle-col" id="passionCol">
+      <span class="bottle-label-text" style="color:var(--passion)">Passion</span>
+      <div class="bottle-wrap" id="passionWrap">
+        <svg id="passionBottle" viewBox="0 0 90 200" width="90" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="pClip">
+              <path d="M32 52 Q14 90 16 140 Q18 188 45 188 Q72 188 74 140 Q76 90 58 52 Z"/>
+            </clipPath>
+          </defs>
+          <!-- Cork -->
+          <rect x="30" y="3" width="30" height="14" rx="5" fill="#8B6914"/>
+          <rect x="34" y="5" width="22" height="4" rx="2" fill="#a07820" opacity="0.6"/>
+          <!-- Neck -->
+          <rect x="33" y="17" width="24" height="36" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <!-- Body -->
+          <path d="M32 52 Q14 90 16 140 Q18 188 45 188 Q72 188 74 140 Q76 90 58 52 Z"
+                fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <!-- Liquid -->
+          <rect id="pLiquid" x="0" y="100" width="90" height="90" fill="#ff4757" opacity="0.85" clip-path="url(#pClip)"
+                style="transition: y 0.9s cubic-bezier(.4,0,.2,1), height 0.9s cubic-bezier(.4,0,.2,1)"/>
+          <!-- Shine -->
+          <line x1="28" y1="70" x2="25" y2="160" stroke="white" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+          <!-- Label band -->
+          <rect x="22" y="108" width="46" height="34" rx="6" fill="rgba(255,71,87,0.85)" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="level-toggle">
+        <button class="level-btn passion-btn active" data-ingredient="passion" data-level="low" onclick="setLevel('passion','low')">LOW</button>
+        <button class="level-btn passion-btn" data-ingredient="passion" data-level="high" onclick="setLevel('passion','high')">HIGH</button>
+      </div>
+    </div>
+
+    <!-- INTIMACY -->
+    <div class="bottle-col" id="intimacyCol">
+      <span class="bottle-label-text" style="color:var(--intimacy)">Intimacy</span>
+      <div class="bottle-wrap" id="intimacyWrap">
+        <svg id="intimacyBottle" viewBox="0 0 90 200" width="90" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="iClip">
+              <path d="M32 52 Q14 90 16 140 Q18 188 45 188 Q72 188 74 140 Q76 90 58 52 Z"/>
+            </clipPath>
+          </defs>
+          <rect x="30" y="3" width="30" height="14" rx="5" fill="#8B6914"/>
+          <rect x="34" y="5" width="22" height="4" rx="2" fill="#a07820" opacity="0.6"/>
+          <rect x="33" y="17" width="24" height="36" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <path d="M32 52 Q14 90 16 140 Q18 188 45 188 Q72 188 74 140 Q76 90 58 52 Z"
+                fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <rect id="iLiquid" x="0" y="100" width="90" height="90" fill="#45aaf2" opacity="0.85" clip-path="url(#iClip)"
+                style="transition: y 0.9s cubic-bezier(.4,0,.2,1), height 0.9s cubic-bezier(.4,0,.2,1)"/>
+          <line x1="28" y1="70" x2="25" y2="160" stroke="white" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+          <rect x="22" y="108" width="46" height="34" rx="6" fill="rgba(69,170,242,0.85)" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="level-toggle">
+        <button class="level-btn intimacy-btn active" data-ingredient="intimacy" data-level="low" onclick="setLevel('intimacy','low')">LOW</button>
+        <button class="level-btn intimacy-btn" data-ingredient="intimacy" data-level="high" onclick="setLevel('intimacy','high')">HIGH</button>
+      </div>
+    </div>
+
+    <!-- COMMITMENT -->
+    <div class="bottle-col" id="commitmentCol">
+      <span class="bottle-label-text" style="color:var(--commitment)">Commitment</span>
+      <div class="bottle-wrap" id="commitmentWrap">
+        <svg id="commitmentBottle" viewBox="0 0 90 200" width="90" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="cClip">
+              <path d="M32 52 Q14 90 16 140 Q18 188 45 188 Q72 188 74 140 Q76 90 58 52 Z"/>
+            </clipPath>
+          </defs>
+          <rect x="30" y="3" width="30" height="14" rx="5" fill="#8B6914"/>
+          <rect x="34" y="5" width="22" height="4" rx="2" fill="#a07820" opacity="0.6"/>
+          <rect x="33" y="17" width="24" height="36" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <path d="M32 52 Q14 90 16 140 Q18 188 45 188 Q72 188 74 140 Q76 90 58 52 Z"
+                fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <rect id="cLiquid" x="0" y="100" width="90" height="90" fill="#ffd32a" opacity="0.85" clip-path="url(#cClip)"
+                style="transition: y 0.9s cubic-bezier(.4,0,.2,1), height 0.9s cubic-bezier(.4,0,.2,1)"/>
+          <line x1="28" y1="70" x2="25" y2="160" stroke="white" stroke-width="2.5" opacity="0.18" stroke-linecap="round"/>
+          <rect x="22" y="108" width="46" height="34" rx="6" fill="rgba(255,211,42,0.85)" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="level-toggle">
+        <button class="level-btn commitment-btn active" data-ingredient="commitment" data-level="low" onclick="setLevel('commitment','low')">LOW</button>
+        <button class="level-btn commitment-btn" data-ingredient="commitment" data-level="high" onclick="setLevel('commitment','high')">HIGH</button>
+      </div>
+    </div>
+
+  </div><!-- /bottles-row -->
+
+  <!-- POUR ZONE -->
+  <div class="pour-zone" id="pourZone"></div>
+
+  <!-- BEAKER -->
+  <div class="beaker-section">
+    <div class="beaker-wrap">
+      <!-- Beaker top rim -->
+      <div style="position:absolute;top:28px;left:18px;right:18px;height:3px;background:rgba(255,255,255,0.3);border-radius:2px;"></div>
+      <!-- Spout -->
+      <div class="beaker-spout"></div>
+      <!-- Main glass -->
+      <div class="beaker-glass" id="beakerGlass">
+        <div class="beaker-liquid" id="beakerLiquid"></div>
+        <div class="beaker-glow" id="beakerGlow"></div>
+        <div id="bubblesContainer"></div>
+      </div>
+      <!-- Measurement lines -->
+      <div class="beaker-lines">
+        <div class="beaker-line"></div>
+        <div class="beaker-line"></div>
+        <div class="beaker-line"></div>
+        <div class="beaker-line"></div>
+      </div>
+    </div>
+    <div class="beaker-stand"></div>
+  </div>
+
+  <!-- MIX BUTTON -->
+  <div class="mix-btn-wrap">
+    <button class="mix-btn" id="mixBtn" onclick="doMix()">⚗️ Mix</button>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div class="result-card" id="resultCard">
+    <div class="result-swatch" id="resultSwatch"></div>
+    <div class="result-type-name" id="resultName"></div>
+    <div class="result-formula" id="resultFormula"></div>
+    <p class="result-desc" id="resultDesc"></p>
+    <button class="result-reset" onclick="resetMixer()">Try Another Combination</button>
+  </div>
+
+</div><!-- /lab -->
+
+<!-- Fixed stream overlay (lives outside .lab so it can span the full viewport) -->
+<svg id="streamOverlay" xmlns="http://www.w3.org/2000/svg"></svg>
+
+<script>
+  // ── DATA ──
+  const loveTypes = {
+    '000': { name: 'Non-Love',        color: '#636e72', formula: 'No Passion · No Intimacy · No Commitment', desc: 'Without any of the three components, there is no real love — only a casual or transactional relationship. Most of our everyday interactions with strangers and acquaintances fall into this category.' },
+    '100': { name: 'Infatuation',     color: '#ff4757', formula: 'Passion Only',                             desc: 'A crush or "love at first sight" driven entirely by physical and emotional excitement. There is no deep knowledge of the other person, and no plans for a shared future. Intense — but often fleeting.' },
+    '010': { name: 'Liking',          color: '#45aaf2', formula: 'Intimacy Only',                           desc: 'The warm closeness of true friendship — you know each other deeply and feel genuinely at ease together. But there is no romantic desire and no long-term commitment. The bond of a best friend.' },
+    '001': { name: 'Empty Love',      color: '#808080', formula: 'Commitment Only',                         desc: 'Commitment without closeness or passion. Often seen in long-term relationships where the connection has faded, but both partners choose to stay out of duty, vow, or habit. The shell of a relationship without its heart.' },
+    '110': { name: 'Romantic Love',   color: '#a55eea', formula: 'Intimacy + Passion',                     desc: 'Deeply close and physically drawn to each other, but with no long-term promise. The stuff of summer romances and great literature — thrilling and real, but uncertain about the future.' },
+    '011': { name: 'Companionate Love', color: '#26de81', formula: 'Intimacy + Commitment',               desc: 'Deeply bonded and fully devoted, but without the heat of physical passion. The enduring love of long-married partners, lifelong best friends, and deeply bonded family members.' },
+    '101': { name: 'Fatuous Love',    color: '#fd9644', formula: 'Passion + Commitment',                   desc: "Intense chemistry and big promises — but no real intimacy yet. The whirlwind romance that leads to a quick engagement before the couple truly knows each other. Hollywood's favorite love story, for better or worse." },
+    '111': { name: 'Consummate Love', color: '#ff6b81', formula: 'Passion + Intimacy + Commitment',        desc: 'The complete ideal — passionate, emotionally close, and fully committed. Sternberg called this the goal of long-term love. It is rare and requires ongoing effort to maintain, but is the most fulfilling of all.' }
+  };
+
+  // ── BOTTLE DEFINITIONS ──
+  // angle: how far each bottle tips (degrees from vertical)
+  // direction: +1 = clockwise (tip right), -1 = counter-clockwise (tip left)
+  const BOTTLES = [
+    { id: 'passion',    wrapId: 'passionWrap',    colId: 'passionCol',    liquidId: 'pLiquid', color: '#ff4757', angle: 145, direction:  1 },
+    { id: 'intimacy',   wrapId: 'intimacyWrap',   colId: 'intimacyCol',   liquidId: 'iLiquid', color: '#45aaf2', angle: 175, direction:  1 },
+    { id: 'commitment', wrapId: 'commitmentWrap',  colId: 'commitmentCol', liquidId: 'cLiquid', color: '#ffd32a', angle: 145, direction: -1 },
+  ];
+
+  // ── STATE ──
+  const state = { passion: 'low', intimacy: 'low', commitment: 'low' };
+  let isMixing = false;
+
+  // ── HELPERS ──
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  function setLevel(ingredient, level) {
+    if (isMixing) return;
+    state[ingredient] = level;
+    document.querySelectorAll(`[data-ingredient="${ingredient}"]`).forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-ingredient="${ingredient}"][data-level="${level}"]`).classList.add('active');
+    const liquidEl = document.getElementById(ingredient.charAt(0) + 'Liquid');
+    if (level === 'high') {
+      liquidEl.setAttribute('y', '54');
+      liquidEl.setAttribute('height', '134');
+    } else {
+      liquidEl.setAttribute('y', '168');
+      liquidEl.setAttribute('height', '20');
+    }
+    document.getElementById('resultCard').classList.remove('visible');
+  }
+
+  // Animate a SVG rect attribute from current value over durationMs using rAF
+  function animateSVGAttr(el, attr, toVal, durationMs) {
+    const fromVal = parseFloat(el.getAttribute(attr)) || 0;
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min((now - start) / durationMs, 1);
+      const eased = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+      el.setAttribute(attr, fromVal + (toVal - fromVal) * eased);
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // Animate beaker fill from startPct to endPct over durationMs
+  function animateBeakerFill(startPct, endPct, color, durationMs) {
+    const liquid = document.getElementById('beakerLiquid');
+    const glow   = document.getElementById('beakerGlow');
+    liquid.style.backgroundColor = color;
+    glow.style.backgroundColor   = color;
+    glow.style.opacity = '0.35';
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min((now - start) / durationMs, 1);
+      const eased = 1 - Math.pow(1 - t, 2);
+      const h = startPct + (endPct - startPct) * eased;
+      liquid.style.height = h + '%';
+      glow.style.height   = h + '%';
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // Show a curved liquid stream between two screen points
+  function showStream(x1, y1, x2, y2, color) {
+    const svg = document.getElementById('streamOverlay');
+    svg.innerHTML = '';
+
+    // Control point: pull curve toward the beaker center
+    const cpx = x1 + (x2 - x1) * 0.35 + (x2 > x1 ? -20 : 20);
+    const cpy = y1 + (y2 - y1) * 0.6;
+
+    // Outer glow path
+    const glow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    glow.setAttribute('d', `M ${x1} ${y1} Q ${cpx} ${cpy} ${x2} ${y2}`);
+    glow.setAttribute('stroke', color);
+    glow.setAttribute('stroke-width', '18');
+    glow.setAttribute('fill', 'none');
+    glow.setAttribute('stroke-linecap', 'round');
+    glow.setAttribute('opacity', '0.22');
+    svg.appendChild(glow);
+
+    // Main stream
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const d = `M ${x1} ${y1} Q ${cpx} ${cpy} ${x2} ${y2}`;
+    path.setAttribute('d', d);
+    path.setAttribute('stroke', color);
+    path.setAttribute('stroke-width', '9');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('opacity', '0.92');
+
+    // Animate the stream drawing in
+    const pathLen = path.getTotalLength ? path.getTotalLength() : 200;
+    path.setAttribute('stroke-dasharray', pathLen);
+    path.setAttribute('stroke-dashoffset', pathLen);
+    svg.appendChild(path);
+
+    // Draw-in animation via rAF
+    const start = performance.now();
+    (function frame(now) {
+      const t = Math.min((now - start) / 350, 1);
+      path.setAttribute('stroke-dashoffset', pathLen * (1 - t));
+      glow.setAttribute('stroke-dasharray', pathLen);
+      glow.setAttribute('stroke-dashoffset', pathLen * (1 - t));
+      if (t < 1) requestAnimationFrame(frame);
+    })(start);
+
+    // Splash dot at beaker entry
+    const splash = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    splash.setAttribute('cx', x2);
+    splash.setAttribute('cy', y2);
+    splash.setAttribute('r', '6');
+    splash.setAttribute('fill', color);
+    splash.setAttribute('opacity', '0.7');
+    svg.appendChild(splash);
+
+    return svg;
+  }
+
+  function hideStream() {
+    document.getElementById('streamOverlay').innerHTML = '';
+  }
+
+  // ── POUR ONE BOTTLE (async) ──
+  async function pourBottle(bottle, resultColor, fillFrom, fillTo) {
+    const wrap = document.getElementById(bottle.wrapId);
+    const col  = document.getElementById(bottle.colId);
+    const liquidEl = document.getElementById(bottle.liquidId);
+
+    // Measure natural positions BEFORE any transform
+    const wrapRect   = wrap.getBoundingClientRect();
+    const beakerRect = document.getElementById('beakerGlass').getBoundingClientRect();
+
+    const pivotX = wrapRect.left + wrapRect.width / 2;
+    const pivotY = wrapRect.bottom;
+    const height = wrapRect.height;
+
+    const rad = bottle.angle * Math.PI / 180;
+    const dir = bottle.direction;
+
+    // Where will the cork (top of bottle) be after rotate(dir*angle) around bottom-center?
+    // Cork relative to pivot before rotation: (0, -height)
+    // After rotation: x' = height * sin(dir*rad), y' = -height * cos(dir*rad)
+    // (for dir=+1, angle=145°: sin≈0.574, cos≈-0.819 → y' = +height*0.819 = BELOW pivot)
+    const corkDx = dir * height * Math.sin(rad);
+    const corkDy = -height * Math.cos(rad);   // negative cos(>90°) = positive = below pivot
+
+    const rawCorkX = pivotX + corkDx;
+    const rawCorkY = pivotY + corkDy;
+
+    // Target: cork ends up 30px above the beaker's top rim, horizontally centered
+    const targetX = beakerRect.left + beakerRect.width / 2;
+    const targetY = beakerRect.top - 30;
+
+    const tx = targetX - rawCorkX;
+    const ty = targetY - rawCorkY;
+
+    // ── Phase 1: Tip over (translate + rotate simultaneously) ──
+    col.classList.add('is-pouring');
+    wrap.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${dir * bottle.angle}deg)`;
+    await sleep(750);
+
+    // ── Phase 2: Show stream, drain bottle ──
+    showStream(targetX, targetY, beakerRect.left + beakerRect.width / 2, beakerRect.top, bottle.color);
+
+    // Drain liquid (height → 0, leaving y in place so it drains from bottom)
+    const curH = parseFloat(liquidEl.getAttribute('height')) || 134;
+    animateSVGAttr(liquidEl, 'height', 0, 750);
+
+    // Start filling beaker after a short delay
+    await sleep(180);
+    animateBeakerFill(fillFrom, fillTo, resultColor, 620);
+
+    await sleep(650);
+
+    // ── Phase 3: Hide stream, right the bottle (still translated over beaker) ──
+    hideStream();
+    wrap.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(0deg)`;
+    await sleep(550);
+
+    // ── Phase 4: Slide back to origin ──
+    wrap.style.transform = 'none';
+    col.classList.remove('is-pouring');
+    await sleep(750);
+  }
+
+  // ── MAIN MIX FUNCTION ──
+  async function doMix() {
+    if (isMixing) return;
+    isMixing = true;
+    document.getElementById('resultCard').classList.remove('visible');
+    document.getElementById('mixBtn').disabled = true;
+
+    // Reset beaker and bottle liquids to a clean state before animating
+    const beakerLiquid = document.getElementById('beakerLiquid');
+    const beakerGlow   = document.getElementById('beakerGlow');
+    beakerLiquid.style.transition = 'height 0.3s ease';
+    beakerGlow.style.transition   = 'height 0.3s ease';
+    beakerLiquid.style.height = '0%';
+    beakerGlow.style.height   = '0%';
+    beakerGlow.style.opacity  = '0';
+    document.getElementById('bubblesContainer').innerHTML = '';
+    // Restore bottle liquids to match current HIGH/LOW state
+    BOTTLES.forEach(b => {
+      const el = document.getElementById(b.liquidId);
+      const isHigh = state[b.id] === 'high';
+      el.setAttribute('y',      isHigh ? '54'  : '168');
+      el.setAttribute('height', isHigh ? '134' : '20');
+    });
+    await sleep(350); // let beaker drain before pouring
+    beakerLiquid.style.transition = '';
+    beakerGlow.style.transition   = '';
+
+    const p = state.passion    === 'high' ? 1 : 0;
+    const i = state.intimacy   === 'high' ? 1 : 0;
+    const c = state.commitment === 'high' ? 1 : 0;
+    const key = `${p}${i}${c}`;
+    const result = loveTypes[key];
+
+    const activeBottles = BOTTLES.filter((b, idx) => [p, i, c][idx] === 1);
+
+    if (activeBottles.length === 0) {
+      // Non-love: just fill gray with a quick pulse
+      animateBeakerFill(0, 65, result.color, 800);
+      await sleep(900);
+    } else {
+      const fillPerBottle = 65 / activeBottles.length;
+      let currentFill = 0;
+      for (const bottle of activeBottles) {
+        await pourBottle(bottle, result.color, currentFill, currentFill + fillPerBottle);
+        currentFill += fillPerBottle;
+      }
+    }
+
+    // Bubbles
+    spawnBubbles(result.color);
+
+    // Reveal result
+    const card = document.getElementById('resultCard');
+    document.getElementById('resultSwatch').style.background = result.color;
+    document.getElementById('resultSwatch').style.boxShadow = `0 0 30px ${result.color}80`;
+    document.getElementById('resultName').textContent = result.name;
+    document.getElementById('resultName').style.color = result.color;
+    document.getElementById('resultFormula').textContent = result.formula;
+    document.getElementById('resultDesc').textContent = result.desc;
+    card.style.borderColor = result.color + '55';
+    card.classList.add('visible');
+
+    document.getElementById('mixBtn').disabled = false;
+    isMixing = false;
+  }
+
+  function spawnBubbles(color) {
+    const container = document.getElementById('bubblesContainer');
+    container.innerHTML = '';
+    for (let i = 0; i < 10; i++) {
+      const b = document.createElement('div');
+      const size = 5 + Math.random() * 11;
+      b.className = 'bubble';
+      b.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        background: ${color};
+        left: ${8 + Math.random() * 84}%;
+        bottom: ${4 + Math.random() * 35}%;
+        animation-delay: ${Math.random() * 1}s;
+        animation-duration: ${1.1 + Math.random() * 1}s;
+      `;
+      container.appendChild(b);
+    }
+  }
+
+  function resetMixer() {
+    ['passion', 'intimacy', 'commitment'].forEach(ing => setLevel(ing, 'low'));
+    // Reset bottle liquids to low
+    BOTTLES.forEach(b => {
+      const el = document.getElementById(b.liquidId);
+      el.setAttribute('y', '168');
+      el.setAttribute('height', '20');
+    });
+    const liquid = document.getElementById('beakerLiquid');
+    const glow   = document.getElementById('beakerGlow');
+    liquid.style.transition = 'height 0.5s ease';
+    liquid.style.height = '0%';
+    glow.style.height = '0%';
+    glow.style.opacity = '0';
+    document.getElementById('bubblesContainer').innerHTML = '';
+    document.getElementById('resultCard').classList.remove('visible');
+    hideStream();
+    // Reset any stuck transforms
+    BOTTLES.forEach(b => {
+      document.getElementById(b.wrapId).style.transform = 'none';
+      document.getElementById(b.colId).classList.remove('is-pouring');
+    });
+    setTimeout(() => { liquid.style.transition = ''; }, 600);
+  }
+</script>
+
+</body>
+</html>

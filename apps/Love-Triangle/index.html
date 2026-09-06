@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triangular Theory of Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0221;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.09);
+      --gold: #d4a855;
+      --text: #f0e6ff;
+      --muted: #8b7aa0;
+      --passion: #ff4757;
+      --intimacy: #45aaf2;
+      --commitment: #ffd32a;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', Georgia, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 70px 24px 40px;
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #f0e6ff 30%, #d4a855 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 60px;
+    }
+
+    /* ── TRIANGLE ── */
+    .triangle-wrap {
+      max-width: 460px;
+      margin: 0 auto 70px;
+      padding: 0 20px;
+    }
+    .triangle-wrap svg { width: 100%; height: auto; }
+
+    /* ── ACTIVITY CARDS ── */
+    .cards-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 580px) { .cards-grid { grid-template-columns: 1fr; } }
+
+    .activity-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 42px 34px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .activity-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .card-icon { font-size: 3rem; display: block; margin-bottom: 22px; }
+    .card-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .card-desc {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .mixer-card { border-top: 3px solid #a55eea; }
+    .mixer-card .card-tag { color: #a55eea; }
+    .mixer-card .card-cta { color: #a55eea; }
+    .mixer-card:hover { box-shadow: 0 24px 70px rgba(165,94,234,0.18); }
+
+    .doctor-card { border-top: 3px solid #ff6b81; }
+    .doctor-card .card-tag { color: #ff6b81; }
+    .doctor-card .card-cta { color: #ff6b81; }
+    .doctor-card:hover { box-shadow: 0 24px 70px rgba(255,107,129,0.18); }
+
+    /* ── REFERENCE ── */
+    .ref-section {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      border-top: 1px solid var(--border);
+    }
+    .ref-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .ref-intro {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 12px;
+    }
+    .type-chip {
+      padding: 14px 16px;
+      border-radius: 12px;
+    }
+    .type-chip .tname { font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; }
+    .type-chip .tcombo { font-size: 0.78rem; opacity: 0.65; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px 48px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      border-top: 1px solid var(--border);
+    }
+    footer em { font-style: italic; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Robert Sternberg · 1986</div>
+  <h1>Triangular Theory<br>of Love</h1>
+  <p class="subtitle">Explore how Passion, Intimacy, and Commitment combine to create eight distinct types of love.</p>
+</header>
+
+<!-- Interactive Triangle Diagram -->
+<div class="triangle-wrap">
+  <svg viewBox="0 0 400 370" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="gI" cx="50%" cy="0%" r="50%">
+        <stop offset="0%" stop-color="#45aaf2" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#45aaf2" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="gP" cx="0%" cy="100%" r="60%">
+        <stop offset="0%" stop-color="#ff4757" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#ff4757" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="gC" cx="100%" cy="100%" r="60%">
+        <stop offset="0%" stop-color="#ffd32a" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#ffd32a" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <!-- Gradient fills from each vertex -->
+    <polygon points="200,22 28,342 372,342" fill="url(#gI)"/>
+    <polygon points="200,22 28,342 372,342" fill="url(#gP)"/>
+    <polygon points="200,22 28,342 372,342" fill="url(#gC)"/>
+
+    <!-- Triangle outline -->
+    <polygon points="200,22 28,342 372,342"
+             fill="none"
+             stroke="rgba(255,255,255,0.13)"
+             stroke-width="1.5"/>
+
+    <!-- Vertex glow circles -->
+    <circle cx="200" cy="22" r="48" fill="#45aaf2" opacity="0.08"/>
+    <circle cx="28" cy="342" r="48" fill="#ff4757" opacity="0.08"/>
+    <circle cx="372" cy="342" r="48" fill="#ffd32a" opacity="0.08"/>
+
+    <!-- Vertex dots -->
+    <circle cx="200" cy="22" r="6" fill="#45aaf2"/>
+    <circle cx="28" cy="342" r="6" fill="#ff4757"/>
+    <circle cx="372" cy="342" r="6" fill="#ffd32a"/>
+
+    <!-- Vertex labels -->
+    <text x="200" y="10" text-anchor="middle" fill="#45aaf2" font-size="13" font-family="Lato,sans-serif" font-weight="700" letter-spacing="2">INTIMACY</text>
+    <text x="8" y="360" text-anchor="start" fill="#ff4757" font-size="13" font-family="Lato,sans-serif" font-weight="700" letter-spacing="2">PASSION</text>
+    <text x="392" y="360" text-anchor="end" fill="#ffd32a" font-size="13" font-family="Lato,sans-serif" font-weight="700" letter-spacing="2">COMMITMENT</text>
+
+    <!-- Love type labels (positioned by barycentric logic) -->
+    <!-- Non-love: center-ish but low -->
+    <circle cx="200" cy="195" r="4" fill="#636e72"/>
+    <text x="213" y="199" fill="rgba(255,255,255,0.38)" font-size="9.5" font-family="Lato,sans-serif">Non-Love</text>
+
+    <!-- Liking: near Intimacy -->
+    <circle cx="200" cy="80" r="4" fill="#45aaf2"/>
+    <text x="212" y="84" fill="rgba(255,255,255,0.6)" font-size="9.5" font-family="Lato,sans-serif">Liking</text>
+
+    <!-- Infatuation: near Passion -->
+    <circle cx="86" cy="308" r="4" fill="#ff4757"/>
+    <text x="96" y="312" fill="rgba(255,255,255,0.6)" font-size="9.5" font-family="Lato,sans-serif">Infatuation</text>
+
+    <!-- Empty Love: near Commitment -->
+    <circle cx="314" cy="308" r="4" fill="#808080"/>
+    <text x="252" y="312" fill="rgba(255,255,255,0.6)" font-size="9.5" font-family="Lato,sans-serif">Empty Love</text>
+
+    <!-- Romantic Love: Intimacy + Passion edge -->
+    <circle cx="136" cy="168" r="4" fill="#a55eea"/>
+    <text x="50" y="162" fill="rgba(255,255,255,0.62)" font-size="9.5" font-family="Lato,sans-serif">Romantic</text>
+    <text x="57" y="174" fill="rgba(255,255,255,0.62)" font-size="9.5" font-family="Lato,sans-serif">Love</text>
+
+    <!-- Companionate Love: Intimacy + Commitment edge -->
+    <circle cx="264" cy="168" r="4" fill="#26de81"/>
+    <text x="270" y="162" fill="rgba(255,255,255,0.62)" font-size="9.5" font-family="Lato,sans-serif">Companionate</text>
+    <text x="278" y="174" fill="rgba(255,255,255,0.62)" font-size="9.5" font-family="Lato,sans-serif">Love</text>
+
+    <!-- Fatuous Love: Passion + Commitment edge -->
+    <circle cx="200" cy="316" r="4" fill="#fd9644"/>
+    <text x="173" y="332" fill="rgba(255,255,255,0.62)" font-size="9.5" font-family="Lato,sans-serif">Fatuous Love</text>
+
+    <!-- Consummate Love: center (all high) -->
+    <circle cx="200" cy="228" r="6" fill="#ff6b81"/>
+    <circle cx="200" cy="228" r="12" fill="#ff6b81" opacity="0.15"/>
+    <text x="200" y="250" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-family="Lato,sans-serif" font-weight="700">Consummate Love</text>
+  </svg>
+</div>
+
+<!-- Activity Cards -->
+<div class="cards-section">
+  <p class="section-label">Choose an activity</p>
+  <div class="cards-grid">
+
+    <a href="love-mixer.html" class="activity-card mixer-card">
+      <span class="card-icon">⚗️</span>
+      <div class="card-tag">Activity 1</div>
+      <div class="card-title">Love Mixer</div>
+      <p class="card-desc">Set Passion, Intimacy, and Commitment to High or Low — then mix them in the beaker to discover which of the eight types of love you've created.</p>
+      <span class="card-cta">Start Mixing →</span>
+    </a>
+
+    <a href="love-doctor.html" class="activity-card doctor-card">
+      <span class="card-icon">🩺</span>
+      <div class="card-tag">Activity 2</div>
+      <div class="card-title">The Love Doctor</div>
+      <p class="card-desc">A couple has arrived at your office. Read their story, then diagnose their relationship on your clipboard. Earn $100 for every correct diagnosis!</p>
+      <span class="card-cta">Open the Clinic →</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- Reference Section -->
+<div class="ref-section">
+  <div class="ref-title">The Eight Types of Love</div>
+  <p class="ref-intro">The presence or absence of each component — Passion, Intimacy, and Commitment — gives rise to eight distinct relationship experiences.</p>
+
+  <div class="types-grid">
+    <div class="type-chip" style="background:rgba(99,110,114,0.18);border:1px solid rgba(99,110,114,0.3)">
+      <div class="tname" style="color:#95A5A6">Non-Love</div>
+      <div class="tcombo">None</div>
+    </div>
+    <div class="type-chip" style="background:rgba(69,170,242,0.13);border:1px solid rgba(69,170,242,0.3)">
+      <div class="tname" style="color:#45aaf2">Liking</div>
+      <div class="tcombo">Intimacy only</div>
+    </div>
+    <div class="type-chip" style="background:rgba(255,71,87,0.13);border:1px solid rgba(255,71,87,0.3)">
+      <div class="tname" style="color:#ff4757">Infatuation</div>
+      <div class="tcombo">Passion only</div>
+    </div>
+    <div class="type-chip" style="background:rgba(128,128,128,0.13);border:1px solid rgba(128,128,128,0.3)">
+      <div class="tname" style="color:#aaa">Empty Love</div>
+      <div class="tcombo">Commitment only</div>
+    </div>
+    <div class="type-chip" style="background:rgba(165,94,234,0.13);border:1px solid rgba(165,94,234,0.3)">
+      <div class="tname" style="color:#a55eea">Romantic Love</div>
+      <div class="tcombo">Intimacy + Passion</div>
+    </div>
+    <div class="type-chip" style="background:rgba(38,222,129,0.13);border:1px solid rgba(38,222,129,0.3)">
+      <div class="tname" style="color:#26de81">Companionate Love</div>
+      <div class="tcombo">Intimacy + Commitment</div>
+    </div>
+    <div class="type-chip" style="background:rgba(253,150,68,0.13);border:1px solid rgba(253,150,68,0.3)">
+      <div class="tname" style="color:#fd9644">Fatuous Love</div>
+      <div class="tcombo">Passion + Commitment</div>
+    </div>
+    <div class="type-chip" style="background:rgba(255,107,129,0.13);border:1px solid rgba(255,107,129,0.3)">
+      <div class="tname" style="color:#ff6b81">Consummate Love</div>
+      <div class="tcombo">All three</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Based on Sternberg, R. J. (1986). A triangular theory of love. <em>Psychological Review, 93</em>(2), 119–135.
+</footer>
+
+</body>
+</html>

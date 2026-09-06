@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://www.biomotionlab.ca/Demos/bmlwalker/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+
+  <title>BML Publisher</title>
+
+  <link rel="stylesheet" href="./walking sim_files/styles.css">
+ <link rel="stylesheet" href="./walking sim_files/metisMenu.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="./walking sim_files/rangeslider.css" type="text/css" media="all">
+  <link rel="stylesheet" href="./walking sim_files/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="./walking sim_files/font-awesome.min.css" type="text/css" media="all">
+</head>
+<body>
+	
+    <div class="wrap">
+
+    <div class="canvas-container" id="canvas-container" style="background-color: rgb(0, 0, 0);">
+          
+  <canvas id="wc" width="450" height="675" style="border:2px solid 	#303030;">
+  </canvas>
+</div>
+                
+<div class="controlbar-open" onclick="showCtrl()">
+  <a href="https://www.biomotionlab.ca/Demos/bmlwalker/#"><span class="fa arrow-ctrl a"></span><span id="ctrl-text" class="a">Open</span></a>
+</div>
+
+
+<div id="export-menu">
+	<div>
+		<span id="export-title">Export Walker</span>
+		<span id="close-export">X</span>
+	</div>
+	<div class="export-child">
+		<select id="export-type">
+			<option value="0">Animated GIF</option>
+			<option value="1">Images</option>
+			<option value="2">Walker Data</option>				
+		</select>
+	</div>
+
+	<div class="export-child">
+		<input onkeyup="if(parseInt(this.value) &lt; 1 ) this.value=1; else if(parseInt(this.value) &gt; 300) this.value=300; else this.value=this.value.replace(/[^0-9]/g,&#39;&#39;);" id="frame-rate" type="number" min="1" max="300" value="60" step="1">
+		<span id="fps">FPS</span>
+		<input onkeyup="if(parseInt(this.value) &lt; 1 ) this.value=1; else if(parseInt(this.value) &gt; 5) this.value=5;" id="gait-cycles" type="number" min="1" max="5" value="1" step=".1">
+		<span id="fps">Gait Cycles</span>
+	</div>
+
+	<a type="button" id="btn-export" class="export-child">export</a>
+	<span class="export-child" id="export-progress">progress: 0%</span>
+	<a type="button" id="btn-download" class="export-child">download</a>
+</div>
+
+<div class="controlbar-wrapper">
+
+<div class="controlbar">
+	<div class="controlbar-logo">
+		<a href="https://biomotionlab.ca/" title="Biomotion Lab — " rel="home">
+			<img src="./walking sim_files/controlbar-logo.png" alt="Biomotion Lab" id="logo">
+		</a>
+	</div>
+	<ul class="nav metismenu" id="side-menu">
+	
+	
+	
+	<li class="start">
+		</li><li class="start">
+          <a href="https://www.biomotionlab.ca/Demos/bmlwalker/index.html"><span class="fa arrow"></span>Gender</a>
+          <ul class="nav nav-second-level collapse" aria-expanded="false">
+            <li>
+            <div class="fl-left">Male</div>
+            <div class="fl-right">Female</div>
+            <div class="range"><input id="genderslider" type="range" max="128" value="64"></div>
+            
+            </li>
+          </ul>
+      </li>
+	  <li>
+		<a href="https://www.biomotionlab.ca/Demos/bmlwalker/index.html"><span class="fa arrow"></span>Weight</a>
+		<ul class="nav nav-second-level collapse" aria-expanded="false">
+		  <li>
+		  <div class="fl-left">Heavy</div>
+		  <div class="fl-right">Light</div>
+		  <div class="range"><input id="weightslider" type="range" max="128" value="64"></div>
+		  </li>
+		</ul>
+	</li>
+	<li>
+		<a href="https://www.biomotionlab.ca/Demos/bmlwalker/index.html"><span class="fa arrow"></span>Nervousness</a>
+		<ul class="nav nav-second-level collapse" aria-expanded="false">
+		  <li>
+		  <div class="fl-left">Nervous</div>
+		  <div class="fl-right">Relaxed</div>
+		  <div class="range"><input id="nervousslider" type="range" max="128" value="64"></div>
+		  </li>
+		</ul>
+	</li>
+	<li>
+		<a href="https://www.biomotionlab.ca/Demos/bmlwalker/index.html"><span class="fa arrow"></span>Happiness</a>
+		<ul class="nav nav-second-level collapse" aria-expanded="false">
+		  <li>
+			<div class="fl-left">Happy</div>
+		  <div class="fl-right">Sad</div>
+		  <div class="range"><input id="happyslider" type="range" max="128" value="64"></div>
+		  </li>
+		</ul>
+	</li>
+
+<li>
+  <a href="https://www.biomotionlab.ca/Demos/bmlwalker/index.html"><span class="fa arrow"></span>Rotate</a>
+	<ul class="nav nav-second-level collapse" aria-expanded="false">
+	  <li>
+		<button class="btn-rotate" id="rotateleft"><i class="fa fa-rotate-left fa-fw"></i></button>
+		<div class="fl-right">
+		<button class="btn-rotate" id="rotateright"><i class="fa fa-rotate-right fa-fw"></i></button>
+		</div>
+	  </li>
+	</ul>  
+</li>
+	
+	
+	<li class="break start">     
+    </li>
+    <li class="break">
+        
+    </li>
+	  
+	<li class="switch">
+		<div class="fl-right a">Lines</div>
+		<div class="onoffswitch">
+	   <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="linesswitch">
+	   <label class="onoffswitch-label" for="linesswitch"></label>
+	   </div>
+	   </li>
+	
+
+		<li class="switch">
+		<div class="fl-right a">Pause</div>
+		<div class="onoffswitch">
+			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="pauseswitch">
+			<label class="onoffswitch-label" for="pauseswitch"></label>
+		</div>
+		</li>
+		
+		<!-- Add info button and popup -->
+		<li>
+			<button id="btninfo" class="btn-a" type="button"><span>Info</span></button>
+		</li>
+		
+		<li>
+			<button id="btnreset" class="btn-a" type="button"><span>Reset</span></button>
+		</li>
+	</ul>
+
+	<!-- Add info popup div with links -->
+	<div id="info-popup" class="popup">
+		<div class="popup-content">
+			<span class="close-popup">×</span>
+			<p>This animation demonstrates a framework for retrieving and visualizing biologically and psychologically relevant information form biological motion patterns. It is based on walking data from 50 male and 50 female walkers. Using a motion capture system their movement were recorded while walking on a treadmill.
+
+				The data were subsequently transformed into a representation which allows for linear morphing. The resulting "walking space" was then transformed usig principal component analysis. A space spanned by the first 10 eigenwalkers was used to compute linear discriminant functions for the respective attributes.
+				
+				Sex and weight of each walker were directly available from our records. The outer two attributes were derived from psychological experiments. A number of observers were presented with point-light displays of the 100 walkers. For each of them they had to rate the attributes nervous/relaxed and happy/sad on a scale of 6 steps.
+				
+				The procedure is described in dertail in these papers:</p>
+			<ul>
+				<li><a href="https://jov.arvojournals.org/article.aspx?articleid=2192503" target="_blank">Troje, N. F. (2002), Decomposing biological motion: A framework for analysis and synthesis of human gair patterns, Journal of Vision, 2:371-387.</a></li>
+				<li><a href="https://www.biomotionlab.ca/Text/WDP2002_Troje.pdf" target="_blank">Troje, N. F. (2002) The little difference: Fourier based gender classification from biological motion; In: Dynamic Perception, R. P. Würtz and M. Lappe (eds), Aka Press, Berlin:115-120</a></li>
+				<li><a href="https://www.biomotionlab.ca/Text/trojeChapter07b.pdf" target="_blank">Troje, N. F. (2008) Retrieving information from human movement patterns. In: Shipley, T. F. and Zacks, J. M. (eds.) Understanding Events: How Humans See, Represent, and Act on Events. Oxford University Press, pp. 308-334.
+
+				</a></li>
+				For a complete list of publications, please click <a href="https://www.biomotionlab.ca/publications/" target="_blank">here.</a> 
+			</ul>
+			
+		</div>
+	</div>
+
+</div> <!-- controlbar -->
+</div> <!-- controlbar-wrapper -->
+
+</div> <!-- wrap -->
+
+<!--include JavaScript libraries -->
+<script type="text/javascript" src="./walking sim_files/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./walking sim_files/createjs-2015.11.26.min.js"></script>
+<script type="text/javascript" src="./walking sim_files/metisMenu.min.js"></script>
+<script type="text/javascript" src="./walking sim_files/rangeslider.min.js"></script>
+<script type="text/javascript" src="./walking sim_files/jscolor.min.js"></script>
+
+<!--include Walker JavaScript files -->
+<script type="text/javascript" src="./walking sim_files/LinearMask.js"></script>
+<script type="text/javascript" src="./walking sim_files/SampledMask.js"></script>
+<script type="text/javascript" src="./walking sim_files/Matrix.js"></script>
+<script type="text/javascript" src="./walking sim_files/Walker.js"></script>
+
+<!--include gif.js library files that is used in accordance with the Author's License (Johan Nordberg)-->
+<script type="text/javascript" src="./walking sim_files/gif.js"></script>
+<script src="./walking sim_files/jszip.js"></script>
+
+<!--include main JavaScript code -->
+<script src="./walking sim_files/html5-bml-viewer.js"></script>
+
+<div class="calendly-lifecycle-optibutton_singleton"><template shadowrootmode="closed"><div class="calendly-opti-root"></div></template></div><div class="calendly-frame-tag" manager_id="cea87eab-1ba1-493d-87aa-3d1a357df787" id="cea87eab-1ba1-493d-87aa-3d1a357df787" style="height: 0px; width: 0px; visibility: hidden;"></div></body></html>

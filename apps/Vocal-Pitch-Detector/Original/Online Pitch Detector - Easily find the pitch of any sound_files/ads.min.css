@@ -1,0 +1,56 @@
+/* Comscore styling */
+body:not(.adthrive-device-phone) .adthrive-comscore {
+    margin: 0px auto!important;
+    padding-bottom: 100px;
+}
+.adthrive-device-phone .adthrive-comscore {
+    margin: 0px auto!important;
+    padding-bottom: 60px;
+}
+.adthrive-comscore span, .adthrive-ccpa-link {
+    color: #436F8E;
+    font-family: Lato;
+    font-size: 14px;
+    text-transform: capitalize;
+    border-top: none;
+    padding-top: 5px;
+}
+/* END Comscore styling */
+
+body.page-id-274 .trouble-shooting {
+margin-top: 0px!important;
+}
+
+/* Place “Advertisement” tag above ads */
+.adthrive-content:before, .adthrive-below-post:before, .adthrive-header:before {
+  content: "ADVERTISEMENT";
+  font-family: 'Quattrocento', serif;
+  letter-spacing: 1px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  align-self: baseline;
+  color: #888;
+text-transform: uppercase;
+font-size: 13px;
+
+}
+.adthrive-parallax-slot {
+padding-bottom: 10px; /* parallax ads need a bit more spacing */
+}
+/* END ADVERTISEMENT STYLING */
+
+.adthrive-content, .adthrive-below-post {
+background: lightgrey;
+    padding: 10px;
+min-height: 300px;
+}
+
+.adthrive-header {
+background: lightgrey;
+    padding: 10px;
+min-height: 120px !important;
+}
+
+.adthrive-header>div {
+max-width: unset !important;
+}
