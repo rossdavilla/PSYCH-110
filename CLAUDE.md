@@ -11,6 +11,15 @@ HTML/CSS/JS — no build system, no framework, no package manager. Each chapter 
 a standalone `.html` file that links a shared stylesheet and script. Content is
 licensed CC BY-NC-SA 4.0 (not traditional copyright).
 
+## 1b. Writing a chapter's content
+
+This file is about **building the page**. The brief for **writing the prose** — voice, reading
+level, chapter anatomy, Fun Facts, the 10 embedded MCQs, the Study Guide, the Key Terms glossary,
+and the two-pass "never invent a citation" protocol — is
+[`CHAPTER-PRODUCTION.md`](CHAPTER-PRODUCTION.md). Read it before drafting or revising chapter
+text. Chapter drafts live in that chapter's `Drafts/` folder as Markdown plus the `.docx` Ross
+reviews.
+
 ## 2. Directory structure
 
 ```
